@@ -1,0 +1,27 @@
+.footer {
+  position: relative;
+  width: 100%;
+  font-weight: 400;
+  font-size: 14px;
+  bottom: 0;
+  left: 0;
+  border-top: 1px solid #efefef;
+}
+
+.footer-container {
+  height: 60px;
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  align-items: center;
+}
+
+.footer-container a {
+  padding: 0 15px;
+}
+
+.copyright {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 10px;
+}
