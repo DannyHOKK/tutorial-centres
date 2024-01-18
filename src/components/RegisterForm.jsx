@@ -5,9 +5,11 @@ import {
   Cascader,
   Checkbox,
   Col,
+  DatePicker,
   Form,
   Input,
   InputNumber,
+  Radio,
   Row,
   Select,
 } from "antd";
@@ -58,7 +60,7 @@ const RegisterForm = () => {
         span: 24,
       },
       sm: {
-        span: 8,
+        span: 6,
       },
     },
     wrapperCol: {
@@ -78,7 +80,7 @@ const RegisterForm = () => {
       },
       sm: {
         span: 16,
-        offset: 8,
+        offset: 4,
       },
     },
   };
@@ -127,7 +129,6 @@ const RegisterForm = () => {
       name="register"
       onFinish={onFinish}
       initialValues={{
-        residence: ["zhejiang", "hangzhou", "xihu"],
         prefix: "86",
       }}
       style={{
@@ -138,7 +139,7 @@ const RegisterForm = () => {
     >
       <Form.Item
         name="email"
-        label="E-mail"
+        label="登入電郵"
         rules={[
           {
             type: "email",
@@ -155,7 +156,7 @@ const RegisterForm = () => {
 
       <Form.Item
         name="password"
-        label="Password"
+        label="密碼"
         rules={[
           {
             required: true,
@@ -169,7 +170,7 @@ const RegisterForm = () => {
 
       <Form.Item
         name="confirm"
-        label="Confirm Password"
+        label="確認密碼"
         dependencies={["password"]}
         hasFeedback
         rules={[
@@ -193,9 +194,9 @@ const RegisterForm = () => {
       </Form.Item>
 
       <Form.Item
-        name="nickname"
-        label="Nickname"
-        tooltip="What do you want others to call you?"
+        name="engName"
+        label="英文名稱"
+        tooltip="提示：必須與身份証上資料相同"
         rules={[
           {
             required: true,
@@ -208,127 +209,94 @@ const RegisterForm = () => {
       </Form.Item>
 
       <Form.Item
-        name="residence"
-        label="Habitual Residence"
+        name="chineseName"
+        label="中文名稱"
+        tooltip="提示：必須與身份証上資料相同"
         rules={[
           {
-            type: "array",
             required: true,
-            message: "Please select your habitual residence!",
+            message: "Please input your nickname!",
+            whitespace: true,
           },
         ]}
       >
-        <Cascader options={residences} />
+        <Input />
       </Form.Item>
 
       <Form.Item
-        name="phone"
-        label="Phone Number"
+        name="chineseName"
+        label="手提電話"
+        tooltip="提示：請填寫以4、5、6、7、8、9開頭的8位香港手提電話"
         rules={[
           {
             required: true,
-            message: "Please input your phone number!",
+            message: "Please input your nickname!",
+            whitespace: true,
           },
         ]}
       >
-        <Input
-          addonBefore={prefixSelector}
-          style={{
-            width: "100%",
-          }}
-        />
+        <Input />
       </Form.Item>
 
       <Form.Item
-        name="donation"
-        label="Donation"
+        name="chineseName"
+        label="身份證號碼"
+        tooltip="接納補習個案簽註核對使用，包括括號內的數字和英文字母。例：A123456(A)"
         rules={[
           {
             required: true,
-            message: "Please input donation amount!",
+            message: "Please input your nickname!",
+            whitespace: true,
           },
         ]}
       >
-        <InputNumber
-          addonAfter={suffixSelector}
-          style={{
-            width: "100%",
-          }}
-        />
+        <Input />
       </Form.Item>
 
       <Form.Item
-        name="website"
-        label="Website"
+        name="radio-button"
+        label="性別"
+        rules={[{ required: true, message: "請選擇你的性別" }]}
+      >
+        <Row>
+          <Radio.Group>
+            <Radio value="male">男</Radio>
+            <Radio value="female">女</Radio>
+          </Radio.Group>
+        </Row>
+      </Form.Item>
+
+      <Form.Item label="出生年份">
+        <Row>
+          <DatePicker picker="year" />
+        </Row>
+      </Form.Item>
+
+      <Form.Item
+        name="secondarySchool"
+        label="就讀中學"
         rules={[
           {
             required: true,
-            message: "Please input website!",
+            message: "Please input your nickname!",
+            whitespace: true,
           },
         ]}
       >
-        <AutoComplete
-          options={websiteOptions}
-          onChange={onWebsiteChange}
-          placeholder="website"
-        >
-          <Input />
-        </AutoComplete>
+        <Input />
       </Form.Item>
 
       <Form.Item
-        name="intro"
-        label="Intro"
+        name="address"
+        label="住宅地址"
         rules={[
           {
             required: true,
-            message: "Please input Intro",
+            message: "Please input address",
           },
         ]}
       >
         <Input.TextArea showCount maxLength={100} />
-      </Form.Item>
-
-      <Form.Item
-        name="gender"
-        label="Gender"
-        rules={[
-          {
-            required: true,
-            message: "Please select gender!",
-          },
-        ]}
-      >
-        <Select placeholder="select your gender">
-          <Option value="male">Male</Option>
-          <Option value="female">Female</Option>
-          <Option value="other">Other</Option>
-        </Select>
-      </Form.Item>
-
-      <Form.Item
-        label="Captcha"
-        extra="We must make sure that your are a human."
-      >
-        <Row gutter={8}>
-          <Col span={12}>
-            <Form.Item
-              name="captcha"
-              noStyle
-              rules={[
-                {
-                  required: true,
-                  message: "Please input the captcha you got!",
-                },
-              ]}
-            >
-              <Input />
-            </Form.Item>
-          </Col>
-          <Col span={12}>
-            <Button>Get captcha</Button>
-          </Col>
-        </Row>
       </Form.Item>
 
       <Form.Item

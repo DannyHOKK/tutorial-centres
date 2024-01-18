@@ -1,7 +1,9 @@
 import React from "react";
 import { Button, Checkbox, Form, Input } from "antd";
+import { useNavigate } from "react-router-dom";
 
 const LoginForm = () => {
+  const navigate = useNavigate();
   const onFinish = (values) => {
     console.log("Success:", values);
   };
@@ -30,12 +32,12 @@ const LoginForm = () => {
       autoComplete="off"
     >
       <Form.Item
-        label="用戶名稱"
-        name="username"
+        label="登入電郵"
+        name="email"
         rules={[
           {
             required: true,
-            message: "請輸入你的用戶名稱",
+            message: "請輸入你的登入電郵",
           },
         ]}
       >
@@ -43,7 +45,7 @@ const LoginForm = () => {
       </Form.Item>
 
       <Form.Item
-        label="登入密碼"
+        label="密碼"
         name="password"
         rules={[
           {
@@ -70,7 +72,12 @@ const LoginForm = () => {
         >
           立即登入
         </Button>
-        <Button style={{ backgroundColor: "grey", color: "white" }}>
+        <Button
+          style={{ backgroundColor: "grey", color: "white" }}
+          onClick={() => {
+            navigate("/register");
+          }}
+        >
           註冊帳戶
         </Button>
       </Form.Item>
