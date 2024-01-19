@@ -14,46 +14,12 @@ import {
   Select,
 } from "antd";
 
-const RegisterForm = () => {
+const RegisterForm = ({ current, next }) => {
   const [form] = Form.useForm();
   const onFinish = (values) => {
     console.log("Received values of form: ", values);
   };
   const { Option } = Select;
-  const residences = [
-    {
-      value: "zhejiang",
-      label: "Zhejiang",
-      children: [
-        {
-          value: "hangzhou",
-          label: "Hangzhou",
-          children: [
-            {
-              value: "xihu",
-              label: "West Lake",
-            },
-          ],
-        },
-      ],
-    },
-    {
-      value: "jiangsu",
-      label: "Jiangsu",
-      children: [
-        {
-          value: "nanjing",
-          label: "Nanjing",
-          children: [
-            {
-              value: "zhonghuamen",
-              label: "Zhong Hua Men",
-            },
-          ],
-        },
-      ],
-    },
-  ];
   const formItemLayout = {
     labelCol: {
       xs: {
@@ -122,6 +88,16 @@ const RegisterForm = () => {
     label: website,
     value: website,
   }));
+
+  const handleSubmit = async () => {
+    try {
+      await form.validateFields();
+      next();
+    } catch (error) {
+      console.log("Form validation failed:", error);
+    }
+  };
+
   return (
     <Form
       {...formItemLayout}
@@ -317,8 +293,12 @@ const RegisterForm = () => {
         </Checkbox>
       </Form.Item>
       <Form.Item {...tailFormItemLayout}>
-        <Button type="primary" htmlType="submit">
-          Register
+        <Button
+          type="primary"
+          htmlType="button" // Change the type to "button"
+          onClick={handleSubmit} // Call the handleSubmit function
+        >
+          Next
         </Button>
       </Form.Item>
     </Form>
