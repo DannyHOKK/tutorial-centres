@@ -8,7 +8,7 @@ import SchoolIcon from "@mui/icons-material/School";
 import { Button, Steps } from "antd";
 import RegisterForm from "./RegisterForm";
 import ResumeForm from "./ResumeForm";
-import location from "../staticData/location.json";
+import data from "../staticData/inputData.json";
 
 const RegisterProgressBar = ({ current, next, prev }) => {
   const steps = [
@@ -39,7 +39,8 @@ const RegisterProgressBar = ({ current, next, prev }) => {
     title: item.title,
     icon: item.icon,
   }));
-  const test = location.location.map((item) => ({
+
+  const location = data.location.map((item) => ({
     key: item.title,
     region: item.region,
     area: item.area,
@@ -53,7 +54,7 @@ const RegisterProgressBar = ({ current, next, prev }) => {
         items={items}
       />
 
-      {test.map((item) => (
+      {/* {location.map((item) => (
         <div>
           <div>{item.region}</div>
           <div>
@@ -62,7 +63,7 @@ const RegisterProgressBar = ({ current, next, prev }) => {
             ))}
           </div>
         </div>
-      ))}
+      ))} */}
 
       <div>{steps[current].content}</div>
 
