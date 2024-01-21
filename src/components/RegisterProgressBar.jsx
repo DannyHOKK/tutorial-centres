@@ -50,7 +50,7 @@ const RegisterProgressBar = ({ current, previousStep, next, prev }) => {
   }));
 
   return (
-    <>
+    <div style={{ overflow: "hidden" }}>
       <Steps
         style={{ maxWidth: "800px", margin: "40px auto" }}
         current={current}
@@ -58,7 +58,7 @@ const RegisterProgressBar = ({ current, previousStep, next, prev }) => {
       />
       {current === 0 && (
         <motion.div
-          initial={{ x: delta >= 0 ? "50%" : "-50%", opacity: 0 }}
+          initial={{ x: delta >= 0 ? "20%" : "-20%", opacity: 0 }}
           animate={{ x: 0, opacity: 1 }}
           transition={{ duration: 0.7, ease: "easeInOut" }}
         >
@@ -68,7 +68,7 @@ const RegisterProgressBar = ({ current, previousStep, next, prev }) => {
 
       {current === 1 && (
         <motion.div
-          initial={{ x: delta >= 0 ? "50%" : "-50%", opacity: 0 }}
+          initial={{ x: delta >= 0 ? "20%" : "-20%", opacity: 0 }}
           animate={{ x: 0, opacity: 1 }}
           transition={{ duration: 0.7, ease: "easeInOut" }}
         >
@@ -78,7 +78,7 @@ const RegisterProgressBar = ({ current, previousStep, next, prev }) => {
 
       {current === 2 && (
         <motion.div
-          initial={{ x: delta >= 0 ? "50%" : "-50%", opacity: 0 }}
+          initial={{ x: delta >= 0 ? "20%" : "-20%", opacity: 0 }}
           animate={{ x: 0, opacity: 1 }}
           transition={{ duration: 0.7, ease: "easeInOut" }}
         >
@@ -88,7 +88,7 @@ const RegisterProgressBar = ({ current, previousStep, next, prev }) => {
 
       {current === 3 && (
         <motion.div
-          initial={{ x: delta >= 0 ? "50%" : "-50%", opacity: 0 }}
+          initial={{ x: delta >= 0 ? "20%" : "-20%", opacity: 0 }}
           animate={{ x: 0, opacity: 1 }}
           transition={{ duration: 0.7, ease: "easeInOut" }}
         >
@@ -121,7 +121,7 @@ const RegisterProgressBar = ({ current, previousStep, next, prev }) => {
           Previous
         </Button>
       )}
-    </>
+    </div>
   );
 };
 export default RegisterProgressBar;

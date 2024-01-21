@@ -15,7 +15,8 @@ const Footer = () => {
         <a>隱私政策</a>
       </div>
       <div className="copyright">
-        © {new Date().getFullYear()} Copyright: hktutorial.com
+        Copyright © 2019 - {new Date().getFullYear()} | HKTutorial All rights
+        reserved
       </div>
     </div>
   );
