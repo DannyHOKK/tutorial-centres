@@ -9,8 +9,11 @@ import { Button, Steps } from "antd";
 import RegisterForm from "./RegisterForm";
 import ResumeForm from "./ResumeForm";
 import data from "../staticData/inputData.json";
+import TeachingContent from "./TeachingContent";
+import { motion } from "framer-motion";
 
-const RegisterProgressBar = ({ current, next, prev }) => {
+const RegisterProgressBar = ({ current, previousStep, next, prev }) => {
+  const delta = current - previousStep;
   const steps = [
     {
       title: "個人資料",
@@ -25,7 +28,7 @@ const RegisterProgressBar = ({ current, next, prev }) => {
     {
       title: "授課資料",
       icon: <SolutionOutlined />,
-      content: "testing",
+      content: <TeachingContent />,
     },
     {
       title: "自我介紹",
@@ -53,25 +56,52 @@ const RegisterProgressBar = ({ current, next, prev }) => {
         current={current}
         items={items}
       />
+      {current === 0 && (
+        <motion.div
+          initial={{ x: delta >= 0 ? "50%" : "-50%", opacity: 0 }}
+          animate={{ x: 0, opacity: 1 }}
+          transition={{ duration: 0.7, ease: "easeInOut" }}
+        >
+          {steps[current].content}
+        </motion.div>
+      )}
 
-      {/* {location.map((item) => (
-        <div>
-          <div>{item.region}</div>
-          <div>
-            {item.area.map((items) => (
-              <div>{items}</div>
-            ))}
-          </div>
-        </div>
-      ))} */}
+      {current === 1 && (
+        <motion.div
+          initial={{ x: delta >= 0 ? "50%" : "-50%", opacity: 0 }}
+          animate={{ x: 0, opacity: 1 }}
+          transition={{ duration: 0.7, ease: "easeInOut" }}
+        >
+          {steps[current].content}
+        </motion.div>
+      )}
 
-      <div>{steps[current].content}</div>
+      {current === 2 && (
+        <motion.div
+          initial={{ x: delta >= 0 ? "50%" : "-50%", opacity: 0 }}
+          animate={{ x: 0, opacity: 1 }}
+          transition={{ duration: 0.7, ease: "easeInOut" }}
+        >
+          {steps[current].content}
+        </motion.div>
+      )}
+
+      {current === 3 && (
+        <motion.div
+          initial={{ x: delta >= 0 ? "50%" : "-50%", opacity: 0 }}
+          animate={{ x: 0, opacity: 1 }}
+          transition={{ duration: 0.7, ease: "easeInOut" }}
+        >
+          {steps[current].content}
+        </motion.div>
+      )}
 
       {current < steps.length - 1 && (
         <Button type="primary" onClick={() => next()}>
           Next
         </Button>
       )}
+
       {current === steps.length - 1 && (
         <Button
           type="primary"
@@ -80,6 +110,7 @@ const RegisterProgressBar = ({ current, next, prev }) => {
           Done
         </Button>
       )}
+
       {current > 0 && (
         <Button
           style={{
