@@ -23,13 +23,17 @@ const Register = () => {
 
   return (
     <div className="login-container page-container">
-      <h2>導師註冊</h2>
-      <RegisterProgressBar
-        current={current}
-        previousStep={previousStep}
-        next={next}
-        prev={prev}
-      />
+      <div className="page-container-content">
+        <div className="header-background">
+          <span>導師註冊</span>
+        </div>
+        <RegisterProgressBar
+          current={current}
+          previousStep={previousStep}
+          next={next}
+          prev={prev}
+        />
+      </div>
     </div>
   );
 };

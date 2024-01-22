@@ -1,0 +1,9 @@
+.register-subheader {
+  width: 100%;
+  background-color: rgba(60, 60, 165, 0.162);
+  padding: 6px 0;
+  border: 1px solid blueviolet;
+  border-radius: 6px;
+  margin: 40px 0;
+  font-size: 20px;
+}

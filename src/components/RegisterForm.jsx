@@ -13,13 +13,13 @@ import {
   Row,
   Select,
 } from "antd";
+import "./registerForm.css";
 
 const RegisterForm = ({ current, next }) => {
   const [form] = Form.useForm();
   const onFinish = (values) => {
     console.log("Received values of form: ", values);
   };
-  const { Option } = Select;
   const formItemLayout = {
     labelCol: {
       xs: {
@@ -70,11 +70,13 @@ const RegisterForm = ({ current, next }) => {
         prefix: "86",
       }}
       style={{
-        maxWidth: 600,
+        maxWidth: 800,
         margin: "auto",
       }}
       scrollToFirstError
     >
+      <div className="register-subheader">個人資料</div>
+
       <Form.Item
         name="email"
         label="登入電郵"
@@ -232,7 +234,7 @@ const RegisterForm = ({ current, next }) => {
           },
         ]}
       >
-        <Input.TextArea showCount maxLength={100} />
+        <Input.TextArea rows={5} showCount maxLength={100} />
       </Form.Item>
 
       <Form.Item

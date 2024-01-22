@@ -21,7 +21,7 @@ const LoginForm = () => {
         span: 16,
       }}
       style={{
-        maxWidth: 600,
+        maxWidth: 800,
         margin: "auto",
       }}
       initialValues={{

@@ -1,7 +1,398 @@
 {
-    "HKDSE"[
-        ""
-    ],
-    "HKAL":{},
-    "IB":{}
+  "HKDSE": [
+    "中國文學",
+    "生物",
+    "企業、會計與財務概論",
+    "英語文學",
+    "化學",
+    "設計與應用科技",
+    "中國歷史",
+    "物理",
+    "健康管理與社會關懷",
+    "經濟",
+    "資訊及通訊科技",
+    "倫理與宗教",
+    "科技與生活",
+    "地理",
+    "音樂",
+    "歷史",
+    "視覺藝術",
+    "旅遊與款待",
+    "體育"
+  ],
+  "HKDSEGrading": [
+    {
+      "value": 7,
+      "label": "5**"
+    },
+    {
+      "value": 6,
+      "label": "5*"
+    },
+    {
+      "value": 5,
+      "label": "5"
+    },
+    {
+      "value": 4,
+      "label": "4"
+    },
+    {
+      "value": 3,
+      "label": "3"
+    },
+    {
+      "value": 2,
+      "label": "2"
+    },
+    {
+      "value": 1,
+      "label": "1"
+    }
+  ],
+  "HKAL": [
+    {
+      "type": "語文",
+      "subject": [
+        {
+          "value": "中國語文",
+          "label": "中國語文"
+        },
+        {
+          "value": "英國語文",
+          "label": "英國語文"
+        },
+        {
+          "value": "通識教育",
+          "label": "通識教育"
+        }
+      ]
+    },
+    {
+      "type": "文科",
+      "subject": [
+        {
+          "value": "中國文學",
+          "label": "中國文學"
+        },
+        {
+          "value": "英國文學",
+          "label": "英國文學"
+        },
+        {
+          "value": "中國歷史",
+          "label": "中國歷史"
+        },
+        {
+          "value": "世界歷史",
+          "label": "世界歷史"
+        },
+        {
+          "value": "地理",
+          "label": "地理"
+        },
+        {
+          "value": "音樂",
+          "label": "音樂"
+        }
+      ]
+    },
+    {
+      "type": "理科",
+      "subject": [
+        {
+          "value": "純粹數學",
+          "label": "純粹數學"
+        },
+        {
+          "value": "應用數學",
+          "label": "應用數學"
+        },
+        {
+          "value": "物理",
+          "label": "物理"
+        },
+        {
+          "value": "生物",
+          "label": "生物"
+        },
+        {
+          "value": "化學",
+          "label": "化學"
+        }
+      ]
+    },
+    {
+      "type": "商科",
+      "subject": [
+        {
+          "value": "企業概論",
+          "label": "企業概論"
+        },
+        {
+          "value": "會計學原理",
+          "label": "會計學原理"
+        },
+        {
+          "value": "經濟",
+          "label": "經濟"
+        },
+        {
+          "value": "電腦應用",
+          "label": "電腦應用"
+        },
+        {
+          "value": "政府及公共事務",
+          "label": "政府及公共事務"
+        },
+        {
+          "value": "數學及統計學",
+          "label": "數學及統計學"
+        },
+        {
+          "value": "心理學",
+          "label": "心理學"
+        }
+      ]
+    }
+  ],
+  "HKALGrading": [
+    {
+      "value": 6,
+      "label": "A*"
+    },
+    {
+      "value": 5,
+      "label": "A"
+    },
+    {
+      "value": 4,
+      "label": "B"
+    },
+    {
+      "value": 3,
+      "label": "C"
+    },
+    {
+      "value": 2,
+      "label": "D"
+    },
+    {
+      "value": 1,
+      "label": "E"
+    }
+  ],
+  "IB": [
+    {
+      "type": "Languages",
+      "subject": [
+        "English: Language & Literature (SL & HL)",
+        "English: Literature (SL & HL)",
+        "Chinese A: Language & Literature (SL)",
+        "Chinese A: Literature (SL)",
+        "Chinese B (SL & HL)"
+      ]
+    },
+    {
+      "type": "Mathematics",
+      "subject": [
+        "Mathematics",
+        "Mathematics (SL)",
+        "Mathematics (HL)",
+        "Further Mathematics (HL)"
+      ]
+    },
+    {
+      "type": "Humanities and Social Sciences",
+      "subject": [
+        "Business Management",
+        "Economics",
+        "Global Politics",
+        "History",
+        "Philosophy",
+        "Psychology",
+        "Social and Cultural Anthropology",
+        "World Religions (SL)",
+        "Biology"
+      ]
+    },
+    {
+      "type": "Sciences",
+      "subject": [
+        "Chemistry",
+        "Physics",
+        "Geography",
+        "Sports, Exercise and Health Science"
+      ]
+    },
+    {
+      "type": "Creative, Technical and Vocational",
+      "subject": [
+        "Information Technology",
+        "Computer Science",
+        "Design Technology"
+      ]
+    }
+  ],
+  "IBGrading": [
+    {
+      "value": 7,
+      "label": "H7"
+    },
+    {
+      "value": 6,
+      "label": "H6"
+    },
+    {
+      "value": 5,
+      "label": "H5"
+    },
+    {
+      "value": 4,
+      "label": "H4"
+    },
+    {
+      "value": 3,
+      "label": "H3"
+    },
+    {
+      "value": 2,
+      "label": "H2"
+    },
+    {
+      "value": 1,
+      "label": "H1"
+    }
+  ],
+
+  "tutorContent": [
+    {
+      "category": "補習",
+      "type": [
+        "全科",
+        "文科",
+        "理科",
+        "商科",
+        "中文",
+        "英文",
+        "數學",
+        "數學(M1)",
+        "數學(M2)",
+        "中國文學",
+        "英國文學",
+        "中國歷史",
+        "世界歷史",
+        "地理",
+        "通識教育",
+        "綜合科學",
+        "綜合人文學",
+        "附加數學",
+        "純粹數學",
+        "應用數學",
+        "物理",
+        "生物",
+        "化學",
+        "商業學",
+        "會計",
+        "經濟",
+        "企業概論",
+        "政府及公共事務",
+        "數學及統計學",
+        "BAFS"
+      ],
+      "level": [
+        "小一至小三(初小)",
+        "小四至小六(高小)",
+        "中一至中三(初中)",
+        "中四至中六(高中)",
+        "大專或以上",
+        "成人"
+      ]
+    },
+    {
+      "category": "會話",
+      "type": [
+        "普通話",
+        "廣東話",
+        "英文拼音",
+        "日語",
+        "韓語",
+        "法語",
+        "意大利語",
+        "德語",
+        "西班牙語",
+        "英語會話",
+        "GCE",
+        "TOEFL",
+        "IELTS"
+      ],
+      "level": ["初級", "中級", "高級"]
+    },
+    {
+      "category": "音樂",
+      "type": [
+        "大提琴",
+        "中提琴",
+        "小提琴",
+        "小號",
+        "口琴",
+        "木笛",
+        "長笛",
+        "牧童笛",
+        "單簧管",
+        "色士風",
+        "二胡",
+        "古箏",
+        "琵琶",
+        "揚琴",
+        "柳琴",
+        "結他",
+        "木結他",
+        "電結他",
+        "電子琴",
+        "鋼琴",
+        "聲樂",
+        "樂理"
+      ],
+      "level": [
+        "初學",
+        "一級",
+        "二級",
+        "三級",
+        "四級",
+        "五級",
+        "六級",
+        "七級",
+        "八級"
+      ]
+    },
+    {
+      "category": "其他",
+      "type": [
+        "游水(蛙式)",
+        "游水(自由式)",
+        "游水(背泳)",
+        "游水(蝶式)",
+        "繪畫",
+        "電腦",
+        "劍橋英語",
+        "奧數",
+        "珠心算",
+        "學林數學",
+        "IGCSE",
+        "IB"
+      ],
+      "level": [
+        "小一至小三(初小)",
+        "小四至小六(高小)",
+        "中一至中三(初中)",
+        "中四至中六(高中)",
+        "大專或以上",
+        "成人",
+        "初級",
+        "中級",
+        "高級"
+      ]
+    }
+  ]
 }

@@ -2,6 +2,27 @@
   position: relative;
   min-height: 85vh;
 }
+.header-background {
+  background-image: url(/src//images/register-background.jpg);
+  background-size: cover;
+  background-position: 0 -200px;
+
+  font-size: 40px;
+  color: white;
+  height: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+/* .page-container:before {
+  content: " ";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.6;
+} */
 
 .login-container {
   width: 100%;
@@ -9,8 +30,12 @@
   flex-wrap: nowrap;
   justify-content: center;
   margin: auto;
-  margin-top: 70px;
+  padding-top: 30px;
 }
 .login-container form {
   width: 100%;
+}
+
+.page-container-content {
+  position: relative;
 }
