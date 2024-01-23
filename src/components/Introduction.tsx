@@ -1,10 +1,17 @@
-import { Form, Input, Select } from "antd";
+import { Button, Form, Input, Select } from "antd";
 import React from "react";
+import "./global.css";
 
-const Introduction = () => {
+const Introduction = ({ userInfo, setUserInfo, current, next, prev }) => {
   const [form] = Form.useForm();
-  const onFinish = (values) => {
-    console.log("Received values of form: ", values);
+  const onFinish = () => {
+    const values = form.getFieldsValue();
+    Object.keys(values).forEach((key) => {
+      setUserInfo((prevInfo: any) => ({
+        ...prevInfo,
+        [key]: values[key],
+      }));
+    });
   };
   const formItemLayout = {
     labelCol: {
@@ -24,21 +31,35 @@ const Introduction = () => {
       },
     },
   };
-
+  const tailFormItemLayout = {
+    wrapperCol: {
+      xs: {
+        span: 24,
+        offset: 0,
+      },
+      sm: {
+        span: 24,
+        offset: 0,
+      },
+    },
+  };
+  const handleSubmit = async () => {
+    try {
+      await form.validateFields();
+      onFinish();
+      next();
+    } catch (error) {
+      console.log("Form validation failed:", error);
+    }
+  };
   return (
     <Form
       {...formItemLayout}
       form={form}
       name="register"
-      onFinish={onFinish}
-      initialValues={{
-        prefix: "86",
-      }}
-      style={{
-        maxWidth: 800,
-        margin: "auto",
-      }}
+      className="form-style"
       scrollToFirstError
+      initialValues={userInfo}
     >
       <Form.Item
         name="introTitle"
@@ -65,6 +86,24 @@ const Introduction = () => {
         ]}
       >
         <Input.TextArea rows={6} showCount minLength={30} />
+      </Form.Item>
+
+      <Form.Item {...tailFormItemLayout} className="form-button">
+        <Button
+          style={{
+            margin: "0 8px",
+          }}
+          onClick={() => prev()}
+        >
+          上一頁
+        </Button>
+        <Button
+          type="primary"
+          htmlType="button" // Change the type to "button"
+          onClick={handleSubmit} // Call the handleSubmit function
+        >
+          提交
+        </Button>
       </Form.Item>
     </Form>
   );

@@ -19,12 +19,19 @@ import { CloseOutlined } from "@ant-design/icons";
 import "./registerForm.css";
 import subjectList from "../staticData/subjectList.json";
 import inputData from "../staticData/inputData.json";
+import "./global.css";
 
-const ResumeForm = ({ next, prev }) => {
+const ResumeForm = ({ userInfo, setUserInfo, current, next, prev }) => {
   const [form] = Form.useForm();
   const [test, setTest] = useState("");
-  const onFinish = (values) => {
-    console.log("Received values of form: ", values);
+  const onFinish = () => {
+    const values = form.getFieldsValue();
+    Object.keys(values).forEach((key) => {
+      setUserInfo((prevInfo: any) => ({
+        ...prevInfo,
+        [key]: values[key],
+      }));
+    });
   };
   const formItemLayout = {
     labelCol: {
@@ -60,6 +67,7 @@ const ResumeForm = ({ next, prev }) => {
   const handleSubmit = async () => {
     try {
       await form.validateFields();
+      onFinish();
       next();
     } catch (error) {
       console.log("Form validation failed:", error);
@@ -87,15 +95,9 @@ const ResumeForm = ({ next, prev }) => {
       {...formItemLayout}
       form={form}
       name="register"
-      onFinish={onFinish}
-      initialValues={{
-        prefix: "86",
-      }}
-      style={{
-        maxWidth: 800,
-        margin: "auto",
-      }}
+      className="form-style"
       scrollToFirstError
+      initialValues={userInfo}
     >
       <div className="register-subheader">職業履歷資料</div>
 
@@ -110,8 +112,8 @@ const ResumeForm = ({ next, prev }) => {
         ]}
       >
         <Select>
-          {currentJob.map((job) => (
-            <Select.Option key={job.id} value={job}>
+          {currentJob.map((job, id) => (
+            <Select.Option key={id} value={job}>
               {job}
             </Select.Option>
           ))}
@@ -124,13 +126,13 @@ const ResumeForm = ({ next, prev }) => {
         rules={[
           {
             required: true,
-            message: "Please input your E-mail!",
+            message: "請選擇你的補習經驗",
           },
         ]}
       >
         <Select>
-          {tutorExperience.map((exp) => (
-            <Select.Option key={exp.id} value={exp}>
+          {tutorExperience.map((exp, id) => (
+            <Select.Option key={id} value={exp}>
               {exp}
             </Select.Option>
           ))}
@@ -148,21 +150,28 @@ const ResumeForm = ({ next, prev }) => {
         ]}
       >
         <Select>
-          {highestTutorLevel.map((level) => (
-            <Select.Option key={level.id} value={level}>
+          {highestTutorLevel.map((level, id) => (
+            <Select.Option key={id} value={level}>
               {level}
             </Select.Option>
           ))}
         </Select>
       </Form.Item>
 
-      <Form.Item name="noteProvided" label="是否有筆記提供">
-        <Row>
-          <Radio.Group>
-            <Radio value="yes">有</Radio>
-            <Radio value="no">沒有</Radio>
-          </Radio.Group>
-        </Row>
+      <Form.Item
+        name="noteProvided"
+        label="是否有筆記提供"
+        rules={[
+          {
+            required: true,
+            message: "請選擇是否有筆記提供",
+          },
+        ]}
+      >
+        <Radio.Group>
+          <Radio value="yes">有</Radio>
+          <Radio value="no">沒有</Radio>
+        </Radio.Group>
       </Form.Item>
 
       <div className="register-subheader">學業履歷資料</div>
@@ -172,26 +181,28 @@ const ResumeForm = ({ next, prev }) => {
         rules={[
           {
             required: true,
-            message: "Please input your nickname!",
+            message: "請選擇最高教育程度",
           },
         ]}
       >
         <Select>
-          {highestEducation.map((education) => (
-            <Select.Option key={education.id} value={education}>
+          {highestEducation.map((education, id) => (
+            <Select.Option key={id} value={education}>
               {education}
             </Select.Option>
           ))}
         </Select>
       </Form.Item>
 
-      <Form.Item name="secondaryLang" label="中學語言">
-        <Row>
-          <Radio.Group>
-            <Radio value="english">英文</Radio>
-            <Radio value="chinese">中文</Radio>
-          </Radio.Group>
-        </Row>
+      <Form.Item
+        name="secondaryLang"
+        label="中學教育語言"
+        rules={[{ required: true, message: "請選擇中學語言" }]}
+      >
+        <Radio.Group>
+          <Radio value="english">英文</Radio>
+          <Radio value="chinese">中文</Radio>
+        </Radio.Group>
       </Form.Item>
 
       <Form.Item
@@ -199,47 +210,31 @@ const ResumeForm = ({ next, prev }) => {
         label="高中修讀科目類別"
         rules={[
           {
-            message: "Please input your nickname!",
+            required: true,
+            message: "請選擇高中修讀科目類別",
           },
         ]}
       >
         <Select>
-          {highSchoolMajor.map((major) => (
-            <Select.Option key={major.key} value={major}>
+          {highSchoolMajor.map((major, id) => (
+            <Select.Option key={id} value={major}>
               {major}
             </Select.Option>
           ))}
         </Select>
       </Form.Item>
 
-      <Form.Item
-        name="university"
-        label="就讀大學"
-        rules={[
-          {
-            message: "Please input your nickname!",
-          },
-        ]}
-      >
+      <Form.Item name="university" label="就讀大學">
         <Select>
-          {hkuniversity.map((uni) => (
-            <Select.Option key={uni.id} value={uni}>
+          {hkuniversity.map((uni, id) => (
+            <Select.Option key={id} value={uni}>
               {uni}
             </Select.Option>
           ))}
         </Select>
       </Form.Item>
 
-      <Form.Item
-        name="universityMajor"
-        label="大學主修科目"
-        rules={[
-          {
-            message: "Please input your nickname!",
-            whitespace: true,
-          },
-        ]}
-      >
+      <Form.Item name="universityMajor" label="大學主修科目">
         <Input />
       </Form.Item>
 
@@ -249,8 +244,8 @@ const ResumeForm = ({ next, prev }) => {
         label="香港文憑試"
         rules={[
           {
-            required: "true",
-            message: "Please input your nickname!",
+            required: true,
+            message: "請選擇你所考的香港文憑試",
           },
         ]}
       >
@@ -355,8 +350,8 @@ const ResumeForm = ({ next, prev }) => {
                             defaultValue="請選擇科目"
                             style={{ width: "200px" }}
                           >
-                            {hkdseSubject.map((major) => (
-                              <Select.Option key={major.id} value={major}>
+                            {hkdseSubject.map((major, id) => (
+                              <Select.Option key={id} value={major}>
                                 {major}
                               </Select.Option>
                             ))}
@@ -603,8 +598,8 @@ const ResumeForm = ({ next, prev }) => {
                         <Space key={subField.key}>
                           <Form.Item noStyle name={[subField.name, "first"]}>
                             <Select style={{ minWidth: "260px" }}>
-                              {ibType.subject.map((subject) => (
-                                <Select.Option key={subject.id} value={subject}>
+                              {ibType.subject.map((subject, id) => (
+                                <Select.Option key={id} value={subject}>
                                   {subject}
                                 </Select.Option>
                               ))}
@@ -636,13 +631,21 @@ const ResumeForm = ({ next, prev }) => {
         </Form.Item>
       )}
 
-      <Form.Item {...tailFormItemLayout}>
+      <Form.Item {...tailFormItemLayout} className="form-button">
+        <Button
+          style={{
+            margin: "0 8px",
+          }}
+          onClick={() => prev()}
+        >
+          上一頁
+        </Button>
         <Button
           type="primary"
           htmlType="button" // Change the type to "button"
           onClick={handleSubmit} // Call the handleSubmit function
         >
-          Next
+          繼續
         </Button>
       </Form.Item>
     </Form>

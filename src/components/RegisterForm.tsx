@@ -1,24 +1,32 @@
 import React, { useState } from "react";
 import {
-  AutoComplete,
   Button,
   Cascader,
   Checkbox,
   Col,
   DatePicker,
   Form,
+  AutoComplete,
   Input,
   InputNumber,
   Radio,
   Row,
   Select,
+  Tooltip,
 } from "antd";
 import "./registerForm.css";
+import "./global.css";
 
-const RegisterForm = ({ current, next }) => {
+const RegisterForm = ({ userInfo, setUserInfo, current, next }) => {
   const [form] = Form.useForm();
-  const onFinish = (values) => {
-    console.log("Received values of form: ", values);
+  const onFinish = () => {
+    const values = form.getFieldsValue();
+    Object.keys(values).forEach((key) => {
+      setUserInfo((prevInfo: any) => ({
+        ...prevInfo,
+        [key]: values[key],
+      }));
+    });
   };
   const formItemLayout = {
     labelCol: {
@@ -46,7 +54,7 @@ const RegisterForm = ({ current, next }) => {
       },
       sm: {
         span: 16,
-        offset: 4,
+        offset: 6,
       },
     },
   };
@@ -54,10 +62,19 @@ const RegisterForm = ({ current, next }) => {
   const handleSubmit = async () => {
     try {
       await form.validateFields();
+      onFinish();
       next();
     } catch (error) {
       console.log("Form validation failed:", error);
     }
+  };
+
+  const validateNumber = (_, value) => {
+    const regex = /^[5-9]\d{7}$/;
+    if (value && !regex.test(value)) {
+      return Promise.reject("請填寫以4、5、6、7、8、9開頭的8位香港手提電話");
+    }
+    return Promise.resolve();
   };
 
   return (
@@ -65,15 +82,9 @@ const RegisterForm = ({ current, next }) => {
       {...formItemLayout}
       form={form}
       name="register"
-      onFinish={onFinish}
-      initialValues={{
-        prefix: "86",
-      }}
-      style={{
-        maxWidth: 800,
-        margin: "auto",
-      }}
+      className="form-style"
       scrollToFirstError
+      initialValues={userInfo}
     >
       <div className="register-subheader">個人資料</div>
 
@@ -141,6 +152,11 @@ const RegisterForm = ({ current, next }) => {
             message: "請輸入你的英文名稱",
             whitespace: true,
           },
+          {
+            pattern: /^[a-zA-Z\s]+$/,
+
+            message: "請輸入英文",
+          },
         ]}
       >
         <Input />
@@ -155,6 +171,10 @@ const RegisterForm = ({ current, next }) => {
             required: true,
             message: "請輸入你的中文名稱",
             whitespace: true,
+          },
+          {
+            pattern: /^[\u4E00-\u9FFF\s]+$/,
+            message: "請輸入中文",
           },
         ]}
       >
@@ -171,24 +191,31 @@ const RegisterForm = ({ current, next }) => {
             message: "請輸入你的手提電話",
             whitespace: true,
           },
+          {
+            validator: validateNumber,
+          },
         ]}
       >
-        <Input />
+        <Input maxLength={8} />
       </Form.Item>
 
       <Form.Item
         name="hkid"
         label="身份證號碼"
-        tooltip="接納補習個案簽註核對使用，包括括號內的數字和英文字母。例：A123456(A)"
+        tooltip="接納補習個案簽註核對使用，輸入英文字母和頭四位數字。例：A1234"
         rules={[
           {
             required: true,
             message: "請輸入你的身份證號碼",
             whitespace: true,
           },
+          {
+            pattern: /^[A-Za-z]\d{4}$/,
+            message: "輸入英文字母和頭四位數字",
+          },
         ]}
       >
-        <Input />
+        <Input maxLength={5} />
       </Form.Item>
 
       <Form.Item
@@ -196,18 +223,14 @@ const RegisterForm = ({ current, next }) => {
         label="性別"
         rules={[{ required: true, message: "請選擇你的性別" }]}
       >
-        <Row>
-          <Radio.Group>
-            <Radio value="male">男</Radio>
-            <Radio value="female">女</Radio>
-          </Radio.Group>
-        </Row>
+        <Radio.Group>
+          <Radio value="male">男</Radio>
+          <Radio value="female">女</Radio>
+        </Radio.Group>
       </Form.Item>
 
-      <Form.Item label="出生年份">
-        <Row>
-          <DatePicker picker="year" />
-        </Row>
+      <Form.Item name="birthYear" label="出生年份">
+        <DatePicker picker="year" />
       </Form.Item>
 
       <Form.Item
@@ -232,6 +255,10 @@ const RegisterForm = ({ current, next }) => {
             required: true,
             message: "請輸入你的住宅地址",
           },
+          {
+            min: 10,
+            message: "請輸入最少10位字",
+          },
         ]}
       >
         <Input.TextArea rows={5} showCount maxLength={100} />
@@ -254,13 +281,13 @@ const RegisterForm = ({ current, next }) => {
           我已查閱並同意 <a href="">條款</a>
         </Checkbox>
       </Form.Item>
-      <Form.Item {...tailFormItemLayout}>
+      <Form.Item {...tailFormItemLayout} className="form-button">
         <Button
           type="primary"
           htmlType="button" // Change the type to "button"
           onClick={handleSubmit} // Call the handleSubmit function
         >
-          Next
+          繼續
         </Button>
       </Form.Item>
     </Form>

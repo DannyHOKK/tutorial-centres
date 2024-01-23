@@ -5,7 +5,7 @@ import {
   UserOutlined,
 } from "@ant-design/icons";
 import SchoolIcon from "@mui/icons-material/School";
-import { Button, Steps } from "antd";
+import { Button, Steps, message } from "antd";
 import RegisterForm from "./RegisterForm";
 import ResumeForm from "./ResumeForm";
 import data from "../staticData/inputData.json";
@@ -13,28 +13,66 @@ import TeachingContent from "./TeachingContent";
 import { motion } from "framer-motion";
 import Introduction from "./Introduction";
 
-const RegisterProgressBar = ({ current, previousStep, next, prev }) => {
+const RegisterProgressBar = ({
+  userInfo,
+  setUserInfo,
+  current,
+  previousStep,
+  next,
+  prev,
+}) => {
   const delta = current - previousStep;
   const steps = [
     {
       title: "個人資料",
       icon: <UserOutlined />,
-      content: <RegisterForm current={current} next={next} />,
+      content: (
+        <RegisterForm
+          userInfo={userInfo}
+          setUserInfo={setUserInfo}
+          current={current}
+          next={next}
+        />
+      ),
     },
     {
       title: "履歷資料",
       icon: <SchoolIcon />,
-      content: <ResumeForm />,
+      content: (
+        <ResumeForm
+          userInfo={userInfo}
+          setUserInfo={setUserInfo}
+          current={current}
+          next={next}
+          prev={prev}
+        />
+      ),
     },
     {
       title: "授課資料",
       icon: <SolutionOutlined />,
-      content: <TeachingContent />,
+      content: (
+        <TeachingContent
+          userInfo={userInfo}
+          setUserInfo={setUserInfo}
+          current={current}
+          next={next}
+          prev={prev}
+        />
+      ),
     },
     {
       title: "自我介紹",
       icon: <SmileOutlined />,
-      content: <Introduction />,
+      content: (
+        <Introduction
+          userInfo={userInfo}
+          setUserInfo={setUserInfo}
+          current={current}
+          next={next}
+          prev={prev}
+        />
+      ),
     },
   ];
 

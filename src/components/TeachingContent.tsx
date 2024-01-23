@@ -3,12 +3,19 @@ import RegionSelect from "./RegionSelect";
 import TutorContent from "./TutorContent";
 import TutorLevel from "./TutorLevel";
 import "./registerForm.css";
-import { Form } from "antd";
+import { Button, Form } from "antd";
+import "./global.css";
 
-const TeachingContent = () => {
+const TeachingContent = ({ userInfo, setUserInfo, current, next, prev }) => {
   const [form] = Form.useForm();
-  const onFinish = (values) => {
-    console.log("Received values of form: ", values);
+  const onFinish = () => {
+    const values = form.getFieldsValue();
+    Object.keys(values).forEach((key) => {
+      setUserInfo((prevInfo: any) => ({
+        ...prevInfo,
+        [key]: values[key],
+      }));
+    });
   };
   const formItemLayout = {
     labelCol: {
@@ -28,28 +35,62 @@ const TeachingContent = () => {
       },
     },
   };
+  const tailFormItemLayout = {
+    wrapperCol: {
+      xs: {
+        span: 24,
+        offset: 0,
+      },
+      sm: {
+        span: 24,
+        offset: 0,
+      },
+    },
+  };
+
+  const handleSubmit = async () => {
+    try {
+      await form.validateFields();
+      onFinish();
+      next();
+    } catch (error) {
+      console.log("Form validation failed:", error);
+    }
+  };
 
   return (
     <Form
-      {...formItemLayout}
       form={form}
       name="register"
-      onFinish={onFinish}
-      initialValues={{
-        prefix: "86",
-      }}
-      style={{
-        maxWidth: 800,
-        margin: "auto",
-      }}
+      className="form-style"
       scrollToFirstError
+      initialValues={userInfo}
     >
       <div className="register-subheader">授課區域</div>
+
       <RegionSelect />
       <div className="register-subheader">授課內容</div>
       <TutorContent />
       <div className="register-subheader">授課程度</div>
-      <TutorLevel />
+      <TutorLevel next={next} prev={prev} />
+
+      <Form.Item {...tailFormItemLayout} className="form-button">
+        <Button
+          style={{
+            margin: "0 8px",
+          }}
+          onClick={() => prev()}
+        >
+          上一頁
+        </Button>
+        <Button
+          type="primary"
+          htmlType="button" // Change the type to "button"
+          onClick={handleSubmit} // Call the handleSubmit function
+        >
+          繼續
+        </Button>
+      </Form.Item>
     </Form>
   );
 };

@@ -1,10 +1,10 @@
-import { Form, Input, Select } from "antd";
+import { Button, Form, Input, Select } from "antd";
 import React, { useEffect } from "react";
 import type { SelectProps } from "antd";
 import tutorLevelList from "../staticData/subjectList.json";
 import "./registerForm.css";
 
-const TutorLevel = ({}) => {
+const TutorLevel = ({ next, prev }) => {
   const options: SelectProps["options"] = [];
   const options2: SelectProps["options"] = [];
   const options3: SelectProps["options"] = [];
@@ -35,44 +35,8 @@ const TutorLevel = ({}) => {
     });
   }
 
-  const [form] = Form.useForm();
-  const onFinish = (values) => {
-    console.log("Received values of form: ", values);
-  };
-  const formItemLayout = {
-    labelCol: {
-      xs: {
-        span: 24,
-      },
-      sm: {
-        span: 6,
-      },
-    },
-    wrapperCol: {
-      xs: {
-        span: 24,
-      },
-      sm: {
-        span: 16,
-      },
-    },
-  };
-
   return (
-    <Form
-      {...formItemLayout}
-      form={form}
-      name="register"
-      onFinish={onFinish}
-      initialValues={{
-        prefix: "86",
-      }}
-      style={{
-        maxWidth: 800,
-        margin: "auto",
-      }}
-      scrollToFirstError
-    >
+    <>
       <Form.Item name="tutor" label="可教授程度(補習)">
         <Select
           mode="multiple"
@@ -140,7 +104,7 @@ const TutorLevel = ({}) => {
       >
         <Input />
       </Form.Item>
-    </Form>
+    </>
   );
 };
 
