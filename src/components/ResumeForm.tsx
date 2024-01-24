@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   AutoComplete,
   Button,
@@ -23,10 +23,52 @@ import "./global.css";
 
 const ResumeForm = ({ userInfo, setUserInfo, current, next, prev }) => {
   const [form] = Form.useForm();
-  const [test, setTest] = useState("");
+  const [test, setTest] = useState(
+    userInfo.hkOpenExam ? userInfo.hkOpenExam : ""
+  );
+
   const onFinish = () => {
+    if (form.getFieldValue("hkOpenExam") === "HKAL") {
+      setUserInfo((prevInfo: any) => ({
+        ...prevInfo,
+        dseCompulsory: "", // Reset selected values for HKDSE compulsory subjects
+        dseElective: [], // Reset selected values for HKDSE elective subjects
+        languages: [],
+        mathematics: [],
+        hss: [],
+        science: [],
+      }));
+    } else if (form.getFieldValue("hkOpenExam") === "HKDSE") {
+      console.log("entry sHKDSE");
+      setUserInfo((prevInfo: any) => ({
+        ...prevInfo,
+        alLang: [], // Reset selected values for AL language subjects
+        allist: [], // Reset selected values for AL arts subjects
+        allist2: [], // Reset selected values for AL science subjects
+        allist3: [], // Reset selected values for AL commerce subjects
+        languages: [],
+        mathematics: [],
+        hss: [],
+        science: [],
+      }));
+    } else if (form.getFieldValue("hkOpenExam") === "IB") {
+      setUserInfo((prevInfo: any) => ({
+        ...prevInfo,
+        dseCompulsory: "", // Reset selected values for HKDSE compulsory subjects
+        dseElective: [], // Reset selected values for HKDSE elective subjects
+        alLang: [], // Reset selected values for AL language subjects
+        allist: [], // Reset selected values for AL arts subjects
+        allist2: [], // Reset selected values for AL science subjects
+        allist3: [], // Reset selected values for AL commerce subjects
+      }));
+    }
     const values = form.getFieldsValue();
-    Object.keys(values).forEach((key) => {
+    console.log(values);
+    const filteredData = Object.fromEntries(
+      Object.entries(values).filter(([_, value]) => value !== undefined)
+    );
+
+    Object.keys(filteredData).forEach((key) => {
       setUserInfo((prevInfo: any) => ({
         ...prevInfo,
         [key]: values[key],
@@ -75,6 +117,7 @@ const ResumeForm = ({ userInfo, setUserInfo, current, next, prev }) => {
   };
   const ib = subjectList.IB;
   const hkdseSubject = subjectList.HKDSE;
+  const hkdseCompulsory = subjectList.HKDSECompulsory;
   const dseGrading = subjectList.HKDSEGrading;
   const alGrading = subjectList.HKALGrading;
   const ibGrading = subjectList.IBGrading;
@@ -89,6 +132,22 @@ const ResumeForm = ({ userInfo, setUserInfo, current, next, prev }) => {
   const highestEducation = inputData.highestEducation;
   const highSchoolMajor = inputData.highSchoolMajor;
   const hkuniversity = inputData.hkuniversity;
+
+  const handleRadioChange = (value: any) => {
+    form.setFieldsValue({
+      dseCompulsory: "", // Reset selected values for HKDSE compulsory subjects
+      dseElective: [], // Reset selected values for HKDSE elective subjects
+      alLang: [], // Reset selected values for AL language subjects
+      allist: [], // Reset selected values for AL arts subjects
+      allist2: [], // Reset selected values for AL science subjects
+      allist3: [], // Reset selected values for AL commerce subjects
+      languages: [],
+      mathematics: [],
+      hss: [],
+      science: [],
+    });
+    setTest(value);
+  };
 
   return (
     <Form
@@ -240,7 +299,7 @@ const ResumeForm = ({ userInfo, setUserInfo, current, next, prev }) => {
 
       <div className="register-subheader">公開試成績</div>
       <Form.Item
-        name="dse"
+        name="hkOpenExam"
         label="香港文憑試"
         rules={[
           {
@@ -249,31 +308,14 @@ const ResumeForm = ({ userInfo, setUserInfo, current, next, prev }) => {
           },
         ]}
       >
-        <Radio.Group>
-          <Radio
-            value="hkdse"
-            onClick={() => {
-              setTest("HKDSE");
-            }}
-          >
-            HKDSE
-          </Radio>
-          <Radio
-            value="hkal"
-            onClick={() => {
-              setTest("HKAL");
-            }}
-          >
-            HKAL
-          </Radio>
-          <Radio
-            value="ib"
-            onClick={() => {
-              setTest("IB");
-            }}
-          >
-            IB
-          </Radio>
+        <Radio.Group
+          onChange={(e) => {
+            handleRadioChange(e.target.value);
+          }}
+        >
+          <Radio value="HKDSE">HKDSE</Radio>
+          <Radio value="HKAL">HKAL</Radio>
+          <Radio value="IB">IB</Radio>
         </Radio.Group>
       </Form.Item>
 
@@ -286,46 +328,35 @@ const ResumeForm = ({ userInfo, setUserInfo, current, next, prev }) => {
               wrapperCol={{ span: 10, offset: 0 }}
               style={{ maxWidth: 600, marginBottom: "50px", marginTop: "30px" }}
             >
-              <Space.Compact style={{ marginBottom: "20px" }}>
-                <Select style={{ width: "200px" }} defaultValue="中國語文">
-                  <Select.Option value="中國語文">中國語文</Select.Option>
-                </Select>
-                <Select
-                  placeholder="請選擇"
-                  style={{ width: "120px" }}
-                  options={dseGrading}
-                ></Select>
-              </Space.Compact>
-              <Space.Compact style={{ marginBottom: "20px" }}>
-                <Select style={{ width: "200px" }} defaultValue="英國語文">
-                  <Select.Option value="英國語文">英國語文</Select.Option>
-                </Select>
-                <Select
-                  placeholder="請選擇"
-                  style={{ width: "120px" }}
-                  options={dseGrading}
-                ></Select>
-              </Space.Compact>
-              <Space.Compact style={{ marginBottom: "20px" }}>
-                <Select style={{ width: "200px" }} defaultValue="數學">
-                  <Select.Option value="數學">數學</Select.Option>
-                </Select>
-                <Select
-                  placeholder="請選擇"
-                  style={{ width: "120px" }}
-                  options={dseGrading}
-                ></Select>
-              </Space.Compact>
-              <Space.Compact style={{ marginBottom: "20px" }}>
-                <Select style={{ width: "200px" }} defaultValue="通識">
-                  <Select.Option value="通識">通識</Select.Option>
-                </Select>
-                <Select
-                  placeholder="請選擇"
-                  style={{ width: "120px" }}
-                  options={dseGrading}
-                ></Select>
-              </Space.Compact>
+              <Form.List name="dseCompulsory">
+                {(compulsoryFields) => (
+                  <div
+                    style={{
+                      display: "flex",
+                      flexDirection: "column",
+                      rowGap: 16,
+                    }}
+                  >
+                    {hkdseCompulsory.map((compulsory, id) => (
+                      <Space key={id}>
+                        <Form.Item noStyle>
+                          <Select
+                            style={{ width: "200px" }}
+                            value={compulsory}
+                          ></Select>
+                        </Form.Item>
+                        <Form.Item noStyle name={compulsory}>
+                          <Select
+                            placeholder="請選擇"
+                            style={{ width: "120px" }}
+                            options={dseGrading}
+                          ></Select>
+                        </Form.Item>
+                      </Space>
+                    ))}
+                  </div>
+                )}
+              </Form.List>
             </Form.Item>
 
             <Form.Item
@@ -334,7 +365,7 @@ const ResumeForm = ({ userInfo, setUserInfo, current, next, prev }) => {
               wrapperCol={{ span: 15, offset: 0 }}
               style={{ maxWidth: 600 }}
             >
-              <Form.List name="dselist" {...formItemLayout}>
+              <Form.List name="dseElective" {...formItemLayout}>
                 {(subFields, subOpt) => (
                   <div
                     style={{
@@ -347,8 +378,13 @@ const ResumeForm = ({ userInfo, setUserInfo, current, next, prev }) => {
                       <Space key={subField.key}>
                         <Form.Item noStyle name={[subField.name, "first"]}>
                           <Select
-                            defaultValue="請選擇科目"
+                            placeholder="請選擇科目"
                             style={{ width: "200px" }}
+                            onChange={(value) =>
+                              form.setFieldsValue({
+                                [`${subField.name}.second`]: value,
+                              })
+                            }
                           >
                             {hkdseSubject.map((major, id) => (
                               <Select.Option key={id} value={major}>
@@ -404,7 +440,7 @@ const ResumeForm = ({ userInfo, setUserInfo, current, next, prev }) => {
                       <Space key={subField.key}>
                         <Form.Item noStyle name={[subField.name, "first"]}>
                           <Select
-                            defaultValue="請選擇科目"
+                            placeholder="請選擇科目"
                             style={{ width: "200px" }}
                             options={alSubject}
                           ></Select>
@@ -449,7 +485,7 @@ const ResumeForm = ({ userInfo, setUserInfo, current, next, prev }) => {
                       <Space key={subField.key}>
                         <Form.Item noStyle name={[subField.name, "first"]}>
                           <Select
-                            defaultValue="請選擇科目"
+                            placeholder="請選擇科目"
                             options={alSubject2}
                             style={{ width: "200px" }}
                           ></Select>
@@ -495,7 +531,7 @@ const ResumeForm = ({ userInfo, setUserInfo, current, next, prev }) => {
                       <Space key={subField.key}>
                         <Form.Item noStyle name={[subField.name, "first"]}>
                           <Select
-                            defaultValue="請選擇科目"
+                            placeholder="請選擇科目"
                             options={alSubject3}
                             style={{ width: "200px" }}
                           ></Select>
@@ -541,7 +577,7 @@ const ResumeForm = ({ userInfo, setUserInfo, current, next, prev }) => {
                       <Space key={subField.key}>
                         <Form.Item noStyle name={[subField.name, "first"]}>
                           <Select
-                            defaultValue="請選擇科目"
+                            placeholder="請選擇科目"
                             options={alSubject4}
                             style={{ width: "200px" }}
                           ></Select>
@@ -576,7 +612,7 @@ const ResumeForm = ({ userInfo, setUserInfo, current, next, prev }) => {
           <Card size="small" title="International Baccalaureate">
             {ib.map((ibType) => (
               <Form.Item
-                label={ibType.type}
+                label={ibType.type.category}
                 labelCol={{ span: 12, offset: 0 }}
                 wrapperCol={{ span: 20, offset: 0 }}
                 style={{
@@ -585,7 +621,7 @@ const ResumeForm = ({ userInfo, setUserInfo, current, next, prev }) => {
                   marginTop: "30px",
                 }}
               >
-                <Form.List name={ibType.type} {...formItemLayout}>
+                <Form.List name={ibType.type.name} {...formItemLayout}>
                   {(subFields, subOpt) => (
                     <div
                       style={{
@@ -597,7 +633,10 @@ const ResumeForm = ({ userInfo, setUserInfo, current, next, prev }) => {
                       {subFields.map((subField) => (
                         <Space key={subField.key}>
                           <Form.Item noStyle name={[subField.name, "first"]}>
-                            <Select style={{ minWidth: "260px" }}>
+                            <Select
+                              style={{ minWidth: "260px" }}
+                              placeholder="Please Select"
+                            >
                               {ibType.subject.map((subject, id) => (
                                 <Select.Option key={id} value={subject}>
                                   {subject}
@@ -607,7 +646,7 @@ const ResumeForm = ({ userInfo, setUserInfo, current, next, prev }) => {
                           </Form.Item>
                           <Form.Item noStyle name={[subField.name, "second"]}>
                             <Select
-                              placeholder="請選擇"
+                              placeholder="Please Select"
                               style={{ minWidth: "120px" }}
                               options={ibGrading}
                             ></Select>

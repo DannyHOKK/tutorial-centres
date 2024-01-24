@@ -20,33 +20,34 @@
     "旅遊與款待",
     "體育"
   ],
+  "HKDSECompulsory": ["中國語文", "英國語文", "數學", "通識"],
   "HKDSEGrading": [
     {
-      "value": 7,
+      "value": "5**",
       "label": "5**"
     },
     {
-      "value": 6,
+      "value": "5*",
       "label": "5*"
     },
     {
-      "value": 5,
+      "value": "5",
       "label": "5"
     },
     {
-      "value": 4,
+      "value": "4",
       "label": "4"
     },
     {
-      "value": 3,
+      "value": "3",
       "label": "3"
     },
     {
-      "value": 2,
+      "value": "2",
       "label": "2"
     },
     {
-      "value": 1,
+      "value": "1",
       "label": "1"
     }
   ],
@@ -158,33 +159,33 @@
   ],
   "HKALGrading": [
     {
-      "value": 6,
+      "value": "A*",
       "label": "A*"
     },
     {
-      "value": 5,
+      "value": "A",
       "label": "A"
     },
     {
-      "value": 4,
+      "value": "B",
       "label": "B"
     },
     {
-      "value": 3,
+      "value": "C",
       "label": "C"
     },
     {
-      "value": 2,
+      "value": "D",
       "label": "D"
     },
     {
-      "value": 1,
+      "value": "E",
       "label": "E"
     }
   ],
   "IB": [
     {
-      "type": "Languages",
+      "type": { "category": "Languages", "name": "languages" },
       "subject": [
         "English: Language & Literature (SL & HL)",
         "English: Literature (SL & HL)",
@@ -194,7 +195,7 @@
       ]
     },
     {
-      "type": "Mathematics",
+      "type": { "category": "Mathematics", "name": "mathematics" },
       "subject": [
         "Mathematics",
         "Mathematics (SL)",
@@ -203,7 +204,7 @@
       ]
     },
     {
-      "type": "Humanities and Social Sciences",
+      "type": { "category": "Humanities and Social Sciences", "name": "hss" },
       "subject": [
         "Business Management",
         "Economics",
@@ -217,7 +218,7 @@
       ]
     },
     {
-      "type": "Sciences",
+      "type": { "category": "Sciences", "name": "science" },
       "subject": [
         "Chemistry",
         "Physics",
@@ -226,7 +227,10 @@
       ]
     },
     {
-      "type": "Creative, Technical and Vocational",
+      "type": {
+        "category": "Creative, Technical and Vocational",
+        "name": "CTV"
+      },
       "subject": [
         "Information Technology",
         "Computer Science",
@@ -236,31 +240,31 @@
   ],
   "IBGrading": [
     {
-      "value": 7,
+      "value": "H7",
       "label": "H7"
     },
     {
-      "value": 6,
+      "value": "H6",
       "label": "H6"
     },
     {
-      "value": 5,
+      "value": "H5",
       "label": "H5"
     },
     {
-      "value": 4,
+      "value": "H4",
       "label": "H4"
     },
     {
-      "value": 3,
+      "value": "H3",
       "label": "H3"
     },
     {
-      "value": 2,
+      "value": "H2",
       "label": "H2"
     },
     {
-      "value": 1,
+      "value": "H1",
       "label": "H1"
     }
   ],

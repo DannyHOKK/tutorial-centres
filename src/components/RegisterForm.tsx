@@ -21,7 +21,11 @@ const RegisterForm = ({ userInfo, setUserInfo, current, next }) => {
   const [form] = Form.useForm();
   const onFinish = () => {
     const values = form.getFieldsValue();
-    Object.keys(values).forEach((key) => {
+    const filteredData = Object.fromEntries(
+      Object.entries(values).filter(([_, value]) => value !== undefined)
+    );
+
+    Object.keys(filteredData).forEach((key) => {
       setUserInfo((prevInfo: any) => ({
         ...prevInfo,
         [key]: values[key],

@@ -5,7 +5,7 @@ import { Form } from "antd";
 const TutorSelect = ({ subjectType }) => {
   return (
     <Form.Item
-      name="checkCardGroup"
+      name="tutorContent"
       rules={[
         {
           required: true,
