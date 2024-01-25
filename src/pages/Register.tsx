@@ -3,21 +3,10 @@ import RegisterForm from "../components/RegisterForm";
 import "./pages.css";
 import RegisterProgressBar from "../components/RegisterProgressBar";
 
-const Register = () => {
+const Register: React.FC = () => {
   const [current, setCurrent] = useState(0);
   const [previousStep, setPreviousStep] = useState(0);
-  const [userInfo, setUserInfo] = useState({
-    // address: "",
-    // chineseName: "",
-    // confirm: "",
-    // email: "",
-    // engName: "",
-    // gender: "",
-    // hkid: "",
-    // password: "",
-    // phone: "",
-    // secondarySchool: "",
-  });
+  const [userInfo, setUserInfo] = useState({});
 
   const next = () => {
     setPreviousStep(current);
@@ -38,10 +27,52 @@ const Register = () => {
 
     const filteredData = Object.fromEntries(
       Object.entries(userInfo).filter(([_, value]) => {
-        return !Array.isArray(value);
+        return !Array.isArray(value) || value.length > 0;
       })
     );
-    console.log("after filtering" + userInfo);
+    console.log("after filtering");
+    console.log(filteredData);
+
+    const emptyArray: { subject?: string; grade?: string }[] = [];
+
+    if (filteredData.hkOpenExam === "HKDSE") {
+      const convertedDataFormat = Object.entries(
+        (userInfo as any).dseCompulsory
+      ).map(([subject, grade]) => ({
+        subject,
+        grade,
+      }));
+
+      const hkdseResult = emptyArray.concat(
+        convertedDataFormat as any,
+        (userInfo as any).dseElective
+      );
+      const { dseCompulsory, dseElective, ...info } = filteredData;
+      const finalData = { ...info, hkdseResult };
+      console.log(finalData);
+    } else if (filteredData.hkOpenExam === "HKAL") {
+      const hkalResult = emptyArray.concat(
+        (userInfo as any).alLang,
+        (userInfo as any).allist,
+        (userInfo as any).allist2,
+        (userInfo as any).allist3
+      );
+      const { alLang, allist, allist2, allist3, ...info } = filteredData;
+      const finalData = { ...info, hkalResult };
+      console.log(finalData);
+    } else if (filteredData.hkOpenExam === "IB") {
+      const ibResult = emptyArray.concat(
+        (userInfo as any).languages,
+        (userInfo as any).ctv,
+        (userInfo as any).hss,
+        (userInfo as any).science,
+        (userInfo as any).mathematics
+      );
+      const { languages, ctv, hss, science, mathematics, ...info } =
+        filteredData;
+      const finalData = { ...info, ibResult };
+      console.log(finalData);
+    }
   };
 
   return (

@@ -26,6 +26,11 @@ const RegionSelect = () => {
             key: "tab3",
             children: <RegionAreaSelect area={location[2].area} />,
           },
+          {
+            label: location[3].region,
+            key: "tab4",
+            children: <RegionAreaSelect area={location[3].area} />,
+          },
         ],
         onChange: (key) => {
           setTab(key);

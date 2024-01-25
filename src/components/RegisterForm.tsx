@@ -233,22 +233,12 @@ const RegisterForm = ({ userInfo, setUserInfo, current, next }) => {
         </Radio.Group>
       </Form.Item>
 
-      <Form.Item name="birthYear" label="出生年份">
-        <DatePicker picker="year" />
-      </Form.Item>
-
       <Form.Item
-        name="secondarySchool"
-        label="就讀中學"
-        rules={[
-          {
-            required: true,
-            message: "請選擇你的性別",
-            whitespace: true,
-          },
-        ]}
+        name="birthYear"
+        label="出生年份"
+        rules={[{ required: true, message: "請選擇你的出生年份" }]}
       >
-        <Input />
+        <DatePicker picker="year" />
       </Form.Item>
 
       <Form.Item

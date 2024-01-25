@@ -68,6 +68,7 @@ const ResumeForm = ({ userInfo, setUserInfo, current, next, prev }) => {
         languages: [],
         mathematics: [],
         hss: [],
+        ctv: [],
         science: [],
       }));
     } else if (form.getFieldValue("hkOpenExam") === "HKDSE") {
@@ -93,6 +94,7 @@ const ResumeForm = ({ userInfo, setUserInfo, current, next, prev }) => {
         languages: [],
         mathematics: [],
         hss: [],
+        ctv: [],
         science: [],
       }));
     } else if (form.getFieldValue("hkOpenExam") === "IB") {
@@ -212,6 +214,7 @@ const ResumeForm = ({ userInfo, setUserInfo, current, next, prev }) => {
       languages: [],
       mathematics: [],
       hss: [],
+      ctv: [],
       science: [],
     });
     setTest(value);
@@ -312,6 +315,20 @@ const ResumeForm = ({ userInfo, setUserInfo, current, next, prev }) => {
           <Radio value="english">英文</Radio>
           <Radio value="chinese">中文</Radio>
         </Radio.Group>
+      </Form.Item>
+
+      <Form.Item
+        name="secondarySchool"
+        label="就讀中學"
+        rules={[
+          {
+            required: true,
+            message: "請選擇你就讀的中學",
+            whitespace: true,
+          },
+        ]}
+      >
+        <Input />
       </Form.Item>
 
       <Form.Item
@@ -557,14 +574,24 @@ const ResumeForm = ({ userInfo, setUserInfo, current, next, prev }) => {
                   >
                     {subFields.map((subField) => (
                       <Space key={subField.key}>
-                        <Form.Item noStyle name={[subField.name, "subject"]}>
+                        <Form.Item
+                          noStyle
+                          name={[subField.name, "subject"]}
+                          rules={[{ required: true, message: "請填上課目" }]}
+                        >
                           <Select
                             placeholder="請選擇科目"
                             style={{ width: "200px" }}
                             options={alSubject}
                           ></Select>
                         </Form.Item>
-                        <Form.Item noStyle name={[subField.name, "grade"]}>
+                        <Form.Item
+                          noStyle
+                          name={[subField.name, "grade"]}
+                          rules={[
+                            { required: true, message: "請填上課目等級" },
+                          ]}
+                        >
                           <Select
                             placeholder="請選擇"
                             style={{ width: "120px" }}
@@ -602,14 +629,24 @@ const ResumeForm = ({ userInfo, setUserInfo, current, next, prev }) => {
                   >
                     {subFields.map((subField) => (
                       <Space key={subField.key}>
-                        <Form.Item noStyle name={[subField.name, "subject"]}>
+                        <Form.Item
+                          noStyle
+                          name={[subField.name, "subject"]}
+                          rules={[{ required: true, message: "請填上課目" }]}
+                        >
                           <Select
                             placeholder="請選擇科目"
                             options={alSubject2}
                             style={{ width: "200px" }}
                           ></Select>
                         </Form.Item>
-                        <Form.Item noStyle name={[subField.name, "grade"]}>
+                        <Form.Item
+                          noStyle
+                          name={[subField.name, "grade"]}
+                          rules={[
+                            { required: true, message: "請填上課目等級" },
+                          ]}
+                        >
                           <Select
                             placeholder="請選擇"
                             style={{ width: "120px" }}
@@ -648,14 +685,24 @@ const ResumeForm = ({ userInfo, setUserInfo, current, next, prev }) => {
                   >
                     {subFields.map((subField) => (
                       <Space key={subField.key}>
-                        <Form.Item noStyle name={[subField.name, "subject"]}>
+                        <Form.Item
+                          noStyle
+                          name={[subField.name, "subject"]}
+                          rules={[{ required: true, message: "請填上課目" }]}
+                        >
                           <Select
                             placeholder="請選擇科目"
                             options={alSubject3}
                             style={{ width: "200px" }}
                           ></Select>
                         </Form.Item>
-                        <Form.Item noStyle name={[subField.name, "grade"]}>
+                        <Form.Item
+                          noStyle
+                          name={[subField.name, "grade"]}
+                          rules={[
+                            { required: true, message: "請填上課目等級" },
+                          ]}
+                        >
                           <Select
                             placeholder="請選擇"
                             style={{ width: "120px" }}
@@ -694,14 +741,24 @@ const ResumeForm = ({ userInfo, setUserInfo, current, next, prev }) => {
                   >
                     {subFields.map((subField) => (
                       <Space key={subField.key}>
-                        <Form.Item noStyle name={[subField.name, "subject"]}>
+                        <Form.Item
+                          noStyle
+                          name={[subField.name, "subject"]}
+                          rules={[{ required: true, message: "請填上課目" }]}
+                        >
                           <Select
                             placeholder="請選擇科目"
                             options={alSubject4}
                             style={{ width: "200px" }}
                           ></Select>
                         </Form.Item>
-                        <Form.Item noStyle name={[subField.name, "grade"]}>
+                        <Form.Item
+                          noStyle
+                          name={[subField.name, "grade"]}
+                          rules={[
+                            { required: true, message: "請填上課目等級" },
+                          ]}
+                        >
                           <Select
                             placeholder="請選擇"
                             style={{ width: "120px" }}
@@ -752,10 +809,19 @@ const ResumeForm = ({ userInfo, setUserInfo, current, next, prev }) => {
                     >
                       {subFields.map((subField) => (
                         <Space key={subField.key}>
-                          <Form.Item noStyle name={[subField.name, "subject"]}>
+                          <Form.Item
+                            noStyle
+                            name={[subField.name, "subject"]}
+                            rules={[
+                              {
+                                required: true,
+                                message: "Please select your subject",
+                              },
+                            ]}
+                          >
                             <Select
                               style={{ minWidth: "260px" }}
-                              placeholder="Please Select"
+                              placeholder="Please select your subject"
                             >
                               {ibType.subject.map((subject, id) => (
                                 <Select.Option key={id} value={subject}>
@@ -764,7 +830,16 @@ const ResumeForm = ({ userInfo, setUserInfo, current, next, prev }) => {
                               ))}
                             </Select>
                           </Form.Item>
-                          <Form.Item noStyle name={[subField.name, "grade"]}>
+                          <Form.Item
+                            noStyle
+                            name={[subField.name, "grade"]}
+                            rules={[
+                              {
+                                required: true,
+                                message: "Please select your subject grading",
+                              },
+                            ]}
+                          >
                             <Select
                               placeholder="Please Select"
                               style={{ minWidth: "120px" }}
