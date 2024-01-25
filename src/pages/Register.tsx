@@ -33,6 +33,17 @@ const Register = () => {
     }
   };
 
+  const submitForm = () => {
+    console.log(userInfo);
+
+    const filteredData = Object.fromEntries(
+      Object.entries(userInfo).filter(([_, value]) => {
+        return !Array.isArray(value);
+      })
+    );
+    console.log("after filtering" + userInfo);
+  };
+
   return (
     <div className="login-container page-container">
       <div className="page-container-content">
@@ -47,6 +58,7 @@ const Register = () => {
             previousStep={previousStep}
             next={next}
             prev={prev}
+            submitForm={submitForm}
           />
         </div>
       </div>

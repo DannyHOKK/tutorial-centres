@@ -20,6 +20,7 @@ const RegisterProgressBar = ({
   previousStep,
   next,
   prev,
+  submitForm,
 }) => {
   const delta = current - previousStep;
   const steps = [
@@ -69,8 +70,8 @@ const RegisterProgressBar = ({
           userInfo={userInfo}
           setUserInfo={setUserInfo}
           current={current}
-          next={next}
           prev={prev}
+          submitForm={submitForm}
         />
       ),
     },

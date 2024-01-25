@@ -2,7 +2,7 @@ import { Button, Form, Input, Select } from "antd";
 import React from "react";
 import "./global.css";
 
-const Introduction = ({ userInfo, setUserInfo, current, next, prev }) => {
+const Introduction = ({ userInfo, setUserInfo, current, prev, submitForm }) => {
   const [form] = Form.useForm();
   const onFinish = () => {
     const values = form.getFieldsValue();
@@ -51,7 +51,7 @@ const Introduction = ({ userInfo, setUserInfo, current, next, prev }) => {
     try {
       await form.validateFields();
       onFinish();
-      next();
+      submitForm();
     } catch (error) {
       console.log("Form validation failed:", error);
     }
