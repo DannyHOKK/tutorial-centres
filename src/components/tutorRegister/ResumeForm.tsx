@@ -17,9 +17,9 @@ import {
 } from "antd";
 import { CloseOutlined } from "@ant-design/icons";
 import "./registerForm.css";
-import subjectList from "../staticData/subjectList.json";
-import inputData from "../staticData/inputData.json";
-import "./global.css";
+import subjectList from "../../staticData/subjectList.json";
+import inputData from "../../staticData/inputData.json";
+import "../global.css";
 
 const ResumeForm = ({ userInfo, setUserInfo, current, next, prev }) => {
   const [form] = Form.useForm();
@@ -80,11 +80,6 @@ const ResumeForm = ({ userInfo, setUserInfo, current, next, prev }) => {
       }));
 
       console.log(convertedDataFormat);
-      // const hkdseResult = emptyArray.concat(
-      //   convertedDataFormat,
-      //   values.hkdseElective
-      // );
-
       setUserInfo((prevInfo: any) => ({
         ...prevInfo,
         alLang: [], // Reset selected values for AL language subjects
@@ -98,13 +93,6 @@ const ResumeForm = ({ userInfo, setUserInfo, current, next, prev }) => {
         science: [],
       }));
     } else if (form.getFieldValue("hkOpenExam") === "IB") {
-      // const ibResult = emptyArray.concat(
-      //   values.languages,
-      //   values.mathematics,
-      //   values.hss,
-      //   values.science
-      // );
-
       setUserInfo((prevInfo: any) => ({
         ...prevInfo,
         dseCompulsory: [], // Reset selected values for HKDSE compulsory subjects
@@ -115,21 +103,6 @@ const ResumeForm = ({ userInfo, setUserInfo, current, next, prev }) => {
         allist3: [], // Reset selected values for AL commerce subjects
       }));
     }
-
-    // setUserInfo((prevIndo: any) => ({
-    //   ...prevIndo,
-    //   currentEducationLeve: filteredData.currentEducationLeve,
-    //   currentJob: filteredData.currentJob,
-    //   experience: filteredData.experience,
-    //   highSchoolMajor: filteredData.highSchoolMajor,
-    //   highestEducation: filteredData.highestEducation,
-    //   highestTutorLevel: filteredData.highestTutorLevel,
-    //   hkOpenExam: filteredData.hkOpenExam,
-    //   noteProvided: filteredData.noteProvided,
-    //   secondaryLang: filteredData.secondaryLang,
-    //   university: filteredData.university,
-    //   universityMajor: filteredData.universityMajor,
-    // }));
   };
   const formItemLayout = {
     labelCol: {

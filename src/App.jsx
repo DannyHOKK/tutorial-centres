@@ -4,15 +4,16 @@ import "./App.css";
 import Navbar from "./components/Navbar";
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import Home from "./pages/Home";
-import Login from "./pages/Login";
 import Footer from "./components/Footer";
-import Register from "./pages/Register";
 import { FloatButton } from "antd";
 import {
   WhatsAppOutlined,
   InstagramOutlined,
   FacebookFilled,
 } from "@ant-design/icons";
+import TutorLogin from "./pages/TutorLogin";
+import TutorRegister from "./pages/TutorRegister";
+import StudentRegister from "./pages/StudentRegister";
 
 function App() {
   return (
@@ -21,8 +22,9 @@ function App() {
         <Navbar />
         <Routes>
           <Route path="" element={<Home />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
+          <Route path="/login" element={<TutorLogin />} />
+          <Route path="/register" element={<TutorRegister />} />
+          <Route path="/studentRegister" element={<StudentRegister />} />
         </Routes>
         <FloatButton
           style={{ right: "4%", bottom: "100px", mar: "20px" }}

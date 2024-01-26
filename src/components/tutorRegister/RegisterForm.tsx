@@ -15,7 +15,7 @@ import {
   Tooltip,
 } from "antd";
 import "./registerForm.css";
-import "./global.css";
+import "../global.css";
 
 const RegisterForm = ({ userInfo, setUserInfo, current, next }) => {
   const [form] = Form.useForm();

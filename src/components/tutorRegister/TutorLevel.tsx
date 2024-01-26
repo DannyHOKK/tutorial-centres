@@ -1,7 +1,7 @@
 import { Button, Form, Input, Select } from "antd";
 import React, { useEffect } from "react";
 import type { SelectProps } from "antd";
-import tutorLevelList from "../staticData/subjectList.json";
+import tutorLevelList from "../../staticData/subjectList.json";
 import "./registerForm.css";
 
 const TutorLevel = ({ next, prev }) => {

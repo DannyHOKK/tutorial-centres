@@ -22,7 +22,7 @@ const Navbar = () => {
             <a href="/login" className="login">
               登入
             </a>
-            <a href="/register">註冊</a>
+            <a href="/register">註冊</a>|<a href="/studentRegister">學生註冊</a>
           </div>
         </div>
       </div>

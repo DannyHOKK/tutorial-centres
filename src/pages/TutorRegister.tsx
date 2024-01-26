@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import RegisterForm from "../components/RegisterForm";
+import RegisterForm from "../components/tutorRegister/RegisterForm";
 import "./pages.css";
-import RegisterProgressBar from "../components/RegisterProgressBar";
+import RegisterProgressBar from "../components/tutorRegister/RegisterProgressBar";
 
-const Register: React.FC = () => {
+const TutorRegister: React.FC = () => {
   const [current, setCurrent] = useState(0);
   const [previousStep, setPreviousStep] = useState(0);
   const [userInfo, setUserInfo] = useState({});
@@ -97,4 +97,4 @@ const Register: React.FC = () => {
   );
 };
 
-export default Register;
+export default TutorRegister;

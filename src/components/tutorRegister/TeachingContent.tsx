@@ -1,8 +1,12 @@
-import { Button, Form, Input, Select } from "antd";
-import React from "react";
-import "./global.css";
+import React, { useEffect, useState } from "react";
+import RegionSelect from "./RegionSelect";
+import TutorContent from "./TutorContent";
+import TutorLevel from "./TutorLevel";
+import "./registerForm.css";
+import { Button, Form } from "antd";
+import "../global.css";
 
-const Introduction = ({ userInfo, setUserInfo, current, prev, submitForm }) => {
+const TeachingContent = ({ userInfo, setUserInfo, current, next, prev }) => {
   const [form] = Form.useForm();
   const onFinish = () => {
     const values = form.getFieldsValue();
@@ -47,50 +51,32 @@ const Introduction = ({ userInfo, setUserInfo, current, prev, submitForm }) => {
       },
     },
   };
+
   const handleSubmit = async () => {
     try {
       await form.validateFields();
       onFinish();
-      submitForm();
+      next();
     } catch (error) {
       console.log("Form validation failed:", error);
     }
   };
+
   return (
     <Form
-      {...formItemLayout}
       form={form}
       name="register"
       className="form-style"
       scrollToFirstError
       initialValues={userInfo}
     >
-      <Form.Item
-        name="introTitle"
-        label="自我簡介標題"
-        rules={[
-          {
-            required: true,
-            message: "請輸入你的自我簡介標題",
-          },
-        ]}
-      >
-        <Input showCount />
-      </Form.Item>
+      <div className="register-subheader">授課區域</div>
 
-      <Form.Item
-        name="Intro"
-        label="介紹自己"
-        tooltip="請輸入30字以上"
-        rules={[
-          {
-            required: true,
-            message: "請輸入你的自我介紹",
-          },
-        ]}
-      >
-        <Input.TextArea rows={6} showCount minLength={30} />
-      </Form.Item>
+      <RegionSelect />
+      <div className="register-subheader">授課內容</div>
+      <TutorContent />
+      <div className="register-subheader">授課程度</div>
+      <TutorLevel next={next} prev={prev} />
 
       <Form.Item {...tailFormItemLayout} className="form-button">
         <Button
@@ -106,11 +92,11 @@ const Introduction = ({ userInfo, setUserInfo, current, prev, submitForm }) => {
           htmlType="button" // Change the type to "button"
           onClick={handleSubmit} // Call the handleSubmit function
         >
-          提交
+          繼續
         </Button>
       </Form.Item>
     </Form>
   );
 };
 
-export default Introduction;
+export default TeachingContent;

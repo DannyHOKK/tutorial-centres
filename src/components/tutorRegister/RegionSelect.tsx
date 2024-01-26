@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { ProCard } from "@ant-design/pro-components";
-import locationData from "../staticData/inputData.json";
+import locationData from "../../staticData/inputData.json";
 import RegionAreaSelect from "./RegionAreaSelect";
 
 const RegionSelect = () => {

@@ -1,7 +1,7 @@
 import React from "react";
-import LoginForm from "../components/LoginForm";
+import LoginForm from "../components/tutorLogin/LoginForm";
 import "./pages.css";
-const Login = () => {
+const TutorLogin = () => {
   return (
     <div className="login-container page-container">
       <h2>導師登入或登記</h2>
@@ -10,4 +10,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default TutorLogin;

@@ -8,7 +8,7 @@ import SchoolIcon from "@mui/icons-material/School";
 import { Button, Steps, message } from "antd";
 import RegisterForm from "./RegisterForm";
 import ResumeForm from "./ResumeForm";
-import data from "../staticData/inputData.json";
+import data from "../../staticData/inputData.json";
 import TeachingContent from "./TeachingContent";
 import { motion } from "framer-motion";
 import Introduction from "./Introduction";

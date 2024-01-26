@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { ProCard } from "@ant-design/pro-components";
-import subjectList from "../staticData/subjectList.json";
+import subjectList from "../../staticData/subjectList.json";
 import TutorSelect from "./TutorSelect";
 
 const TutorContent = () => {
