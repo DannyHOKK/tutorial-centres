@@ -166,5 +166,6 @@
     "Year 4",
     "Year 5 或以上",
     "畢業生"
-  ]
+  ],
+  "studentRegisterIdentity": ["學生", "家長", "補習社"]
 }

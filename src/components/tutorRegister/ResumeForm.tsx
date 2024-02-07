@@ -224,7 +224,7 @@ const ResumeForm = ({ userInfo, setUserInfo, current, next, prev }) => {
       </Form.Item>
 
       <Form.Item
-        name="experience"
+        name="workExperience"
         label="補習經驗"
         rules={[
           {
@@ -280,7 +280,7 @@ const ResumeForm = ({ userInfo, setUserInfo, current, next, prev }) => {
       <div className="register-subheader">學業履歷資料</div>
 
       <Form.Item
-        name="secondaryLang"
+        name="highSchoolLang"
         label="中學教育語言"
         rules={[{ required: true, message: "請選擇中學語言" }]}
       >
@@ -291,7 +291,7 @@ const ResumeForm = ({ userInfo, setUserInfo, current, next, prev }) => {
       </Form.Item>
 
       <Form.Item
-        name="secondarySchool"
+        name="highSchool"
         label="就讀中學"
         rules={[
           {

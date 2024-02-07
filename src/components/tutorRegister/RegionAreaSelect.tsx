@@ -5,7 +5,7 @@ import { Form, Select } from "antd";
 const RegionAreaSelect = ({ area }) => {
   return (
     <Form.Item
-      name="selectedAreas"
+      name="tutorAreas"
       rules={[
         {
           required: true,

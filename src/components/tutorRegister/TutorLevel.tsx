@@ -37,7 +37,7 @@ const TutorLevel = ({ next, prev }) => {
 
   return (
     <>
-      <Form.Item name="tutor" label="可教授程度(補習)">
+      <Form.Item name="tutorLevel" label="可教授程度(補習)">
         <Select
           mode="multiple"
           allowClear
@@ -47,7 +47,7 @@ const TutorLevel = ({ next, prev }) => {
         />
       </Form.Item>
 
-      <Form.Item name="speaking" label="可教授程度(會話)">
+      <Form.Item name="tutorSpeaking" label="可教授程度(會話)">
         <Select
           mode="multiple"
           allowClear
@@ -57,7 +57,7 @@ const TutorLevel = ({ next, prev }) => {
         />
       </Form.Item>
 
-      <Form.Item name="music" label="可教授程度(音樂)">
+      <Form.Item name="tutorMusic" label="可教授程度(音樂)">
         <Select
           mode="multiple"
           allowClear
@@ -67,7 +67,7 @@ const TutorLevel = ({ next, prev }) => {
         />
       </Form.Item>
 
-      <Form.Item name="tutorLevel" label="可教授程度(其他)">
+      <Form.Item name="tutorOtherLevel" label="可教授程度(其他)">
         <Select
           mode="multiple"
           allowClear
