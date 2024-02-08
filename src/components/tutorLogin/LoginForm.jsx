@@ -1,19 +1,28 @@
 import React from "react";
 import { Button, Checkbox, Form, Input } from "antd";
 import { useNavigate } from "react-router-dom";
+import AuthService from "../api/AuthService";
 
-const LoginForm = () => {
+const LoginForm = ({ credential, setCredential }) => {
+  const [form] = Form.useForm();
   const navigate = useNavigate();
-  const onFinish = (values) => {
-    console.log("Success:", values);
+
+  const onFinish = () => {
+    const values = form.getFieldsValue();
+    AuthService.loginTutor(values).then((res) => {
+      console.log(res);
+    });
+    console.log(values);
   };
+
   const onFinishFailed = (errorInfo) => {
     console.log("Failed:", errorInfo);
   };
 
   return (
     <Form
-      name="basic"
+      form={form}
+      name="credential"
       labelCol={{
         span: 4,
       }}
@@ -69,6 +78,7 @@ const LoginForm = () => {
             color: "white",
             margin: "0 10px",
           }}
+          onClick={onFinish}
         >
           立即登入
         </Button>

@@ -204,7 +204,7 @@ const RegisterForm = ({ userInfo, setUserInfo, current, next }) => {
       </Form.Item>
 
       <Form.Item
-        name="hkid"
+        name="hkId"
         label="身份證號碼"
         tooltip="接納補習個案簽註核對使用，輸入英文字母和頭四位數字。例：A1234"
         rules={[

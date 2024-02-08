@@ -79,7 +79,7 @@ const Introduction = ({ userInfo, setUserInfo, current, prev, submitForm }) => {
       </Form.Item>
 
       <Form.Item
-        name="Intro"
+        name="intro"
         label="介紹自己"
         tooltip="請輸入30字以上"
         rules={[

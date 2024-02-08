@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import RegisterForm from "../components/tutorRegister/RegisterForm";
 import "./pages.css";
 import RegisterProgressBar from "../components/tutorRegister/RegisterProgressBar";
+import AuthService from "../components/api/AuthService";
 
 const TutorRegister: React.FC = () => {
   const [current, setCurrent] = useState(0);
@@ -34,6 +35,7 @@ const TutorRegister: React.FC = () => {
     console.log(filteredData);
 
     const emptyArray: { subject?: string; grade?: string }[] = [];
+    let finalResult: any = {};
 
     if (filteredData.hkOpenExam === "HKDSE") {
       const convertedDataFormat = Object.entries(
@@ -43,36 +45,48 @@ const TutorRegister: React.FC = () => {
         grade,
       }));
 
-      const hkdseResult = emptyArray.concat(
+      const examResult = emptyArray.concat(
         convertedDataFormat as any,
         (userInfo as any).dseElective
       );
-      const { dseCompulsory, dseElective, ...info } = filteredData;
-      const finalData = { ...info, hkdseResult };
-      console.log(finalData);
+
+      const { dseCompulsory, dseElective, agreement, confirm, ...info } =
+        filteredData;
+      finalResult = { ...info, examResult };
     } else if (filteredData.hkOpenExam === "HKAL") {
-      const hkalResult = emptyArray.concat(
+      const examResult = emptyArray.concat(
         (userInfo as any).alLang,
         (userInfo as any).allist,
         (userInfo as any).allist2,
         (userInfo as any).allist3
       );
-      const { alLang, allist, allist2, allist3, ...info } = filteredData;
-      const finalData = { ...info, hkalResult };
-      console.log(finalData);
+      const { alLang, allist, allist2, allist3, agreement, confirm, ...info } =
+        filteredData;
+      finalResult = { ...info, examResult };
     } else if (filteredData.hkOpenExam === "IB") {
-      const ibResult = emptyArray.concat(
+      const examResult = emptyArray.concat(
         (userInfo as any).languages,
         (userInfo as any).ctv,
         (userInfo as any).hss,
         (userInfo as any).science,
         (userInfo as any).mathematics
       );
-      const { languages, ctv, hss, science, mathematics, ...info } =
-        filteredData;
-      const finalData = { ...info, ibResult };
-      console.log(finalData);
+      const {
+        languages,
+        ctv,
+        hss,
+        science,
+        mathematics,
+        agreement,
+        confirm,
+        ...info
+      } = filteredData;
+      finalResult = { ...info, examResult };
+      console.log(finalResult);
     }
+
+    console.log(finalResult);
+    AuthService.registerTutor(finalResult);
   };
 
   return (
@@ -81,7 +95,7 @@ const TutorRegister: React.FC = () => {
         <div className="header-background">
           <span>導 師 註 冊</span>
         </div>
-        <div className="">
+        <div>
           <RegisterProgressBar
             userInfo={userInfo}
             setUserInfo={setUserInfo}

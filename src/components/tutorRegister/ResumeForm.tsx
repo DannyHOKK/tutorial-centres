@@ -164,7 +164,7 @@ const ResumeForm = ({ userInfo, setUserInfo, current, next, prev }) => {
       value: highEducation,
     })
   );
-  const currentEducationLeve = inputData.currentEducationLeve.map(
+  const currentEducationLevel = inputData.currentEducationLevel.map(
     (level: any) => ({
       label: level,
       value: level,
@@ -272,8 +272,8 @@ const ResumeForm = ({ userInfo, setUserInfo, current, next, prev }) => {
         ]}
       >
         <Radio.Group>
-          <Radio value="yes">有</Radio>
-          <Radio value="no">沒有</Radio>
+          <Radio value="true">有</Radio>
+          <Radio value="false">沒有</Radio>
         </Radio.Group>
       </Form.Item>
 
@@ -362,7 +362,7 @@ const ResumeForm = ({ userInfo, setUserInfo, current, next, prev }) => {
       </Form.Item>
 
       <Form.Item
-        name="currentEducationLeve"
+        name="currentEducationLevel"
         label="就讀年級"
         rules={[
           {
@@ -371,7 +371,7 @@ const ResumeForm = ({ userInfo, setUserInfo, current, next, prev }) => {
           },
         ]}
       >
-        <Select options={currentEducationLeve}></Select>
+        <Select options={currentEducationLevel}></Select>
       </Form.Item>
 
       <Form.Item
