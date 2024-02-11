@@ -3,16 +3,23 @@ import { Button, Checkbox, Form, Input } from "antd";
 import { useNavigate } from "react-router-dom";
 import AuthService from "../api/AuthService";
 
-const LoginForm = ({ credential, setCredential }) => {
+const LoginForm = ({ loginHandler }) => {
   const [form] = Form.useForm();
   const navigate = useNavigate();
 
-  const onFinish = () => {
+  const onFinish = async () => {
+    try {
+      await form.validateFields();
+      submitForm();
+    } catch (error) {
+      console.log("Form validation failed:", error);
+    }
+  };
+
+  const submitForm = () => {
     const values = form.getFieldsValue();
-    AuthService.loginTutor(values).then((res) => {
-      console.log(res);
-    });
-    console.log(values);
+
+    loginHandler(values);
   };
 
   const onFinishFailed = (errorInfo) => {
@@ -73,6 +80,7 @@ const LoginForm = ({ credential, setCredential }) => {
         }}
       >
         <Button
+          type="button"
           style={{
             backgroundColor: "orange",
             color: "white",

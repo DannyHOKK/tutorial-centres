@@ -1,13 +1,23 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import RegisterForm from "../components/tutorRegister/RegisterForm";
 import "./pages.css";
 import RegisterProgressBar from "../components/tutorRegister/RegisterProgressBar";
 import AuthService from "../components/api/AuthService";
+import { useDispatch, useSelector } from "react-redux";
+import { registerTutorUser } from "../auth/authAction";
+import { Spin } from "antd";
+import { LoadingOutlined } from "@ant-design/icons";
+import { useNavigate } from "react-router-dom";
 
-const TutorRegister: React.FC = () => {
+const TutorRegister = () => {
   const [current, setCurrent] = useState(0);
   const [previousStep, setPreviousStep] = useState(0);
   const [userInfo, setUserInfo] = useState({});
+  const { loading, userDetails, error, success } = useSelector(
+    (state) => state.auth
+  );
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const next = () => {
     setPreviousStep(current);
@@ -23,31 +33,34 @@ const TutorRegister: React.FC = () => {
     }
   };
 
-  const submitForm = () => {
-    console.log(userInfo);
+  useEffect(() => {
+    // redirect user to login page if registration was successful
+    if (success) navigate("/login");
+    // redirect authenticated user to profile screen
+    // if (userInfo) navigate('/user-profile')
+  }, [navigate, userInfo, success]);
 
+  const submitForm = () => {
     const filteredData = Object.fromEntries(
       Object.entries(userInfo).filter(([_, value]) => {
         return !Array.isArray(value) || value.length > 0;
       })
     );
-    console.log("after filtering");
-    console.log(filteredData);
 
-    const emptyArray: { subject?: string; grade?: string }[] = [];
-    let finalResult: any = {};
+    const emptyArray = [{ subject: "", grade: "" }];
+    let finalResult = { ...filteredData };
 
     if (filteredData.hkOpenExam === "HKDSE") {
-      const convertedDataFormat = Object.entries(
-        (userInfo as any).dseCompulsory
-      ).map(([subject, grade]) => ({
-        subject,
-        grade,
-      }));
+      const convertedDataFormat = Object.entries(userInfo.dseCompulsory).map(
+        ([subject, grade]) => ({
+          subject,
+          grade,
+        })
+      );
 
       const examResult = emptyArray.concat(
-        convertedDataFormat as any,
-        (userInfo as any).dseElective
+        convertedDataFormat,
+        userInfo.dseElective
       );
 
       const { dseCompulsory, dseElective, agreement, confirm, ...info } =
@@ -55,21 +68,21 @@ const TutorRegister: React.FC = () => {
       finalResult = { ...info, examResult };
     } else if (filteredData.hkOpenExam === "HKAL") {
       const examResult = emptyArray.concat(
-        (userInfo as any).alLang,
-        (userInfo as any).allist,
-        (userInfo as any).allist2,
-        (userInfo as any).allist3
+        userInfo.alLang,
+        userInfo.allist,
+        userInfo.allist2,
+        userInfo.allist3
       );
       const { alLang, allist, allist2, allist3, agreement, confirm, ...info } =
         filteredData;
       finalResult = { ...info, examResult };
     } else if (filteredData.hkOpenExam === "IB") {
       const examResult = emptyArray.concat(
-        (userInfo as any).languages,
-        (userInfo as any).ctv,
-        (userInfo as any).hss,
-        (userInfo as any).science,
-        (userInfo as any).mathematics
+        userInfo.languages,
+        userInfo.ctv,
+        userInfo.hss,
+        userInfo.science,
+        userInfo.mathematics
       );
       const {
         languages,
@@ -82,15 +95,27 @@ const TutorRegister: React.FC = () => {
         ...info
       } = filteredData;
       finalResult = { ...info, examResult };
-      console.log(finalResult);
     }
 
     console.log(finalResult);
-    AuthService.registerTutor(finalResult);
+    // AuthService.registerTutor(finalResult);
+    dispatch(registerTutorUser(finalResult));
   };
 
   return (
     <div className="login-container page-container">
+      <Spin
+        spinning={loading}
+        fullscreen
+        indicator={
+          <LoadingOutlined
+            style={{
+              fontSize: 24,
+            }}
+            spin
+          />
+        }
+      />
       <div className="page-container-content">
         <div className="header-background">
           <span>導 師 註 冊</span>

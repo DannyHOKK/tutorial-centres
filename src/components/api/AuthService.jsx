@@ -3,7 +3,7 @@ import axios from "axios";
 
 const API_URL = import.meta.env.VITE_APP_API_URL;
 
-const registerTutor = (tutor: any) => {
+const registerTutor = (tutor) => {
   return axios
     .post(API_URL + "/api/tutor/signup", tutor, {
       headers: {
@@ -19,7 +19,7 @@ const registerTutor = (tutor: any) => {
     });
 };
 
-const loginTutor = (credential: any) => {
+const loginTutor = (credential) => {
   return axios
     .post(API_URL + "/api/tutor/login", credential, {
       headers: {

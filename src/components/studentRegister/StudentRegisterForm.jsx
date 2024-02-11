@@ -1,60 +1,85 @@
-import {
-  Button,
-  Cascader,
-  CascaderProps,
-  Checkbox,
-  DatePicker,
-  Divider,
-  Form,
-  GetProp,
-  Input,
-  Radio,
-  Row,
-} from "antd";
+import { Button, Cascader, Checkbox, Divider, Form, Input, Radio } from "antd";
 import React from "react";
 import "../global.css";
 import inputData from "../../staticData/inputData.json";
 import { CheckCard } from "@ant-design/pro-components";
+import { useDispatch } from "react-redux";
 
-type DefaultOptionType = GetProp<CascaderProps, "options">[number];
+// type DefaultOptionType = GetProp<CascaderProps, "options">[number];
 
-interface Option {
-  value: string;
-  label: string;
-  children?: Option[];
-  disabled?: boolean;
-}
+// interface Option {
+//   value: string;
+//   label: string;
+//   children?: Option[];
+//   disabled?: boolean;
+// }
 
-const options: Option[] = inputData.location.map((location) => ({
-  value: location.region,
-  label: location.region,
-  children: location.area.map((area) => ({
-    value: area,
-    label: area,
-  })),
-}));
+// const options: Option[] = inputData.location.map((location) => ({
+//   value: location.region,
+//   label: location.region,
+//   children: location.area.map((area) => ({
+//     value: area,
+//     label: area,
+//   })),
+// }));
 
-const filter = (inputValue: string, path: DefaultOptionType[]) =>
-  path.some(
-    (option) =>
-      (option.label as string).toLowerCase().indexOf(inputValue.toLowerCase()) >
-      -1
+// const filter = (inputValue: string, path: DefaultOptionType[]) =>
+//   path.some(
+//     (option) =>
+//       (option.label as string).toLowerCase().indexOf(inputValue.toLowerCase()) >
+//       -1
+//   );
+
+// const dropdownRender = (menus: React.ReactNode) => (
+//   <div>
+//     {menus}
+//     <Divider style={{ margin: "0 250px" }} />
+//   </div>
+// );
+
+// const onSelectChange = (value: any, selectedOptions: Option[]) => {
+//   console.log(value, selectedOptions);
+// };
+
+// interface StudentRegisterFormProps {
+//   studentRegister: (credential: any) => void; // Replace 'any' with the correct type for 'credential'
+// }
+
+const StudentRegisterForm = ({ studentRegister }) => {
+  const [form] = Form.useForm();
+  const dispatch = useDispatch();
+  const onFinish = () => {
+    const values = form.getFieldsValue();
+    const address = values.fullAddress[1];
+    const { confirm, agreement, fullAddress, ...info } = values;
+    const studentInfo = { ...info, address };
+    studentRegister(studentInfo);
+    // console.log(studentRegister(credential));
+    // console.log(credential);
+  };
+
+  const options = inputData.location.map((location) => ({
+    value: location.region,
+    label: location.region,
+    children: location.area.map((area) => ({
+      value: area,
+      label: area,
+    })),
+  }));
+
+  const filter = (inputValue, path) =>
+    path.some(
+      (option) =>
+        option.label.toLowerCase().indexOf(inputValue.toLowerCase()) > -1
+    );
+
+  const dropdownRender = (menus) => (
+    <div>
+      {menus}
+      <Divider style={{ margin: "0 250px" }} />
+    </div>
   );
 
-const dropdownRender = (menus: React.ReactNode) => (
-  <div>
-    {menus}
-    <Divider style={{ margin: "0 250px" }} />
-  </div>
-);
-
-const onSelectChange = (value: any, selectedOptions: Option[]) => {
-  console.log(value, selectedOptions);
-};
-
-const StudentRegisterForm = () => {
-  const [form] = Form.useForm();
-  const onFinish = () => {};
   const formItemLayout = {
     labelCol: {
       xs: {
@@ -113,7 +138,7 @@ const StudentRegisterForm = () => {
     >
       <div className="register-subheader">個人資料</div>
       <Form.Item
-        name="studentIdentity"
+        name="identity"
         label="註冊身份"
         rules={[
           {
@@ -127,17 +152,15 @@ const StudentRegisterForm = () => {
             console.log("value", value);
           }}
         >
-          {inputData.studentRegisterIdentity.map(
-            (item: string, index: number) => (
-              <CheckCard
-                key={index}
-                title={item}
-                value={item}
-                size="small"
-                style={{ width: "100px", padding: "0", margin: "6px" }}
-              />
-            )
-          )}
+          {inputData.studentRegisterIdentity.map((item, index) => (
+            <CheckCard
+              key={index}
+              title={item}
+              value={item}
+              size="small"
+              style={{ width: "100px", padding: "0", margin: "6px" }}
+            />
+          ))}
         </CheckCard.Group>
       </Form.Item>
       <Form.Item
@@ -263,7 +286,7 @@ const StudentRegisterForm = () => {
       </Form.Item>
 
       <Form.Item
-        name="address"
+        name="fullAddress"
         label="住宅地區"
         rules={[
           {
@@ -274,7 +297,7 @@ const StudentRegisterForm = () => {
       >
         <Cascader
           options={options}
-          onChange={onSelectChange}
+          // onChange={onSelectChange}
           placeholder="請選擇地區"
           showSearch={{ filter }}
           onSearch={(value) => console.log(value)}
