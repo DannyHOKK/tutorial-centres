@@ -4,16 +4,19 @@ import "./pages.css";
 import AuthService from "../components/api/AuthService";
 import { useDispatch, useSelector } from "react-redux";
 import { loginUser } from "../auth/authAction";
+import { useNavigate } from "react-router-dom";
 const TutorLogin = () => {
   const { loading, userDetails, error, success } = useSelector(
     (state) => state.auth
   );
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const loginHandler = (studentInfo) => {
     // AuthService.loginTutor(credential).then((res) => {
     //   console.log(res);
     // });
     dispatch(loginUser(studentInfo));
+    if (success) navigate("/");
   };
 
   return (

@@ -8,23 +8,21 @@ export const registerTutorUser = createAsyncThunk(
   async (tutorRegisterDetails, { rejectWithValue }) => {
     console.log(tutorRegisterDetails);
     try {
-      await axios
-        .post(`${backendURL}/api/tutor/signup`, tutorRegisterDetails, {
+      const response = await axios.post(
+        `${backendURL}/api/tutor/signup`,
+        tutorRegisterDetails,
+        {
           headers: {
             "Content-Type": "application/json",
           },
-        })
-        .then((res) => {
-          console.log("okok");
-          console.log(res.data.code);
-          if (res.data.code === -1) {
-            console.log("in error");
-            return rejectWithValue("error");
-          }
-        })
-        .catch((err) => {
-          console.log("error" + err);
-        });
+        }
+      );
+
+      console.log(response);
+
+      if (response.data.code === -1) {
+        return rejectWithValue(response.data.msg);
+      }
     } catch (error) {
       // return custom error message from backend if present
       if (error.response && error.response.data.message) {
@@ -40,15 +38,19 @@ export const registerStduentUser = createAsyncThunk(
   "api/student/signup",
   async (studentRegisterDetails, { rejectWithValue }) => {
     try {
-      await axios
-        .post(`${backendURL}/api/student/signup`, studentRegisterDetails, {
+      const response = await axios.post(
+        `${backendURL}/api/student/signup`,
+        studentRegisterDetails,
+        {
           headers: {
             "Content-Type": "application/json",
           },
-        })
-        .then((res) => {
-          console.log(res);
-        });
+        }
+      );
+
+      if (response.data.code === -1) {
+        return rejectWithValue(response.data.msg);
+      }
     } catch (error) {
       // return custom error message from backend if present
       console.log("error");
@@ -64,16 +66,34 @@ export const registerStduentUser = createAsyncThunk(
 export const loginUser = createAsyncThunk(
   "api/user/login",
   async (credential, { rejectWithValue }) => {
+    console.log("hihi");
     try {
-      await axios
-        .post(`${backendURL}/api/user/login`, credential, {
+      const response = await axios.post(
+        `${backendURL}/api/user/login`,
+        credential,
+        {
           headers: {
             "Content-Type": "application/json",
           },
-        })
-        .then((res) => {
-          console.log(res);
-        });
+        }
+      );
+      console.log(response);
+
+      if (response.data.code === -1) {
+        return rejectWithValue(response.data.msg);
+      } else {
+        localStorage.setItem("userToken", response.data.data.token);
+        const userDetails = {
+          id: response.data.data.id,
+          email: response.data.data.email,
+          authorities: response.data.data.authorities.map(
+            (authority) => authority.authority
+          ),
+        };
+        localStorage.setItem("userDetails", JSON.stringify(userDetails));
+        console.log(userDetails);
+        return response.data;
+      }
     } catch (error) {
       // return custom error message from backend if present
       if (error.response && error.response.data.message) {
