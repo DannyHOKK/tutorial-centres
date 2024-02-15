@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 import "./App.css";
-import Navbar from "./components/Navbar";
+import Navbar from "./components/navFooter/Navbar";
 import {
   Navigate,
   Route,
@@ -9,7 +9,7 @@ import {
   Routes,
 } from "react-router-dom";
 import Home from "./pages/Home";
-import Footer from "./components/Footer";
+import Footer from "./components/navFooter/Footer";
 import { FloatButton } from "antd";
 import {
   WhatsAppOutlined,
@@ -21,6 +21,7 @@ import TutorRegister from "./pages/TutorRegister";
 import StudentRegister from "./pages/StudentRegister";
 import PrivateRoute from "./routing/PrivateRoute";
 import { useSelector } from "react-redux";
+import TutorList from "./pages/TutorList";
 
 function App() {
   const { userToken } = useSelector((state) => state.auth);
@@ -30,9 +31,8 @@ function App() {
       <Router>
         <Navbar />
         <Routes>
-          <Route path="/" element={<PrivateRoute />}>
-            <Route path="/" element={<Home />} />
-          </Route>
+          <Route path="/user" element={<PrivateRoute />}></Route>
+          <Route path="/" element={<Home />} />
           <Route
             path="/login"
             element={userToken ? <Navigate to="/" /> : <TutorLogin />}
@@ -45,6 +45,7 @@ function App() {
             path="/studentRegister"
             element={userToken ? <Navigate to="/" /> : <StudentRegister />}
           />
+          <Route path="/tutorList" element={<TutorList />} />
         </Routes>
 
         <FloatButton

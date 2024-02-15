@@ -1,7 +1,6 @@
 import React from "react";
-import { Button, Checkbox, Form, Input } from "antd";
+import { Button, Form, Input } from "antd";
 import { useNavigate } from "react-router-dom";
-import AuthService from "../api/AuthService";
 
 const LoginForm = ({ loginHandler }) => {
   const [form] = Form.useForm();

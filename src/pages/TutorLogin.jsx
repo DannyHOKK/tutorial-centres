@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import LoginForm from "../components/tutorLogin/LoginForm";
-import "./pages.css";
 import AuthService from "../components/api/AuthService";
 import { useDispatch, useSelector } from "react-redux";
 import { loginUser } from "../auth/authAction";
 import { useNavigate } from "react-router-dom";
+
 const TutorLogin = () => {
   const { loading, userDetails, error, success } = useSelector(
     (state) => state.auth

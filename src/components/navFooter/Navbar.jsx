@@ -30,7 +30,7 @@ const Navbar = () => {
         </div>
         <div className="nav-list-container">
           <div>
-            <a>星級導師</a>
+            <a href="/tutorList">星級導師</a>
             <a>最新個案</a>
             <a>視像補習</a>
             <a>幫助中心</a>
