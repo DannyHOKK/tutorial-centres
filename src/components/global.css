@@ -6,3 +6,37 @@
 .form-button {
   margin-top: 40px;
 }
+
+/* Tutor List */
+.tutor-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+.tutor-card {
+  position: relative;
+  margin: 20px 0;
+  padding: 0;
+  width: 350px;
+  height: 660px;
+
+  border-radius: 10px;
+  -webkit-box-shadow: 10px 10px 47px -28px rgba(0, 0, 0, 1);
+  -moz-box-shadow: 10px 10px 47px -28px rgba(0, 0, 0, 1);
+  box-shadow: 10px 10px 47px -28px rgba(0, 0, 0, 1);
+}
+.tutor-card-content {
+  padding: 0 30px;
+}
+.tutor-card-details {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  line-height: 2.3;
+}
+.tutor-card-button {
+  position: absolute;
+  width: 100%;
+  padding: 0 15px;
+  bottom: 10px;
+}

@@ -1,9 +1,19 @@
 import React from "react";
+import TutorCard from "./TutorCard";
 
-const TutorListTable = () => {
+const TutorListTable = ({ loading, tutorList }) => {
+  console.log(tutorList);
   return (
     <div>
       <div>導師表格</div>
+      <br />
+      <div className="tutor-list">
+        {tutorList.map((tutor) => (
+          <div key={tutor.id}>
+            <TutorCard tutor={tutor} />
+          </div>
+        ))}
+      </div>
     </div>
   );
 };

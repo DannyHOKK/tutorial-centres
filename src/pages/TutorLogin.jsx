@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import LoginForm from "../components/tutorLogin/LoginForm";
 import AuthService from "../components/api/AuthService";
 import { useDispatch, useSelector } from "react-redux";
-import { loginUser } from "../auth/authAction";
+import { loginUser } from "../redux/auth/authAction";
 import { useNavigate } from "react-router-dom";
 
 const TutorLogin = () => {

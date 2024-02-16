@@ -3,9 +3,9 @@ import { Button, Form, Input, Select, Slider } from "antd";
 import subjectList from "../../staticData/subjectList.json";
 import inputData from "../../staticData/inputData.json";
 
-const TutorListFilter = () => {
+const TutorListFilter = ({ queryTutorList, setFilteData }) => {
   const [form] = Form.useForm();
-  const [sliderValues, setSliderValues] = useState([50, 400]);
+  const [sliderValues, setSliderValues] = useState([100, 1000]);
 
   const onFinish = async () => {
     try {
@@ -17,13 +17,23 @@ const TutorListFilter = () => {
   };
 
   const submitForm = () => {
+    form.setFieldValue("lowestSalary", sliderValues);
     const values = form.getFieldsValue();
-
-    loginHandler(values);
+    const transformedData = {
+      ...values,
+      lowestSalary: values.lowestSalary[0],
+      maxSalary: values.lowestSalary[1],
+    };
+    setFilteData(transformedData);
+    queryTutorList(transformedData);
   };
 
   const onFinishFailed = (errorInfo) => {
     console.log("Failed:", errorInfo);
+  };
+
+  const handleSliderChange = (values) => {
+    setSliderValues(values);
   };
 
   const tutorContent = subjectList.tutorContent.map((content) => ({
@@ -49,12 +59,6 @@ const TutorListFilter = () => {
       value: level,
     })),
   }));
-
-  const handleSliderChange = (values) => {
-    setSliderValues(values);
-    form.setFieldValue("lowestSalary", values);
-    console.log(values);
-  };
 
   return (
     <Form
@@ -107,6 +111,7 @@ const TutorListFilter = () => {
       <Form.Item label="學費" name="lowestSalary">
         <Slider
           range={{ draggableTrack: true }}
+          min={100}
           max={1000}
           defaultValue={sliderValues}
           onChange={handleSliderChange}

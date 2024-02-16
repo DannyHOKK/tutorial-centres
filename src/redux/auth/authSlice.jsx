@@ -50,6 +50,7 @@ const authSlice = createSlice({
       .addCase(registerTutorUser.rejected, (state, { payload }) => {
         state.loading = false;
         state.error = payload;
+        console.log(payload);
       })
       .addCase(registerStduentUser.pending, (state) => {
         state.loading = true;

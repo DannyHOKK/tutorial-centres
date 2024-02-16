@@ -22,6 +22,7 @@ import StudentRegister from "./pages/StudentRegister";
 import PrivateRoute from "./routing/PrivateRoute";
 import { useSelector } from "react-redux";
 import TutorList from "./pages/TutorList";
+import TutorDetails from "./components/tutorList/tutorDetails";
 
 function App() {
   const { userToken } = useSelector((state) => state.auth);
@@ -46,6 +47,9 @@ function App() {
             element={userToken ? <Navigate to="/" /> : <StudentRegister />}
           />
           <Route path="/tutorList" element={<TutorList />} />
+          <Route path="/tutor/details" element={<TutorDetails />}>
+            <Route path=":tutorId" element={<TutorDetails />} />
+          </Route>
         </Routes>
 
         <FloatButton

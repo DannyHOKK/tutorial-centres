@@ -5,57 +5,14 @@ import inputData from "../../staticData/inputData.json";
 import { CheckCard } from "@ant-design/pro-components";
 import { useDispatch } from "react-redux";
 
-// type DefaultOptionType = GetProp<CascaderProps, "options">[number];
-
-// interface Option {
-//   value: string;
-//   label: string;
-//   children?: Option[];
-//   disabled?: boolean;
-// }
-
-// const options: Option[] = inputData.location.map((location) => ({
-//   value: location.region,
-//   label: location.region,
-//   children: location.area.map((area) => ({
-//     value: area,
-//     label: area,
-//   })),
-// }));
-
-// const filter = (inputValue: string, path: DefaultOptionType[]) =>
-//   path.some(
-//     (option) =>
-//       (option.label as string).toLowerCase().indexOf(inputValue.toLowerCase()) >
-//       -1
-//   );
-
-// const dropdownRender = (menus: React.ReactNode) => (
-//   <div>
-//     {menus}
-//     <Divider style={{ margin: "0 250px" }} />
-//   </div>
-// );
-
-// const onSelectChange = (value: any, selectedOptions: Option[]) => {
-//   console.log(value, selectedOptions);
-// };
-
-// interface StudentRegisterFormProps {
-//   studentRegister: (credential: any) => void; // Replace 'any' with the correct type for 'credential'
-// }
-
 const StudentRegisterForm = ({ studentRegister }) => {
   const [form] = Form.useForm();
-  const dispatch = useDispatch();
   const onFinish = () => {
     const values = form.getFieldsValue();
     const address = values.fullAddress[1];
     const { confirm, agreement, fullAddress, ...info } = values;
     const studentInfo = { ...info, address };
     studentRegister(studentInfo);
-    // console.log(studentRegister(credential));
-    // console.log(credential);
   };
 
   const options = inputData.location.map((location) => ({

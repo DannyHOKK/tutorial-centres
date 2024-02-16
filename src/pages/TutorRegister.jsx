@@ -4,7 +4,7 @@ import "./pages.css";
 import RegisterProgressBar from "../components/tutorRegister/RegisterProgressBar";
 import AuthService from "../components/api/AuthService";
 import { useDispatch, useSelector } from "react-redux";
-import { registerTutorUser } from "../auth/authAction";
+import { registerTutorUser } from "../redux/auth/authAction";
 import { Spin } from "antd";
 import { LoadingOutlined } from "@ant-design/icons";
 import { useNavigate } from "react-router-dom";
@@ -46,6 +46,7 @@ const TutorRegister = () => {
         return !Array.isArray(value) || value.length > 0;
       })
     );
+    console.log(userInfo);
 
     const emptyArray = [{ subject: "", grade: "" }];
     let finalResult = { ...filteredData };

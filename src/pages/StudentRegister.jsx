@@ -1,7 +1,7 @@
 import React from "react";
 import StudentRegisterForm from "../components/studentRegister/StudentRegisterForm";
 import { useDispatch, useSelector } from "react-redux";
-import { registerStduentUser } from "../auth/authAction";
+import { registerStduentUser } from "../redux/auth/authAction";
 
 const StudentRegister = () => {
   const { loading, userDetails, error, success } = useSelector(

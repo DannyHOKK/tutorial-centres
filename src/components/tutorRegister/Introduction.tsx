@@ -1,22 +1,40 @@
 import { Button, Form, Input, Select } from "antd";
-import React from "react";
+import React, { useEffect } from "react";
 import "../global.css";
 
 const Introduction = ({ userInfo, setUserInfo, current, prev, submitForm }) => {
   const [form] = Form.useForm();
-  const onFinish = () => {
-    const values = form.getFieldsValue();
-    const filteredData = Object.fromEntries(
-      Object.entries(values).filter(([_, value]) => value !== undefined)
-    );
 
-    Object.keys(filteredData).forEach((key) => {
-      setUserInfo((prevInfo: any) => ({
-        ...prevInfo,
-        [key]: values[key],
-      }));
-    });
+  const handleSubmit = async () => {
+    try {
+      await form.validateFields();
+      await onFinish();
+    } catch (error) {
+      console.log("Form validation failed:", error);
+    }
   };
+
+  const onFinish = async () => {
+    try {
+      const values = await form.validateFields();
+      await setUserInfo((prevInfo: any) => ({
+        ...prevInfo,
+        introTitle: values.introTitle,
+        intro: values.intro,
+      }));
+    } catch (error) {
+      console.log("Form validation failed:", error);
+    }
+  };
+
+  useEffect(() => {
+    if (userInfo.introTitle && userInfo.intro) {
+      console.log(userInfo);
+      console.log("hi");
+      submitForm(); // Call submitForm() after userInfo is updated
+    }
+  }, [userInfo]);
+
   const formItemLayout = {
     labelCol: {
       xs: {
@@ -46,15 +64,6 @@ const Introduction = ({ userInfo, setUserInfo, current, prev, submitForm }) => {
         offset: 0,
       },
     },
-  };
-  const handleSubmit = async () => {
-    try {
-      await form.validateFields();
-      onFinish();
-      submitForm();
-    } catch (error) {
-      console.log("Form validation failed:", error);
-    }
   };
   return (
     <Form
