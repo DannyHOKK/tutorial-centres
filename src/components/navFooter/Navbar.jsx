@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./navbar.css";
 import VerifiedIcon from "@mui/icons-material/Verified";
 import { useSelector } from "react-redux";
@@ -9,13 +9,21 @@ const Navbar = () => {
   );
 
   const checkAuthenticated = () => {
-    if (localStorage.getItem("userToken") !== null) {
+    if (userToken !== null) {
       return true;
     } else {
       return false;
     }
   };
 
+  const checkStudentAuthority = () => {
+    if (userDetails !== null && userIdentity.includes("ROLE_STUDENT")) {
+      console.log(userDetails.authorities);
+      return true;
+    } else {
+      return false;
+    }
+  };
   const logoutHandler = () => {
     localStorage.removeItem("userToken");
     localStorage.removeItem("userDetails");
@@ -40,6 +48,11 @@ const Navbar = () => {
           <div>
             {checkAuthenticated() ? (
               <>
+                {checkStudentAuthority() ? (
+                  <a href="/createStudentCase">創建補習方案</a>
+                ) : (
+                  <>faile</>
+                )}
                 <button type="button" onClick={logoutHandler} className="login">
                   登出
                 </button>

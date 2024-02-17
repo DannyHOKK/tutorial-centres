@@ -18,8 +18,6 @@ export const registerTutorUser = createAsyncThunk(
         }
       );
 
-      console.log(response);
-
       if (response.data.code === -1) {
         return rejectWithValue(response.data.msg);
       }
@@ -91,7 +89,6 @@ export const loginUser = createAsyncThunk(
           ),
         };
         localStorage.setItem("userDetails", JSON.stringify(userDetails));
-        console.log(userDetails);
         return response.data;
       }
     } catch (error) {

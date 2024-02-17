@@ -74,12 +74,14 @@ const authSlice = createSlice({
         state.userDetails = {
           id: payload.data.id,
           email: payload.data.email,
-          authories: payload.data.authorities.map(
+          authorities: payload.data.authorities.map(
             (authority) => authority.authority
           ),
         };
         state.userToken = payload.data.token;
-        console.log("logined");
+        state.userIdentity = payload.data.authorities.map(
+          (authority) => authority.authority
+        );
       })
       .addCase(loginUser.rejected, (state, { payload }) => {
         state.loading = false;

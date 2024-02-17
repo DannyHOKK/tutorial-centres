@@ -23,9 +23,23 @@ import PrivateRoute from "./routing/PrivateRoute";
 import { useSelector } from "react-redux";
 import TutorList from "./pages/TutorList";
 import TutorDetails from "./components/tutorList/tutorDetails";
+import StudentCase from "./pages/StudentCase";
 
 function App() {
   const { userToken } = useSelector((state) => state.auth);
+
+  const checkStudentAuthority = () => {
+    if (
+      localStorage.getItem("userDetails") !== null &&
+      JSON.parse(localStorage.getItem("userDetails")).authorities.includes(
+        "ROLE_STUDENT"
+      )
+    ) {
+      return true;
+    } else {
+      return false;
+    }
+  };
 
   return (
     <div>
@@ -45,6 +59,12 @@ function App() {
           <Route
             path="/studentRegister"
             element={userToken ? <Navigate to="/" /> : <StudentRegister />}
+          />
+          <Route
+            path="/createStudentCase"
+            element={
+              checkStudentAuthority() ? <Navigate to="/" /> : <StudentCase />
+            }
           />
           <Route path="/tutorList" element={<TutorList />} />
           <Route path="/tutor/details" element={<TutorDetails />}>
