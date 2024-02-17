@@ -13,7 +13,7 @@ const TutorDetails = () => {
     dispatch(getTutor(params.tutorId));
   }, []);
   return (
-    <div>
+    <div className="page-container tutor-list-container">
       {tutor.engName}
       {tutor.chineseName}
     </div>

@@ -35,9 +35,36 @@ const loginTutor = (credential) => {
     });
 };
 
+const checkEmailExist = (email) => {
+  console.log(email);
+  return axios
+    .post(API_URL + "/api/user/checkEmailExist?email=" + email)
+    .then((res) => {
+      console.log(res);
+      return res;
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};
+
+const getAllEmail = () => {
+  return axios
+    .get(API_URL + "/api/user/getAllEmail")
+    .then((res) => {
+      console.log(res);
+      return res;
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};
+
 const AuthService = {
   registerTutor,
   loginTutor,
+  checkEmailExist,
+  getAllEmail,
 };
 
 export default AuthService;

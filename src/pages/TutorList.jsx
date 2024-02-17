@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import TutorListFilter from "../components/tutorList/TutorListFilter";
 import TutorListTable from "../components/tutorList/TutorListTable";
 import { useDispatch, useSelector } from "react-redux";
@@ -17,7 +17,6 @@ const TutorList = () => {
   const { loading, error, success, tutorList } = useSelector(
     (state) => state.tutor
   );
-
   useEffect(() => {
     dispatch(getTutorList(filteData));
   }, []);

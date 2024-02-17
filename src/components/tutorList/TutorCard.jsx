@@ -7,6 +7,8 @@ import LocationOnIcon from "@mui/icons-material/LocationOn";
 import CastForEducationIcon from "@mui/icons-material/CastForEducation";
 import AttachMoneyIcon from "@mui/icons-material/AttachMoney";
 import { useNavigate } from "react-router-dom";
+import SchoolIcon from "@mui/icons-material/School";
+import MenuBookIcon from "@mui/icons-material/MenuBook";
 
 const TutorCard = ({ tutor }) => {
   const navigate = useNavigate();
@@ -41,7 +43,7 @@ const TutorCard = ({ tutor }) => {
             </div>
             <div>
               <AttachMoneyIcon />
-              {"$" + tutor.lowestSalary + " 起"}
+              {"HKD $" + tutor.lowestSalary + " 起"}
             </div>
           </div>
         </>
@@ -51,16 +53,36 @@ const TutorCard = ({ tutor }) => {
       key: "2",
       label: "學歷",
       children: (
-        <div className="tutor-card-details">
-          <div>{tutor.highestEducation}</div>
-          <div>{tutor.university}</div>
-        </div>
+        <>
+          <div className="tutor-card-details">
+            <div style={{ fontSize: "24px", marginTop: "10px" }}>
+              {tutor.highestEducation}
+            </div>
+            <div>
+              <SchoolIcon style={{ marginRight: "6px" }} />
+              {tutor.university}
+            </div>
+            <div>
+              <MenuBookIcon style={{ marginRight: "6px" }} />
+              {tutor.universityMajor}
+            </div>
+          </div>
+        </>
       ),
     },
     {
       key: "3",
       label: "簡介",
-      children: "Content of Tab Pane 3",
+      children: (
+        <>
+          <div className="tutor-card-details">
+            <div style={{ fontWeight: "900", fontSize: "24px" }}>
+              {tutor.introTitle}
+            </div>
+            <div>{tutor.intro}</div>
+          </div>
+        </>
+      ),
     },
   ];
 

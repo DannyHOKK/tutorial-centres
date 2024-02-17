@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Button,
   Cascader,
@@ -16,9 +16,12 @@ import {
 } from "antd";
 import "./registerForm.css";
 import "../global.css";
+import axios from "axios";
+import AuthService from "../api/AuthService";
 
 const RegisterForm = ({ userInfo, setUserInfo, current, next }) => {
   const [form] = Form.useForm();
+  const [emailList, setEmailList] = useState([]);
   const onFinish = () => {
     const values = form.getFieldsValue();
     const filteredData = Object.fromEntries(
@@ -63,11 +66,21 @@ const RegisterForm = ({ userInfo, setUserInfo, current, next }) => {
     },
   };
 
+  useEffect(() => {
+    getEmailListHandler();
+  }, []);
+
+  const getEmailListHandler = async () => {
+    const response: any = await AuthService.getAllEmail();
+    setEmailList(response.data.data);
+  };
+
   const handleSubmit = async () => {
     try {
       await form.validateFields();
       onFinish();
       next();
+      // }
     } catch (error) {
       console.log("Form validation failed:", error);
     }
@@ -104,6 +117,14 @@ const RegisterForm = ({ userInfo, setUserInfo, current, next }) => {
             required: true,
             message: "請輸入你的電郵",
           },
+          ({ getFieldValue }) => ({
+            validator(_, value) {
+              if (emailList.includes(value)) {
+                return Promise.reject("電郵已經被註冊");
+              }
+              return Promise.resolve();
+            },
+          }),
         ]}
       >
         <Input />
