@@ -1,4 +1,4 @@
-import { Button, Tabs, Tooltip } from "antd";
+import { Tabs, Tooltip } from "antd";
 import React, { useState } from "react";
 import FEMALE from "../../assets/female_avatar.png";
 import MALE from "../../assets/male_avatar.svg";
@@ -9,6 +9,7 @@ import AttachMoneyIcon from "@mui/icons-material/AttachMoney";
 import { useNavigate } from "react-router-dom";
 import SchoolIcon from "@mui/icons-material/School";
 import MenuBookIcon from "@mui/icons-material/MenuBook";
+import { Button } from "@mui/material";
 
 const TutorCard = ({ tutor }) => {
   const navigate = useNavigate();
@@ -120,21 +121,16 @@ const TutorCard = ({ tutor }) => {
       <div className="tutor-card-button">
         <Button
           style={{
-            width: "100%",
-            margin: "5px 0",
-            backgroundColor: "blue",
-            color: "white",
+            backgroundColor: "rgb(0, 86, 246)",
           }}
           onClick={() => navigate("/tutor/details/" + tutor.id)}
         >
           詳細資料
         </Button>
+
         <Button
           style={{
-            width: "100%",
-            margin: "8px 0",
             backgroundColor: "green",
-            color: "white",
           }}
         >
           預約

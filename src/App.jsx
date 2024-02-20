@@ -26,15 +26,13 @@ import TutorDetails from "./components/tutorList/tutorDetails";
 import StudentCase from "./pages/StudentCase";
 
 function App() {
-  const { userToken } = useSelector((state) => state.auth);
+  const { userToken, userIdentity, userDetails } = useSelector(
+    (state) => state.auth
+  );
 
   const checkStudentAuthority = () => {
-    if (
-      localStorage.getItem("userDetails") !== null &&
-      JSON.parse(localStorage.getItem("userDetails")).authorities.includes(
-        "ROLE_STUDENT"
-      )
-    ) {
+    if (userDetails !== null && userIdentity.includes("ROLE_STUDENT")) {
+      console.log(userIdentity);
       return true;
     } else {
       return false;
@@ -42,7 +40,7 @@ function App() {
   };
 
   return (
-    <div>
+    <>
       <Router>
         <Navbar />
         <Routes>
@@ -63,7 +61,7 @@ function App() {
           <Route
             path="/createStudentCase"
             element={
-              checkStudentAuthority() ? <Navigate to="/" /> : <StudentCase />
+              checkStudentAuthority() ? <StudentCase /> : <Navigate to="/" />
             }
           />
           <Route path="/tutorList" element={<TutorList />} />
@@ -72,7 +70,7 @@ function App() {
           </Route>
         </Routes>
 
-        <FloatButton
+        {/* <FloatButton
           style={{ right: "4%", bottom: "100px", mar: "20px" }}
           onClick={() => console.log("onClick")}
           icon={<WhatsAppOutlined />}
@@ -86,10 +84,10 @@ function App() {
           style={{ right: "4%", bottom: "220px", mar: "20px" }}
           onClick={() => console.log("onClick")}
           icon={<FacebookFilled />}
-        />
+        /> */}
         <Footer />
       </Router>
-    </div>
+    </>
   );
 }
 

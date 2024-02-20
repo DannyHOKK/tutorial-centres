@@ -60,16 +60,30 @@ const TutorListFilter = ({ queryTutorList, setFilteData }) => {
     })),
   }));
 
+  const formItemLayout = {
+    labelCol: {
+      xs: {
+        span: 24,
+      },
+      sm: {
+        span: 6,
+      },
+    },
+    wrapperCol: {
+      xs: {
+        span: 24,
+      },
+      sm: {
+        span: 16,
+      },
+    },
+  };
+
   return (
     <Form
       form={form}
       name="filter"
-      labelCol={{
-        span: 4,
-      }}
-      wrapperCol={{
-        span: 16,
-      }}
+      {...formItemLayout}
       style={{
         maxWidth: 800,
         margin: "auto",

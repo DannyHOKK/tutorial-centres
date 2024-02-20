@@ -13,9 +13,13 @@ const TutorDetails = () => {
     dispatch(getTutor(params.tutorId));
   }, []);
   return (
-    <div className="page-container tutor-list-container">
-      {tutor.engName}
-      {tutor.chineseName}
+    <div className="page-xm page-container tutor-details-flex">
+      <div className="tutor-details-left">
+        <div className="tutor-details-card-left">highestEducation</div>
+      </div>
+      <div className="tutor-details-right">
+        <div className="tutor-details-card-right">hihi</div>
+      </div>
     </div>
   );
 };

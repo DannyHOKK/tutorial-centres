@@ -26,13 +26,15 @@ const TutorList = () => {
     console.log(tutorList);
   };
   return (
-    <div className="page-container tutor-list-container">
+    <div className="page-container tutor-list-container page-xll">
       <div>導師搜尋器</div>
       <br />
-      <TutorListFilter
-        queryTutorList={queryTutorList}
-        setFilteData={setFilteData}
-      />
+      <div>
+        <TutorListFilter
+          queryTutorList={queryTutorList}
+          setFilteData={setFilteData}
+        />
+      </div>
       <br />
       <TutorListTable loading={loading} tutorList={tutorList} />
     </div>

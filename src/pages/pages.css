@@ -38,13 +38,3 @@
 .page-container-content {
   position: relative;
 }
-
-.tutor-list-container {
-  max-width: 1700px;
-  width: 100%;
-  text-align: center;
-  flex-wrap: nowrap;
-  justify-content: center;
-  margin: auto;
-  padding-top: 30px;
-}
