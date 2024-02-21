@@ -66,7 +66,7 @@ const TeachingContent = ({ userInfo, setUserInfo, current, next, prev }) => {
     <Form
       form={form}
       name="register"
-      className="form-style"
+      className="page-xs"
       scrollToFirstError
       initialValues={userInfo}
     >

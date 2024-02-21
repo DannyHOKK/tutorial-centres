@@ -20,7 +20,7 @@ const TutorLogin = () => {
   };
 
   return (
-    <div className="login-container page-container">
+    <div className="login-container page-container page-xll">
       <h2>導師登入或登記</h2>
       <LoginForm loginHandler={loginHandler} />
     </div>

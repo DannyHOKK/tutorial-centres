@@ -99,7 +99,7 @@ const RegisterForm = ({ userInfo, setUserInfo, current, next }) => {
       {...formItemLayout}
       form={form}
       name="register"
-      className="form-style"
+      className="page-xs"
       scrollToFirstError
       initialValues={userInfo}
     >

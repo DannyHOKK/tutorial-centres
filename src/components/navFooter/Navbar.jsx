@@ -49,19 +49,19 @@ const Navbar = () => {
                 <a href="/tutorList">星級導師</a>
               </li>
               <li>
-                <a>最新個案</a>
+                <a href="/studentCase">最新個案</a>
               </li>
               <li>
-                <a>視像補習</a>
+                <a href="/tuitionFeeReference">學費參考</a>
               </li>
               <li>
-                <a>幫助中心</a>
-              </li>
-              <li>
-                <a>搵導師</a>
+                <a href="/tutorFeeReference">導師收費</a>
               </li>
               <li>
                 <a href="/tutorRegister">成為導師</a>
+              </li>
+              <li>
+                <a href="/contactUs">聯絡我們</a>
               </li>
             </ul>
           </div>
@@ -99,24 +99,26 @@ const Navbar = () => {
               <a href="/tutorList">星級導師</a>
             </li>
             <li>
-              <a>最新個案</a>
+              <a href="/studentCase">最新個案</a>
             </li>
             <li>
-              <a>視像補習</a>
+              <a href="/tuitionFeeReference">學費參考</a>
             </li>
             <li>
-              <a>幫助中心</a>
+              <a href="/tutorFeeReference">導師收費</a>
             </li>
             <li>
-              <a>搵導師</a>
+              <a href="/tutorRegister">成為導師</a>
             </li>
             <li>
-              <a>成為導師</a>
+              <a href="/contactUs">聯絡我們</a>
             </li>
             {checkAuthenticated() ? (
               <li>
                 {checkStudentAuthority() ? (
-                  <a href="/createStudentCase">創建補習方案</a>
+                  <a href="/createStudentCase" style={{ marginRight: "20px" }}>
+                    創建補習方案
+                  </a>
                 ) : (
                   <>faile</>
                 )}

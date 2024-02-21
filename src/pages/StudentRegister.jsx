@@ -16,7 +16,7 @@ const StudentRegister = () => {
   };
 
   return (
-    <div className="page-container login-container">
+    <div className="page-container login-container page-xs">
       創建學生帳號
       <div>
         <StudentRegisterForm studentRegister={studentRegister} />

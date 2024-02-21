@@ -70,7 +70,7 @@ const Introduction = ({ userInfo, setUserInfo, current, prev, submitForm }) => {
       {...formItemLayout}
       form={form}
       name="register"
-      className="form-style"
+      className="page-xs"
       scrollToFirstError
       initialValues={userInfo}
     >

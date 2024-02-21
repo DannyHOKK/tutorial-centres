@@ -79,15 +79,25 @@ const TutorListFilter = ({ queryTutorList, setFilteData }) => {
     },
   };
 
+  const tailFormItemLayout = {
+    wrapperCol: {
+      xs: {
+        span: 24,
+        offset: 0,
+      },
+      sm: {
+        span: 16,
+        offset: 6,
+      },
+    },
+  };
+
   return (
     <Form
       form={form}
       name="filter"
       {...formItemLayout}
-      style={{
-        maxWidth: 800,
-        margin: "auto",
-      }}
+      className="page-xs"
       initialValues={{
         remember: true,
       }}
@@ -132,12 +142,7 @@ const TutorListFilter = ({ queryTutorList, setFilteData }) => {
         />
       </Form.Item>
 
-      <Form.Item
-        wrapperCol={{
-          offset: 4,
-          span: 16,
-        }}
-      >
+      <Form.Item {...tailFormItemLayout}>
         <Button
           type="button"
           style={{

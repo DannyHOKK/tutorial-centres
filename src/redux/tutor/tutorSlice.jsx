@@ -36,6 +36,7 @@ const tutorSlice = createSlice({
         state.loading = false;
         state.success = true;
         state.tutor = payload.data;
+        console.log(payload.data);
       })
       .addCase(getTutor.rejected, (state, { payload }) => {
         state.loading = false;

@@ -25,6 +25,19 @@ const LoginForm = ({ loginHandler }) => {
     console.log("Failed:", errorInfo);
   };
 
+  const tailFormItemLayout = {
+    wrapperCol: {
+      xs: {
+        span: 24,
+        offset: 0,
+      },
+      sm: {
+        span: 16,
+        offset: 6,
+      },
+    },
+  };
+
   return (
     <Form
       form={form}
@@ -72,12 +85,7 @@ const LoginForm = ({ loginHandler }) => {
         <Input.Password />
       </Form.Item>
 
-      <Form.Item
-        wrapperCol={{
-          offset: 4,
-          span: 16,
-        }}
-      >
+      <Form.Item {...tailFormItemLayout}>
         <Button
           type="button"
           style={{

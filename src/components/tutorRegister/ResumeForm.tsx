@@ -198,7 +198,7 @@ const ResumeForm = ({ userInfo, setUserInfo, current, next, prev }) => {
       {...formItemLayout}
       form={form}
       name="register"
-      className="form-style"
+      className="page-xs"
       scrollToFirstError
       initialValues={userInfo}
     >

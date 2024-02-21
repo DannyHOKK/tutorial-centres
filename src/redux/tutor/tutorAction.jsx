@@ -39,7 +39,6 @@ export const getTutorList = createAsyncThunk(
 export const getTutor = createAsyncThunk(
   "tutor/getTutor",
   async (tutorId, { rejectWithValue }) => {
-    console.log(tutorId);
     try {
       const response = await axios.get(
         `${backendURL}/tutor/getTutor?tutorId=${tutorId}`,

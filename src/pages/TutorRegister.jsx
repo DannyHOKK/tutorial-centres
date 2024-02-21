@@ -48,7 +48,7 @@ const TutorRegister = () => {
     );
     console.log(userInfo);
 
-    const emptyArray = [{ subject: "", grade: "" }];
+    const emptyArray = [];
     let finalResult = { ...filteredData };
 
     if (filteredData.hkOpenExam === "HKDSE") {
@@ -104,7 +104,7 @@ const TutorRegister = () => {
   };
 
   return (
-    <div className="login-container page-container">
+    <div className="login-container page-container page-xll">
       <Spin
         spinning={loading}
         fullscreen
