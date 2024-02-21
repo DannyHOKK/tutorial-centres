@@ -90,7 +90,7 @@ const StudentRegisterForm = ({ studentRegister }) => {
       {...formItemLayout}
       form={form}
       name="register"
-      className="form-style"
+      className="page-xs"
       scrollToFirstError
     >
       <div className="register-subheader">個人資料</div>
