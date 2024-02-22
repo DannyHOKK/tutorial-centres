@@ -134,7 +134,7 @@
   padding: 60px;
 }
 .details-exam-table thead tr th,
-.details-exam-table thead tr td {
+.details-exam-table tbody tr td {
   border: 1px solid black;
   padding: 10px 50px;
 }
@@ -142,4 +142,46 @@
 /* Tutor Fee Page */
 .tutor-fee-header {
   margin-top: 30px;
+}
+
+.tutor-fee-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.tutor-fee-table thead tr th {
+  border: 1px solid black;
+  padding: 10px 50px;
+}
+.tutor-fee-table tbody tr td {
+  border: 1px solid black;
+  padding: 10px 20px;
+}
+
+/* tuition fee table */
+
+.p-s-school-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.p-s-school-table thead tr th,
+.p-s-school-table tbody tr td {
+  border: 1px solid black;
+  padding: 10px;
+}
+
+.p-s-school-table tbody tr:nth-child(2n) {
+  background-color: rgb(205, 182, 226);
+}
+
+/* Student Case Form Style */
+
+.student-case-form {
+  margin-top: 40px;
+  padding: 40px;
+  width: 100%;
+  border-radius: 10px;
+  -webkit-box-shadow: 10px 10px 47px -28px rgba(0, 0, 0, 1);
+  -moz-box-shadow: 10px 10px 47px -28px rgba(0, 0, 0, 1);
+  box-shadow: 10px 10px 47px -28px rgba(0, 0, 0, 1);
 }

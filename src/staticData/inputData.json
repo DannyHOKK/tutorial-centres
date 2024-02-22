@@ -167,5 +167,17 @@
     "Year 5 或以上",
     "畢業生"
   ],
-  "studentRegisterIdentity": ["學生", "家長", "補習社"]
+  "studentRegisterIdentity": ["學生", "家長", "補習社"],
+  "studentCaseTutorCategory": [
+    "HKDSE",
+    "GCE AL",
+    "IB",
+    "IGCSE",
+    "SAT",
+    "學校考試",
+    "會話",
+    "音樂",
+    "體育",
+    "其他"
+  ]
 }

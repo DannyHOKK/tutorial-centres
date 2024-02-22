@@ -49,7 +49,7 @@ const Navbar = () => {
                 <a href="/tutorList">星級導師</a>
               </li>
               <li>
-                <a href="/studentCase">最新個案</a>
+                <a href="/studentCase">補習個案</a>
               </li>
               <li>
                 <a href="/tuitionFeeReference">學費參考</a>
@@ -67,23 +67,23 @@ const Navbar = () => {
           </div>
           <div className="nav-list-right">
             {checkAuthenticated() ? (
-              <>
+              <div>
                 {checkStudentAuthority() ? (
-                  <a href="/createStudentCase">創建補習方案</a>
+                  <a href="/createStudentCase">創建補習個案</a>
                 ) : (
                   <>faile</>
                 )}
-                <button type="button" onClick={logoutHandler} className="login">
+                <a type="button" onClick={logoutHandler} className="login">
                   登出
-                </button>
-              </>
+                </a>
+              </div>
             ) : (
-              <>
+              <div>
                 <a href="/login" className="login">
                   登入
                 </a>
                 <a href="/studentRegister">學生註冊</a>
-              </>
+              </div>
             )}
           </div>
           <div className="toggle-btn" onClick={toggleDropdown}>
@@ -99,7 +99,7 @@ const Navbar = () => {
               <a href="/tutorList">星級導師</a>
             </li>
             <li>
-              <a href="/studentCase">最新個案</a>
+              <a href="/studentCase">補習個案</a>
             </li>
             <li>
               <a href="/tuitionFeeReference">學費參考</a>

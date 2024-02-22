@@ -3,7 +3,37 @@ import React from "react";
 import "../global.css";
 import inputData from "../../staticData/inputData.json";
 import { CheckCard } from "@ant-design/pro-components";
-import { useDispatch } from "react-redux";
+
+const formItemLayout = {
+  labelCol: {
+    xs: {
+      span: 24,
+    },
+    sm: {
+      span: 6,
+    },
+  },
+  wrapperCol: {
+    xs: {
+      span: 24,
+    },
+    sm: {
+      span: 16,
+    },
+  },
+};
+const tailFormItemLayout = {
+  wrapperCol: {
+    xs: {
+      span: 24,
+      offset: 0,
+    },
+    sm: {
+      span: 16,
+      offset: 6,
+    },
+  },
+};
 
 const StudentRegisterForm = ({ studentRegister }) => {
   const [form] = Form.useForm();
@@ -36,37 +66,6 @@ const StudentRegisterForm = ({ studentRegister }) => {
       <Divider style={{ margin: "0 250px" }} />
     </div>
   );
-
-  const formItemLayout = {
-    labelCol: {
-      xs: {
-        span: 24,
-      },
-      sm: {
-        span: 6,
-      },
-    },
-    wrapperCol: {
-      xs: {
-        span: 24,
-      },
-      sm: {
-        span: 16,
-      },
-    },
-  };
-  const tailFormItemLayout = {
-    wrapperCol: {
-      xs: {
-        span: 24,
-        offset: 0,
-      },
-      sm: {
-        span: 16,
-        offset: 6,
-      },
-    },
-  };
 
   const handleSubmit = async () => {
     try {
