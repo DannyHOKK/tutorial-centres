@@ -3,37 +3,7 @@ import React from "react";
 import "../global.css";
 import inputData from "../../staticData/inputData.json";
 import { CheckCard } from "@ant-design/pro-components";
-
-const formItemLayout = {
-  labelCol: {
-    xs: {
-      span: 24,
-    },
-    sm: {
-      span: 6,
-    },
-  },
-  wrapperCol: {
-    xs: {
-      span: 24,
-    },
-    sm: {
-      span: 16,
-    },
-  },
-};
-const tailFormItemLayout = {
-  wrapperCol: {
-    xs: {
-      span: 24,
-      offset: 0,
-    },
-    sm: {
-      span: 16,
-      offset: 6,
-    },
-  },
-};
+import { useDispatch } from "react-redux";
 
 const StudentRegisterForm = ({ studentRegister }) => {
   const [form] = Form.useForm();
@@ -54,11 +24,11 @@ const StudentRegisterForm = ({ studentRegister }) => {
     })),
   }));
 
-  const filter = (inputValue, path) =>
-    path.some(
-      (option) =>
-        option.label.toLowerCase().indexOf(inputValue.toLowerCase()) > -1
-    );
+  // const filter = (inputValue, path) =>
+  //   path.some(
+  //     (option) =>
+  //       option.label.toLowerCase().indexOf(inputValue.toLowerCase()) > -1
+  //   );
 
   const dropdownRender = (menus) => (
     <div>
@@ -66,6 +36,37 @@ const StudentRegisterForm = ({ studentRegister }) => {
       <Divider style={{ margin: "0 250px" }} />
     </div>
   );
+
+  const formItemLayout = {
+    labelCol: {
+      xs: {
+        span: 24,
+      },
+      sm: {
+        span: 6,
+      },
+    },
+    wrapperCol: {
+      xs: {
+        span: 24,
+      },
+      sm: {
+        span: 16,
+      },
+    },
+  };
+  const tailFormItemLayout = {
+    wrapperCol: {
+      xs: {
+        span: 24,
+        offset: 0,
+      },
+      sm: {
+        span: 16,
+        offset: 6,
+      },
+    },
+  };
 
   const handleSubmit = async () => {
     try {
@@ -86,6 +87,7 @@ const StudentRegisterForm = ({ studentRegister }) => {
 
   return (
     <Form
+      autoComplete="off"
       {...formItemLayout}
       form={form}
       name="register"
@@ -255,8 +257,7 @@ const StudentRegisterForm = ({ studentRegister }) => {
           options={options}
           // onChange={onSelectChange}
           placeholder="請選擇地區"
-          showSearch={{ filter }}
-          onSearch={(value) => console.log(value)}
+          // showSearch={{ filter }}
           dropdownRender={dropdownRender}
         />
       </Form.Item>

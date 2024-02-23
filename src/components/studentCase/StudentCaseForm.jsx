@@ -1,16 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 import {
-  Button,
-  Cascader,
-  Checkbox,
-  Divider,
-  Form,
-  Input,
-  Radio,
-  Select,
-} from "antd";
-import inputData from "../../staticData/inputData.json";
-import { CheckCard } from "@ant-design/pro-components";
+  SmileOutlined,
+  SolutionOutlined,
+  UserOutlined,
+} from "@ant-design/icons";
+import SchoolIcon from "@mui/icons-material/School";
+import { Button, Steps, message } from "antd";
+import { motion } from "framer-motion";
+import StudentCasePage1 from "./StudentCasePage1";
+import StudentCasePage2 from "./StudentCasePage2";
 
 const formItemLayout = {
   labelCol: {
@@ -43,225 +41,104 @@ const tailFormItemLayout = {
   },
 };
 
-const StudentCaseForm = () => {
-  const [form] = Form.useForm();
-  const onFinish = () => {
-    const values = form.getFieldsValue();
-    const address = values.fullAddress[1];
-    const { confirm, agreement, fullAddress, ...info } = values;
-    const studentInfo = { ...info, address };
-    studentRegister(studentInfo);
-  };
+const StudentCaseForm = ({ current, previousStep, next, prev }) => {
+  const delta = current - previousStep;
+  const steps = [
+    {
+      title: "個人資料",
+      icon: <UserOutlined />,
+      content: <StudentCasePage1 />,
+    },
+    {
+      title: "要求導師",
+      icon: <SchoolIcon />,
+      content: <StudentCasePage2 />,
+    },
+    {
+      title: "授課資料",
+      icon: <SolutionOutlined />,
+      content: <>page3</>,
+    },
+  ];
 
-  const filter = (inputValue, path) =>
-    path.some(
-      (option) =>
-        option.label.toLowerCase().indexOf(inputValue.toLowerCase()) > -1
-    );
-
-  const dropdownRender = (menus) => (
-    <div>
-      {menus}
-      <Divider style={{ margin: "0 250px" }} />
-    </div>
-  );
-
-  const handleSubmit = async () => {
-    try {
-      await form.validateFields();
-      onFinish();
-    } catch (error) {
-      console.log("Form validation failed:", error);
-    }
-  };
-
-  const validateNumber = (_, value) => {
-    const regex = /^[5-9]\d{7}$/;
-    if (value && !regex.test(value)) {
-      return Promise.reject("請填寫以4、5、6、7、8、9開頭的8位香港手提電話");
-    }
-    return Promise.resolve();
-  };
-
-  const tutorCategory = inputData.studentCaseTutorCategory.map((category) => ({
-    value: category,
-    label: category,
+  const items = steps.map((item) => ({
+    key: item.title,
+    title: item.title,
+    icon: item.icon,
   }));
 
   return (
-    <div className="student-case-form">
-      <Form
-        {...formItemLayout}
-        form={form}
-        name="studentCase"
-        className="page-xs"
-        scrollToFirstError
-      >
-        <Form.Item
-          name="tutorCategory"
-          label="補習服務的類型"
-          rules={[
-            {
-              required: true,
-              message: "請選擇補習服務的類型",
-            },
-          ]}
+    <div style={{ overflow: "hidden" }}>
+      <Steps
+        style={{ maxWidth: "800px", margin: "40px auto" }}
+        current={current}
+        items={items}
+      />
+      {current === 0 && (
+        <motion.div
+          initial={{ x: delta >= 0 ? "20%" : "-20%", opacity: 0 }}
+          animate={{ x: 0, opacity: 1 }}
+          transition={{ duration: 0.3, ease: "easeInOut" }}
         >
-          <Select
-            allowClear
-            placeholder="補習服務的類型"
-            options={tutorCategory}
-          />
-        </Form.Item>
-        <Form.Item
-          name="studentLevel"
-          label="學生就讀的年級"
-          rules={[
-            {
-              required: true,
-              message: "請選擇學生就讀的年級",
-            },
-          ]}
-        >
-          <Select
-            allowClear
-            placeholder="學生就讀的年級"
-            options={tutorCategory}
-          />
-        </Form.Item>
+          {steps[current].content}
+        </motion.div>
+      )}
 
-        <Form.Item
-          name="password"
-          label="密碼"
-          rules={[
-            {
-              required: true,
-              message: "請輸入你的密碼",
-            },
-          ]}
-          hasFeedback
+      {current === 1 && (
+        <motion.div
+          initial={{ x: delta >= 0 ? "20%" : "-20%", opacity: 0 }}
+          animate={{ x: 0, opacity: 1 }}
+          transition={{ duration: 0.3, ease: "easeInOut" }}
         >
-          <Input.Password />
-        </Form.Item>
+          {steps[current].content}
+        </motion.div>
+      )}
 
-        <Form.Item
-          name="confirm"
-          label="確認密碼"
-          dependencies={["password"]}
-          hasFeedback
-          rules={[
-            {
-              required: true,
-              message: "請輸入確認密碼",
-            },
-            ({ getFieldValue }) => ({
-              validator(_, value) {
-                if (!value || getFieldValue("password") === value) {
-                  return Promise.resolve();
-                }
-                return Promise.reject(new Error("確認密碼不一致"));
-              },
-            }),
-          ]}
+      {current === 2 && (
+        <motion.div
+          initial={{ x: delta >= 0 ? "20%" : "-20%", opacity: 0 }}
+          animate={{ x: 0, opacity: 1 }}
+          transition={{ duration: 0.3, ease: "easeInOut" }}
         >
-          <Input.Password />
-        </Form.Item>
+          {steps[current].content}
+        </motion.div>
+      )}
 
-        <Form.Item
-          name="engName"
-          label="英文名稱"
-          tooltip="提示：必須與身份証上資料相同"
-          rules={[
-            {
-              required: true,
-              message: "請輸入你的英文名稱",
-              whitespace: true,
-            },
-            {
-              pattern: /^[a-zA-Z\s]+$/,
-
-              message: "請輸入英文",
-            },
-          ]}
+      {current === 3 && (
+        <motion.div
+          initial={{ x: delta >= 0 ? "20%" : "-20%", opacity: 0 }}
+          animate={{ x: 0, opacity: 1 }}
+          transition={{ duration: 0.3, ease: "easeInOut" }}
         >
-          <Input />
-        </Form.Item>
+          {steps[current].content}
+        </motion.div>
+      )}
 
-        <Form.Item
-          name="chineseName"
-          label="中文名稱"
-          tooltip="提示：必須與身份証上資料相同"
-          rules={[
-            {
-              required: true,
-              message: "請輸入你的中文名稱",
-              whitespace: true,
-            },
-            {
-              pattern: /^[\u4E00-\u9FFF\s]+$/,
-              message: "請輸入中文",
-            },
-          ]}
-        >
-          <Input />
-        </Form.Item>
+      {current < steps.length - 1 && (
+        <Button type="primary" onClick={() => next()}>
+          Next
+        </Button>
+      )}
 
-        <Form.Item
-          name="phone"
-          label="手提電話"
-          tooltip="提示：請填寫以4、5、6、7、8、9開頭的8位香港手提電話"
-          rules={[
-            {
-              required: true,
-              message: "請輸入你的手提電話",
-              whitespace: true,
-            },
-            {
-              validator: validateNumber,
-            },
-          ]}
+      {current === steps.length - 1 && (
+        <Button
+          type="primary"
+          onClick={() => message.success("Processing complete!")}
         >
-          <Input maxLength={8} />
-        </Form.Item>
+          Done
+        </Button>
+      )}
 
-        <Form.Item
-          name="gender"
-          label="性別"
-          rules={[{ required: true, message: "請選擇你的性別" }]}
+      {current > 0 && (
+        <Button
+          style={{
+            margin: "0 8px",
+          }}
+          onClick={() => prev()}
         >
-          <Radio.Group>
-            <Radio value="male">男</Radio>
-            <Radio value="female">女</Radio>
-          </Radio.Group>
-        </Form.Item>
-
-        <Form.Item
-          name="agreement"
-          valuePropName="checked"
-          rules={[
-            {
-              validator: (_, value) =>
-                value
-                  ? Promise.resolve()
-                  : Promise.reject(new Error("請查閱並同意條款")),
-            },
-          ]}
-          {...tailFormItemLayout}
-        >
-          <Checkbox>
-            我已查閱並同意 <a href="">條款</a>
-          </Checkbox>
-        </Form.Item>
-        <Form.Item {...tailFormItemLayout} className="form-button">
-          <Button
-            type="primary"
-            htmlType="button" // Change the type to "button"
-            onClick={handleSubmit} // Call the handleSubmit function
-          >
-            繼續
-          </Button>
-        </Form.Item>
-      </Form>
+          Previous
+        </Button>
+      )}
     </div>
   );
 };
