@@ -22,7 +22,7 @@ import StudentRegister from "./pages/StudentRegister";
 import PrivateRoute from "./routing/PrivateRoute";
 import { useSelector } from "react-redux";
 import TutorList from "./pages/TutorList";
-// import TutorDetails from "./components/tutorList/tutorDetails";
+import TutorDetails from "./components/tutorList/tutorDetails";
 import StudentCase from "./pages/StudentCase";
 import TutorFeeReference from "./pages/TutorFeeReference";
 import ContactUs from "./pages/ContactUs";
@@ -36,7 +36,7 @@ function App() {
   const checkStudentAuthority = () => {
     // if (userDetails !== null && userIdentity.includes("ROLE_STUDENT")) {
     //   console.log(userIdentity);
-    // return true;
+    //   return true;
     // } else {
     return false;
     // }
@@ -75,9 +75,9 @@ function App() {
             path="/tuitionFeeReference"
             element={<TuitionFeeReference />}
           />
-          {/* <Route path="/tutor/details" element={<TutorDetails />}>
+          <Route path="/tutor/details" element={<TutorDetails />}>
             <Route path=":tutorId" element={<TutorDetails />} />
-          </Route> */}
+          </Route>
         </Routes>
 
         {/* <FloatButton
