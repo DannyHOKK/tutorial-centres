@@ -24,7 +24,7 @@ const TutorSelect = ({ subjectType }) => {
           console.log("value", value);
         }}
       >
-        {subjectType.map((item: string, index: number) => (
+        {subjectType.map((item, index) => (
           <CheckCard
             key={index}
             title={item}

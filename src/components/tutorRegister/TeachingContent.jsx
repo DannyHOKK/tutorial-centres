@@ -15,7 +15,7 @@ const TeachingContent = ({ userInfo, setUserInfo, current, next, prev }) => {
     );
 
     Object.keys(filteredData).forEach((key) => {
-      setUserInfo((prevInfo: any) => ({
+      setUserInfo((prevInfo) => ({
         ...prevInfo,
         [key]: values[key],
       }));

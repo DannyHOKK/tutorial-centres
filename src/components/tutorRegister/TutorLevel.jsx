@@ -1,40 +1,27 @@
 import { Button, Form, Input, Select } from "antd";
 import React, { useEffect } from "react";
-import type { SelectProps } from "antd";
+// import type { SelectProps } from "antd";
 import tutorLevelList from "../../staticData/subjectList.json";
 import "./registerForm.css";
 
 const TutorLevel = ({ next, prev }) => {
-  const options: SelectProps["options"] = [];
-  const options2: SelectProps["options"] = [];
-  const options3: SelectProps["options"] = [];
-  const options4: SelectProps["options"] = [];
   const tutorLevel = tutorLevelList.tutorContent;
-  for (let i = 0; tutorLevel[0].level.length > i; i++) {
-    options.push({
-      label: tutorLevel[0].level[i],
-      value: tutorLevel[0].level[i],
-    });
-  }
-  for (let i = 0; tutorLevel[1].level.length > i; i++) {
-    options2.push({
-      label: tutorLevel[1].level[i],
-      value: tutorLevel[1].level[i],
-    });
-  }
-  for (let i = 0; tutorLevel[2].level.length > i; i++) {
-    options3.push({
-      label: tutorLevel[2].level[i],
-      value: tutorLevel[2].level[i],
-    });
-  }
-  for (let i = 0; tutorLevel[3].level.length > i; i++) {
-    options4.push({
-      label: tutorLevel[3].level[i],
-      value: tutorLevel[3].level[i],
-    });
-  }
-
+  const options = tutorLevel[0].level.map((level) => ({
+    label: level,
+    value: level,
+  }));
+  const options2 = tutorLevel[1].level.map((level) => ({
+    label: level,
+    value: level,
+  }));
+  const options3 = tutorLevel[2].level.map((level) => ({
+    label: level,
+    value: level,
+  }));
+  const options4 = tutorLevel[3].level.map((level) => ({
+    label: level,
+    value: level,
+  }));
   return (
     <>
       <Form.Item name="tutorLevel" label="可教授程度(補習)">

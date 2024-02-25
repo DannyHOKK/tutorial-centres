@@ -17,7 +17,7 @@ const Introduction = ({ userInfo, setUserInfo, current, prev, submitForm }) => {
   const onFinish = async () => {
     try {
       const values = await form.validateFields();
-      await setUserInfo((prevInfo: any) => ({
+      await setUserInfo((prevInfo) => ({
         ...prevInfo,
         introTitle: values.introTitle,
         intro: values.intro,

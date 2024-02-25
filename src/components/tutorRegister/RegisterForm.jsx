@@ -29,7 +29,7 @@ const RegisterForm = ({ userInfo, setUserInfo, current, next }) => {
     );
 
     Object.keys(filteredData).forEach((key) => {
-      setUserInfo((prevInfo: any) => ({
+      setUserInfo((prevInfo) => ({
         ...prevInfo,
         [key]: values[key],
       }));
@@ -71,7 +71,7 @@ const RegisterForm = ({ userInfo, setUserInfo, current, next }) => {
   }, []);
 
   const getEmailListHandler = async () => {
-    const response: any = await AuthService.getAllEmail();
+    const response = await AuthService.getAllEmail();
     setEmailList(response.data.data);
   };
 

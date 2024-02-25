@@ -19,7 +19,7 @@ const RegionAreaSelect = ({ area }) => {
           console.log("value", value);
         }}
       >
-        {area.map((item: any, index: number) => (
+        {area.map((item, index) => (
           <CheckCard
             key={index}
             title={item}

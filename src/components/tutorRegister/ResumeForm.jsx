@@ -38,14 +38,14 @@ const ResumeForm = ({ userInfo, setUserInfo, current, next, prev }) => {
 
     // input the form data by using for loop.
     Object.keys(filteredData).forEach((key) => {
-      setUserInfo((prevInfo: any) => ({
+      setUserInfo((prevInfo) => ({
         ...prevInfo,
         [key]: values[key],
       }));
     });
 
     // create empty array for combining the HK Open Test data into one array list.
-    const emptyArray: { subject?: string; grade?: string }[] = [];
+    const emptyArray = [];
 
     //set Condition for input data into userInfo with type of user selected the type of HK Open Test
     //empty the array which user didn't selected
@@ -60,7 +60,7 @@ const ResumeForm = ({ userInfo, setUserInfo, current, next, prev }) => {
 
       console.log(alResult);
 
-      setUserInfo((prevInfo: any) => ({
+      setUserInfo((prevInfo) => ({
         ...prevInfo,
         // alResult: alResult,
         dseCompulsory: [], // Reset selected values for HKDSE compulsory subjects
@@ -80,7 +80,7 @@ const ResumeForm = ({ userInfo, setUserInfo, current, next, prev }) => {
       }));
 
       console.log(convertedDataFormat);
-      setUserInfo((prevInfo: any) => ({
+      setUserInfo((prevInfo) => ({
         ...prevInfo,
         alLang: [], // Reset selected values for AL language subjects
         allist: [], // Reset selected values for AL arts subjects
@@ -93,7 +93,7 @@ const ResumeForm = ({ userInfo, setUserInfo, current, next, prev }) => {
         science: [],
       }));
     } else if (form.getFieldValue("hkOpenExam") === "IB") {
-      setUserInfo((prevInfo: any) => ({
+      setUserInfo((prevInfo) => ({
         ...prevInfo,
         dseCompulsory: [], // Reset selected values for HKDSE compulsory subjects
         dseElective: [], // Reset selected values for HKDSE elective subjects
@@ -158,14 +158,12 @@ const ResumeForm = ({ userInfo, setUserInfo, current, next, prev }) => {
   const currentJob = inputData.currentJob;
   const tutorExperience = inputData.tutorExperience;
   const highestTutorLevel = inputData.highestTutorLevel;
-  const highestEducation = inputData.highestEducation.map(
-    (highEducation: any) => ({
-      label: highEducation,
-      value: highEducation,
-    })
-  );
+  const highestEducation = inputData.highestEducation.map((highEducation) => ({
+    label: highEducation,
+    value: highEducation,
+  }));
   const currentEducationLevel = inputData.currentEducationLevel.map(
-    (level: any) => ({
+    (level) => ({
       label: level,
       value: level,
     })
@@ -176,7 +174,7 @@ const ResumeForm = ({ userInfo, setUserInfo, current, next, prev }) => {
     value: uni,
   }));
 
-  const handleRadioChange = (value: any) => {
+  const handleRadioChange = (value) => {
     form.setFieldsValue({
       dseCompulsory: "", // Reset selected values for HKDSE compulsory subjects
       dseElective: [], // Reset selected values for HKDSE elective subjects
