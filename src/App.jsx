@@ -36,9 +36,9 @@ function App() {
   const checkStudentAuthority = () => {
     // if (userDetails !== null && userIdentity.includes("ROLE_STUDENT")) {
     //   console.log(userIdentity);
-    return true;
+    // return true;
     // } else {
-    //   return false;
+    return false;
     // }
   };
 
