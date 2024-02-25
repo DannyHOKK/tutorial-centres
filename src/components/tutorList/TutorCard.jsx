@@ -95,7 +95,7 @@ const TutorCard = ({ tutor }) => {
       {tutor.gender === "male" && (
         <img
           style={{
-            width: "240px",
+            width: "180px",
             display: "block",
             margin: "0 auto",
           }}
@@ -106,7 +106,7 @@ const TutorCard = ({ tutor }) => {
       {tutor.gender === "female" && (
         <img
           style={{
-            width: "240px",
+            width: "180px",
             display: "block",
             margin: "0 auto",
           }}
