@@ -75,9 +75,9 @@ function App() {
             path="/tuitionFeeReference"
             element={<TuitionFeeReference />}
           />
-          <Route path="/tutor/details" element={<TutorDetails />}>
+          {/* <Route path="/tutor/details" element={<TutorDetails />}>
             <Route path=":tutorId" element={<TutorDetails />} />
-          </Route>
+          </Route> */}
         </Routes>
 
         {/* <FloatButton
