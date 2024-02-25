@@ -334,7 +334,7 @@ const ResumeForm = ({ userInfo, setUserInfo, current, next, prev }) => {
         <Select options={highestEducation}></Select>
       </Form.Item>
 
-      <Form.Item
+      {/* <Form.Item
         name="university"
         label="就讀大學"
         rules={[
@@ -357,7 +357,7 @@ const ResumeForm = ({ userInfo, setUserInfo, current, next, prev }) => {
           }
           options={hkuniversity}
         ></Select>
-      </Form.Item>
+      </Form.Item> */}
 
       <Form.Item
         name="currentEducationLevel"
