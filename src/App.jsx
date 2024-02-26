@@ -22,7 +22,7 @@ import StudentRegister from "./pages/StudentRegister";
 import PrivateRoute from "./routing/PrivateRoute";
 import { useSelector } from "react-redux";
 import TutorList from "./pages/TutorList";
-import TutorDetails from "./components/tutorList/tutorDetails";
+import TutorDetails from "./components/tutorList/TutorDetails";
 import StudentCase from "./pages/StudentCase";
 import TutorFeeReference from "./pages/TutorFeeReference";
 import ContactUs from "./pages/ContactUs";
