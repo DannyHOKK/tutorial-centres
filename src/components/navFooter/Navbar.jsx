@@ -23,12 +23,12 @@ const Navbar = () => {
   };
 
   const checkStudentAuthority = () => {
-    // if (userDetails !== null && userIdentity.includes("ROLE_STUDENT")) {
-    //   console.log(userDetails.authorities);
-    // return true;
-    // } else {
-    return false;
-    // }
+    if (userDetails !== null && userIdentity.includes("ROLE_STUDENT")) {
+      console.log(userDetails.authorities);
+      return true;
+    } else {
+      return false;
+    }
   };
   const logoutHandler = () => {
     localStorage.removeItem("userToken");

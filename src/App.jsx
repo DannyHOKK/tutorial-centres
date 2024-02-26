@@ -34,12 +34,16 @@ function App() {
   );
 
   const checkStudentAuthority = () => {
-    // if (userDetails !== null && userIdentity.includes("ROLE_STUDENT")) {
-    //   console.log(userIdentity);
-    //   return true;
-    // } else {
-    return false;
-    // }
+    if (
+      userDetails !== null &&
+      userDetails !== undefined &&
+      userIdentity.includes("ROLE_STUDENT")
+    ) {
+      console.log(userIdentity);
+      return true;
+    } else {
+      return false;
+    }
   };
 
   return (
@@ -76,7 +80,7 @@ function App() {
             element={<TuitionFeeReference />}
           />
           <Route path="/tutor/details" element={<TutorDetails />}>
-            {/* <Route path=":tutorId" element={<TutorDetails />} /> */}
+            <Route path=":tutorId" element={<TutorDetails />} />
           </Route>
         </Routes>
 

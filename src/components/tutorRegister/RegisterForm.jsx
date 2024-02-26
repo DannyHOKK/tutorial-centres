@@ -70,9 +70,16 @@ const RegisterForm = ({ userInfo, setUserInfo, current, next }) => {
     getEmailListHandler();
   }, []);
 
-  const getEmailListHandler = async () => {
-    const response = await AuthService.getAllEmail();
-    setEmailList(response.data.data);
+  const getEmailListHandler = () => {
+    // const response = await AuthService.getAllEmail();
+    // setEmailList(response.data.data);
+    AuthService.getAllEmail()
+      .then((res) => {
+        setEmailList(res.data.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   const handleSubmit = async () => {
@@ -117,14 +124,14 @@ const RegisterForm = ({ userInfo, setUserInfo, current, next }) => {
             required: true,
             message: "請輸入你的電郵",
           },
-          // ({ getFieldValue }) => ({
-          //   validator(_, value) {
-          //     if (emailList.includes(value)) {
-          //       return Promise.reject("電郵已經被註冊");
-          //     }
-          //     return Promise.resolve();
-          //   },
-          // }),
+          ({ getFieldValue }) => ({
+            validator(_, value) {
+              if (emailList !== undefined && emailList.includes(value)) {
+                return Promise.reject("電郵已經被註冊");
+              }
+              return Promise.resolve();
+            },
+          }),
         ]}
       >
         <Input />
