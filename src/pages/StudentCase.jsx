@@ -4,6 +4,7 @@ import StudentCaseForm from "../components/studentCase/StudentCaseForm";
 const StudentCase = () => {
   const [current, setCurrent] = useState(0);
   const [previousStep, setPreviousStep] = useState(0);
+  const [studentCase, setStudentCase] = useState([]);
 
   const next = () => {
     setPreviousStep(current);
@@ -20,10 +21,12 @@ const StudentCase = () => {
   return (
     <div className="page-container page-xs">
       <StudentCaseForm
-        current={current}
-        previousStep={previousStep}
+        studentCase={studentCase}
+        setStudentCase={setStudentCase}
         next={next}
         prev={prev}
+        current={current}
+        previousStep={previousStep}
       />
     </div>
   );

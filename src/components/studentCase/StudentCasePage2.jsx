@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Button,
+  Card,
   Cascader,
   Checkbox,
   Divider,
@@ -8,9 +9,16 @@ import {
   Input,
   Radio,
   Select,
+  Slider,
+  Space,
 } from "antd";
 import inputData from "../../staticData/inputData.json";
 import subjectList from "../../staticData/subjectList.json";
+import {
+  CloseOutlined,
+  MinusCircleOutlined,
+  PlusOutlined,
+} from "@ant-design/icons";
 
 const formItemLayout = {
   labelCol: {
@@ -54,9 +62,28 @@ const lessonDuration = inputData.lessonDuration.map((time) => ({
   label: time,
   value: time,
 }));
+const weekoptions = inputData.oneWeek.map((day) => ({
+  label: day,
+  value: day,
+}));
 
 const StudentCasePage2 = () => {
   const [form] = Form.useForm();
+  const [sliderValues, setSliderValues] = useState([100, 300]);
+
+  const handleSubmit = async () => {
+    try {
+      await form.validateFields();
+      onFinish();
+    } catch (error) {
+      console.log("Form validation failed:", error);
+    }
+  };
+
+  const handleSliderChange = (values) => {
+    setSliderValues(values);
+  };
+
   return (
     <div className="student-case-form">
       <Form
@@ -120,10 +147,86 @@ const StudentCasePage2 = () => {
           />
         </Form.Item>
 
+        <Form.Item label="學費" name="lowestSalary">
+          <Slider
+            range={{ draggableTrack: true }}
+            min={100}
+            max={1000}
+            step={5}
+            defaultValue={sliderValues}
+            marks={{
+              100: "$100",
+              200: "$200",
+              300: "$300",
+              500: "$500",
+              1000: "$1000",
+            }}
+            onChange={handleSliderChange}
+          />
+        </Form.Item>
+
+        <Form.Item wrapperCol={{ span: 24 }}>
+          <Card size="small" title="上堂時間表">
+            <Form.Item
+              label="可上課的時段"
+              labelCol={{ span: 8, offset: 0 }}
+              wrapperCol={{ span: 15, offset: 0 }}
+              style={{ maxWidth: 600, marginBottom: "50px", marginTop: "30px" }}
+            >
+              <Form.List name="timeslot" {...formItemLayout}>
+                {(subFields, subOpt) => (
+                  <div
+                    style={{
+                      display: "flex",
+                      flexDirection: "column",
+                      rowGap: 16,
+                    }}
+                  >
+                    {subFields.map((subField) => (
+                      <Space key={subField.key}>
+                        <Form.Item
+                          noStyle
+                          name={[subField.name, "week"]}
+                          rules={[{ required: true, message: "請填上星期幾" }]}
+                        >
+                          <Select
+                            placeholder="星期幾"
+                            style={{ width: "100px" }}
+                            options={weekoptions}
+                          ></Select>
+                        </Form.Item>
+                        <Form.Item
+                          noStyle
+                          name={[subField.name, "time"]}
+                          rules={[{ required: true, message: "請填上時間" }]}
+                        >
+                          <Input
+                            style={{ width: "160px" }}
+                            placeholder="請填上: 1400-1600"
+                          />
+                        </Form.Item>
+                        <CloseOutlined
+                          onClick={() => {
+                            subOpt.remove(subField.name);
+                          }}
+                        />
+                      </Space>
+                    ))}
+                    <Button type="dashed" onClick={() => subOpt.add()} block>
+                      增加選修科目
+                    </Button>
+                  </div>
+                )}
+              </Form.List>
+            </Form.Item>
+          </Card>
+        </Form.Item>
+
         <Form.Item {...tailFormItemLayout} className="form-button">
           <Button
             type="primary"
             htmlType="button" // Change the type to "button"
+            onClick={handleSubmit} // Call the handleSubmit function
           >
             繼續
           </Button>

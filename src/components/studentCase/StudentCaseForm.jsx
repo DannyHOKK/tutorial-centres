@@ -9,6 +9,7 @@ import { Button, Steps, message } from "antd";
 import { motion } from "framer-motion";
 import StudentCasePage1 from "./StudentCasePage1";
 import StudentCasePage2 from "./StudentCasePage2";
+import StudentCasePage3 from "./StudentCasePage3";
 
 const formItemLayout = {
   labelCol: {
@@ -41,23 +42,51 @@ const tailFormItemLayout = {
   },
 };
 
-const StudentCaseForm = ({ current, previousStep, next, prev }) => {
+const StudentCaseForm = ({
+  studentCase,
+  setStudentCase,
+  next,
+  prev,
+  current,
+  previousStep,
+}) => {
   const delta = current - previousStep;
   const steps = [
     {
       title: "個人資料",
       icon: <UserOutlined />,
-      content: <StudentCasePage1 />,
+      content: (
+        <StudentCasePage1
+          studentCase={studentCase}
+          setStudentCase={setStudentCase}
+          next={next}
+          prev={prev}
+        />
+      ),
     },
     {
       title: "要求導師",
       icon: <SchoolIcon />,
-      content: <StudentCasePage2 />,
+      content: (
+        <StudentCasePage2
+          studentCase={studentCase}
+          setStudentCase={setStudentCase}
+          next={next}
+          prev={prev}
+        />
+      ),
     },
     {
       title: "授課資料",
       icon: <SolutionOutlined />,
-      content: <>page3</>,
+      content: (
+        <StudentCasePage3
+          studentCase={studentCase}
+          setStudentCase={setStudentCase}
+          next={next}
+          prev={prev}
+        />
+      ),
     },
   ];
 

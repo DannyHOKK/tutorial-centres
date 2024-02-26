@@ -93,69 +93,79 @@ const TutorListFilter = ({ queryTutorList, setFilteData }) => {
   };
 
   return (
-    <Form
-      form={form}
-      name="filter"
-      {...formItemLayout}
-      className="page-xs"
-      initialValues={{
-        remember: true,
-      }}
-      onFinish={onFinish}
-      onFinishFailed={onFinishFailed}
-      autoComplete="off"
-    >
-      <Form.Item label="教授科目" name="tutorContent">
-        <Select
-          mode="multiple"
-          allowClear
-          placeholder="教授科目"
-          options={tutorContent}
-        />
-      </Form.Item>
+    <>
+      <Form
+        form={form}
+        name="filter"
+        {...formItemLayout}
+        className="page-xs"
+        initialValues={{
+          remember: true,
+        }}
+        onFinish={onFinish}
+        onFinishFailed={onFinishFailed}
+        autoComplete="off"
+      >
+        <Form.Item label="教授科目" name="tutorContent">
+          <Select
+            mode="multiple"
+            allowClear
+            placeholder="教授科目"
+            options={tutorContent}
+          />
+        </Form.Item>
 
-      <Form.Item label="可補地區" name="tutorAreas">
-        <Select
-          mode="multiple"
-          allowClear
-          placeholder="可補地區"
-          options={tutorAreas}
-        />
-      </Form.Item>
+        <Form.Item label="可補地區" name="tutorAreas">
+          <Select
+            mode="multiple"
+            allowClear
+            placeholder="可補地區"
+            options={tutorAreas}
+          />
+        </Form.Item>
 
-      <Form.Item label="教授年級" name="tutorLevel">
-        <Select
-          mode="multiple"
-          allowClear
-          placeholder="教授年級"
-          options={tutorLevel}
-        />
-      </Form.Item>
+        <Form.Item label="教授年級" name="tutorLevel">
+          <Select
+            mode="multiple"
+            allowClear
+            placeholder="教授年級"
+            options={tutorLevel}
+          />
+        </Form.Item>
 
-      <Form.Item label="學費" name="lowestSalary">
-        <Slider
-          range={{ draggableTrack: true }}
-          min={100}
-          max={1000}
-          defaultValue={sliderValues}
-          onChange={handleSliderChange}
-        />
-      </Form.Item>
+        <Form.Item label="學費" name="lowestSalary">
+          <Slider
+            range={{ draggableTrack: true }}
+            min={100}
+            max={1000}
+            step={5}
+            defaultValue={sliderValues}
+            marks={{
+              100: "$100",
+              200: "$200",
+              300: "$300",
+              500: "$500",
+              1000: "$1000",
+            }}
+            onChange={handleSliderChange}
+          />
+        </Form.Item>
 
-      <Form.Item {...tailFormItemLayout}>
-        <Button
-          type="button"
-          style={{
-            backgroundColor: "orange",
-            color: "white",
-            margin: "0 10px",
-          }}
-          onClick={onFinish}
-        >
-          搜尋
-        </Button>
-      </Form.Item>
-    </Form>
+        <Form.Item {...tailFormItemLayout}>
+          <Button
+            type="button"
+            style={{
+              backgroundColor: "orange",
+              color: "white",
+              margin: "0 10px",
+            }}
+            onClick={onFinish}
+          >
+            搜尋
+          </Button>
+        </Form.Item>
+      </Form>
+    </>
   );
 };
 
