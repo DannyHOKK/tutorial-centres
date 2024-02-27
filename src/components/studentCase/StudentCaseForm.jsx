@@ -49,6 +49,7 @@ const StudentCaseForm = ({
   prev,
   current,
   previousStep,
+  submitCaseHandler,
 }) => {
   const delta = current - previousStep;
   const steps = [
@@ -83,8 +84,8 @@ const StudentCaseForm = ({
         <StudentCasePage3
           studentCase={studentCase}
           setStudentCase={setStudentCase}
-          next={next}
           prev={prev}
+          submitCaseHandler={submitCaseHandler}
         />
       ),
     },

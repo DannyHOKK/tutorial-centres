@@ -105,8 +105,25 @@ const StudentCasePage1 = ({ studentCase, setStudentCase, next, prev }) => {
 
   const onFinish = () => {
     const values = form.getFieldsValue();
-    setStudentCase(values);
-    console.log(values);
+    // setStudentCase((prev) => ({
+    //   ...prev,
+    //   values,
+    // }));
+    // console.log(values);
+    if (studentCase.tutorMethod === "視像補習") {
+      console.log("hihi");
+      setStudentCase((prev) => ({
+        ...prev,
+        address: "",
+        detailsAddress: "",
+      }));
+    }
+    Object.keys(values).forEach((key) => {
+      setStudentCase((prev) => ({
+        ...prev,
+        [key]: values[key],
+      }));
+    });
   };
 
   const filter = (inputValue, path) =>
@@ -132,6 +149,9 @@ const StudentCasePage1 = ({ studentCase, setStudentCase, next, prev }) => {
     }
   };
 
+  useEffect(() => {
+    console.log(studentCase);
+  }, []);
   return (
     <div className="student-case-form">
       <Form
@@ -139,8 +159,7 @@ const StudentCasePage1 = ({ studentCase, setStudentCase, next, prev }) => {
         form={form}
         name="studentCasePage1"
         scrollToFirstError
-        // initialValues={studentCase}
-        // defaultValue={studentCase}
+        initialValues={studentCase}
       >
         <Form.Item
           name="studentLevelType"
@@ -157,108 +176,95 @@ const StudentCasePage1 = ({ studentCase, setStudentCase, next, prev }) => {
             placeholder="學生就讀的類別"
             options={studentLevel}
             onChange={(value) => {
-              // setStudentCase((prev) => ({
-              //   ...prev,
-              //   studentLevelType: value,
-              // }));
-              setStudentLevelType(value);
+              setStudentCase((prev) => ({
+                ...prev,
+                studentLevelType: value,
+              }));
+              // setStudentLevelType(value);
               console.log(value);
-              form.setFieldValue("studentLevel", "");
+              form.setFieldValue("studentLevel");
             }}
           />
         </Form.Item>
 
-        {studentCase.studentLevelType === "幼稚園" ||
-          (studentLevelType === "幼稚園" && (
-            <Form.Item
-              name="studentLevel"
-              label="幼稚園年級"
-              rules={[
-                {
-                  required: true,
-                  message: "請選擇幼稚園就讀年級",
-                },
-              ]}
-            >
-              <Select
-                allowClear
-                placeholder="幼稚園年級"
-                options={kindergartenLevel}
-              />
-            </Form.Item>
-          ))}
-        {studentCase.studentLevelType === "小學" ||
-          (studentLevelType === "小學" && (
-            <Form.Item
-              name="studentLevel"
-              label="小學年級"
-              rules={[
-                {
-                  required: true,
-                  message: "請選擇小學年級",
-                },
-              ]}
-            >
-              <Select
-                allowClear
-                placeholder="小學年級"
-                options={primaryLevel}
-              />
-            </Form.Item>
-          ))}
-        {studentCase.studentLevelType === "中學" ||
-          (studentLevelType === "中學" && (
-            <Form.Item
-              name="studentLevel"
-              label="中學年級"
-              rules={[
-                {
-                  required: true,
-                  message: "請選擇中學年級",
-                },
-              ]}
-            >
-              <Select
-                allowClear
-                placeholder="中學年級"
-                options={secondaryLevel}
-              />
-            </Form.Item>
-          ))}
-        {studentCase.studentLevelType === "大專或以上" ||
-          (studentLevelType === "大專或以上" && (
-            <Form.Item
-              name="studentLevel"
-              label="大專類別"
-              rules={[
-                {
-                  required: true,
-                  message: "請選擇大專類別",
-                },
-              ]}
-            >
-              <Select
-                allowClear
-                placeholder="大專類別"
-                options={collegeLevel}
-              />
-            </Form.Item>
-          ))}
-        {studentCase.studentLevelType === "成年人" ||
-          (studentLevelType === "成年人" && (
-            <Form.Item
-              name="studentLevel"
-              label="歲數"
-              rules={[
-                {
-                  required: true,
-                  message: "請選擇你的歲數",
-                },
-              ]}
-            >
-              <Select allowClear placeholder="你的歲數" options={adultLevel} />
-            </Form.Item>
-          ))}
+        {studentCase.studentLevelType === "幼稚園" && (
+          <Form.Item
+            name="studentLevel"
+            label="幼稚園年級"
+            rules={[
+              {
+                required: true,
+                message: "請選擇幼稚園就讀年級",
+              },
+            ]}
+          >
+            <Select
+              allowClear
+              placeholder="幼稚園年級"
+              options={kindergartenLevel}
+            />
+          </Form.Item>
+        )}
+        {studentCase.studentLevelType === "小學" && (
+          <Form.Item
+            name="studentLevel"
+            label="小學年級"
+            rules={[
+              {
+                required: true,
+                message: "請選擇小學年級",
+              },
+            ]}
+          >
+            <Select allowClear placeholder="小學年級" options={primaryLevel} />
+          </Form.Item>
+        )}
+        {studentCase.studentLevelType === "中學" && (
+          <Form.Item
+            name="studentLevel"
+            label="中學年級"
+            rules={[
+              {
+                required: true,
+                message: "請選擇中學年級",
+              },
+            ]}
+          >
+            <Select
+              allowClear
+              placeholder="中學年級"
+              options={secondaryLevel}
+            />
+          </Form.Item>
+        )}
+        {studentCase.studentLevelType === "大專或以上" && (
+          <Form.Item
+            name="studentLevel"
+            label="大專類別"
+            rules={[
+              {
+                required: true,
+                message: "請選擇大專類別",
+              },
+            ]}
+          >
+            <Select allowClear placeholder="大專類別" options={collegeLevel} />
+          </Form.Item>
+        )}
+        {studentCase.studentLevelType === "成年人" && (
+          <Form.Item
+            name="studentLevel"
+            label="歲數"
+            rules={[
+              {
+                required: true,
+                message: "請選擇你的歲數",
+              },
+            ]}
+          >
+            <Select allowClear placeholder="你的歲數" options={adultLevel} />
+          </Form.Item>
+        )}
 
         <Form.Item
           name="tutorCategory"
@@ -275,76 +281,92 @@ const StudentCasePage1 = ({ studentCase, setStudentCase, next, prev }) => {
             placeholder="請選擇補習類型"
             options={tutorCategory}
             onChange={(value) => {
-              // setStudentCase((prev) => ({
-              //   ...prev,
-              //   tutorCategory: values,
-              // }));
-              setTutorType(value);
-              form.setFieldValue("tutorContent", []);
+              setStudentCase((prev) => ({
+                ...prev,
+                tutorCategory: value,
+              }));
+              // setTutorType(value);
+              form.setFieldValue("tutorContent");
             }}
           />
         </Form.Item>
 
-        {studentCase.tutorCategory === "補習" ||
-          (tutorType === "補習" && (
-            <Form.Item
-              name="tutorContent"
-              label="補習科目"
-              rules={[
-                {
-                  required: true,
-                  message: "請選擇補習科目",
-                },
-              ]}
-            >
-              <Select mode="multiple" allowClear options={tutorial} />
-            </Form.Item>
-          ))}
-        {studentCase.tutorCategory === "會話" ||
-          (tutorType === "會話" && (
-            <Form.Item
-              name="tutorContent"
-              label="會話"
-              rules={[
-                {
-                  required: true,
-                  message: "請選擇會話科目",
-                },
-              ]}
-            >
-              <Select mode="multiple" allowClear options={speaking} />
-            </Form.Item>
-          ))}
-        {studentCase.tutorCategory === "音樂" ||
-          (tutorType === "音樂" && (
-            <Form.Item
-              name="tutorContent"
-              label="音樂"
-              rules={[
-                {
-                  required: true,
-                  message: "請選擇音樂",
-                },
-              ]}
-            >
-              <Select mode="multiple" allowClear options={music} />
-            </Form.Item>
-          ))}
-        {studentCase.tutorCategory === "其他" ||
-          (tutorType === "其他" && (
-            <Form.Item
-              name="tutorContent"
-              label="其他"
-              rules={[
-                {
-                  required: true,
-                  message: "請選擇其他",
-                },
-              ]}
-            >
-              <Select mode="multiple" allowClear options={other} />
-            </Form.Item>
-          ))}
+        {studentCase.tutorCategory === "補習" && (
+          <Form.Item
+            name="tutorContent"
+            label="補習科目"
+            rules={[
+              {
+                required: true,
+                message: "請選擇補習科目",
+              },
+            ]}
+          >
+            <Select
+              mode="multiple"
+              allowClear
+              options={tutorial}
+              placeholder="請選擇補習科目"
+            />
+          </Form.Item>
+        )}
+        {studentCase.tutorCategory === "會話" && (
+          <Form.Item
+            name="tutorContent"
+            label="會話"
+            rules={[
+              {
+                required: true,
+                message: "請選擇會話科目",
+              },
+            ]}
+          >
+            <Select
+              mode="multiple"
+              allowClear
+              options={speaking}
+              placeholder="請選擇補習科目"
+            />
+          </Form.Item>
+        )}
+        {studentCase.tutorCategory === "音樂" && (
+          <Form.Item
+            name="tutorContent"
+            label="音樂"
+            rules={[
+              {
+                required: true,
+                message: "請選擇音樂",
+              },
+            ]}
+          >
+            <Select
+              mode="multiple"
+              allowClear
+              options={music}
+              placeholder="請選擇補習科目"
+            />
+          </Form.Item>
+        )}
+        {studentCase.tutorCategory === "其他" && (
+          <Form.Item
+            name="tutorContent"
+            label="其他"
+            rules={[
+              {
+                required: true,
+                message: "請選擇其他",
+              },
+            ]}
+          >
+            <Select
+              mode="multiple"
+              allowClear
+              options={other}
+              placeholder="請選擇補習科目"
+            />
+          </Form.Item>
+        )}
 
         <Form.Item
           name="gender"
@@ -369,11 +391,11 @@ const StudentCasePage1 = ({ studentCase, setStudentCase, next, prev }) => {
         >
           <CheckCard.Group
             onChange={(value) => {
-              // setStudentCase((prev) => ({
-              //   ...prev,
-              //   tutorMethod: value,
-              // }));
-              setTutorMethod(value);
+              setStudentCase((prev) => ({
+                ...prev,
+                tutorMethod: value,
+              }));
+              // setTutorMethod(value);
             }}
           >
             <CheckCard
@@ -404,18 +426,17 @@ const StudentCasePage1 = ({ studentCase, setStudentCase, next, prev }) => {
         </Form.Item>
 
         {studentCase.tutorMethod === "視像補習" ||
-        tutorMethod === "視像補習" ||
-        tutorMethod === "" ? (
+        studentCase.tutorMethod === undefined ? (
           <></>
         ) : (
           <>
             <Form.Item
               name="address"
-              label="住宅地區"
+              label="地區"
               rules={[
                 {
                   required: true,
-                  message: "請選擇你的地區",
+                  message: "請選擇地區",
                 },
               ]}
             >

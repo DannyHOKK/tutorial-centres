@@ -80,7 +80,7 @@ export const loginUser = createAsyncThunk(
       if (response.data.code === -1) {
         return rejectWithValue(response.data.msg);
       } else {
-        localStorage.setItem("userToken", response.data.data.token);
+        localStorage.setItem("userToken", "Bearer " + response.data.data.token);
         const userDetails = {
           id: response.data.data.id,
           email: response.data.data.email,

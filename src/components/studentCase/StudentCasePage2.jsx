@@ -67,7 +67,7 @@ const weekoptions = inputData.oneWeek.map((day) => ({
   value: day,
 }));
 
-const StudentCasePage2 = () => {
+const StudentCasePage2 = ({ studentCase, setStudentCase, next, prev }) => {
   const [form] = Form.useForm();
   const [sliderValues, setSliderValues] = useState([100, 300]);
 
@@ -78,6 +78,21 @@ const StudentCasePage2 = () => {
     } catch (error) {
       console.log("Form validation failed:", error);
     }
+  };
+
+  const onFinish = () => {
+    form.setFieldValue("lowestSalary", sliderValues);
+    const values = form.getFieldsValue();
+    const filteredData = Object.fromEntries(
+      Object.entries(values).filter(([_, value]) => value !== undefined)
+    );
+    Object.keys(filteredData).forEach((key) => {
+      setStudentCase((prev) => ({
+        ...prev,
+        [key]: filteredData[key],
+      }));
+    });
+    next();
   };
 
   const handleSliderChange = (values) => {
@@ -91,6 +106,7 @@ const StudentCasePage2 = () => {
         form={form}
         name="studentCasePage2"
         scrollToFirstError
+        initialValues={studentCase}
       >
         <Form.Item
           name="tutorRequest"
@@ -103,6 +119,7 @@ const StudentCasePage2 = () => {
           ]}
         >
           <Select
+            mode="multiple"
             allowClear
             placeholder="請選擇導師要求"
             options={tutorRequest}
