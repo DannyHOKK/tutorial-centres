@@ -54,6 +54,10 @@ const tutorRequest = inputData.tutorRequest.map((request) => ({
   label: request,
   value: request,
 }));
+const tutorGender = inputData.tutorGender.map((gender) => ({
+  label: gender,
+  value: gender,
+}));
 const lessonPerWeek = inputData.lessonPerWeek.map((lesson) => ({
   label: lesson,
   value: lesson,
@@ -108,6 +112,23 @@ const StudentCasePage2 = ({ studentCase, setStudentCase, next, prev }) => {
         scrollToFirstError
         initialValues={studentCase}
       >
+        <Form.Item
+          name="tutorGender"
+          label="導師性別"
+          rules={[
+            {
+              required: true,
+              message: "請選擇導師性別",
+            },
+          ]}
+        >
+          <Select
+            allowClear
+            placeholder="請選擇導師性別"
+            options={tutorGender}
+          />
+        </Form.Item>
+
         <Form.Item
           name="tutorRequest"
           label="導師要求 "
@@ -208,7 +229,7 @@ const StudentCasePage2 = ({ studentCase, setStudentCase, next, prev }) => {
                         >
                           <Select
                             placeholder="星期幾"
-                            style={{ width: "100px" }}
+                            style={{ width: "120px" }}
                             options={weekoptions}
                           ></Select>
                         </Form.Item>
@@ -230,7 +251,7 @@ const StudentCasePage2 = ({ studentCase, setStudentCase, next, prev }) => {
                       </Space>
                     ))}
                     <Button type="dashed" onClick={() => subOpt.add()} block>
-                      增加選修科目
+                      增加上課時段
                     </Button>
                   </div>
                 )}
@@ -240,6 +261,14 @@ const StudentCasePage2 = ({ studentCase, setStudentCase, next, prev }) => {
         </Form.Item>
 
         <Form.Item {...tailFormItemLayout} className="form-button">
+          <Button
+            style={{
+              margin: "0 8px",
+            }}
+            onClick={() => prev()}
+          >
+            上一頁
+          </Button>
           <Button
             type="primary"
             htmlType="button" // Change the type to "button"

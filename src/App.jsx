@@ -27,6 +27,7 @@ import StudentCase from "./pages/StudentCase";
 import TutorFeeReference from "./pages/TutorFeeReference";
 import ContactUs from "./pages/ContactUs";
 import TuitionFeeReference from "./pages/TuitionFeeReference";
+import StudentCaseList from "./pages/StudentCaseList";
 
 function App() {
   const { userToken, userIdentity, userDetails } = useSelector(
@@ -71,7 +72,8 @@ function App() {
               checkStudentAuthority() ? <StudentCase /> : <Navigate to="/" />
             }
           />
-          <Route path="/studentCase" element={<StudentCase />} />
+
+          <Route path="/studentCaseList" element={<StudentCaseList />} />
           <Route path="/tutorList" element={<TutorList />} />
           <Route path="/contactUs" element={<ContactUs />} />
           <Route path="/tutorFeeReference" element={<TutorFeeReference />} />

@@ -98,7 +98,7 @@ const StudentCaseForm = ({
   }));
 
   return (
-    <div style={{ overflow: "hidden" }}>
+    <div>
       <Steps
         style={{ maxWidth: "800px", margin: "40px auto" }}
         current={current}

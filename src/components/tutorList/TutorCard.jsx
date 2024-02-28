@@ -93,26 +93,10 @@ const TutorCard = ({ tutor }) => {
         {"T00" + tutor.id}
       </div>
       {tutor.gender === "male" && (
-        <img
-          style={{
-            width: "180px",
-            display: "block",
-            margin: "0 auto",
-          }}
-          alt="example"
-          src={MALE}
-        />
+        <img className="tutor-card-img" alt="example" src={MALE} />
       )}
       {tutor.gender === "female" && (
-        <img
-          style={{
-            width: "180px",
-            display: "block",
-            margin: "0 auto",
-          }}
-          alt="example"
-          src={FEMALE}
-        />
+        <img className="tutor-card-img" alt="example" src={FEMALE} />
       )}
       <div className="tutor-card-content">
         <Tabs defaultActiveKey="1" items={items} onChange={onChange} />

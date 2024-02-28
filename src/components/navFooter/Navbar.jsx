@@ -50,7 +50,7 @@ const Navbar = () => {
                 <a href="/tutorList">星級導師</a>
               </li>
               <li>
-                <a href="/studentCase">補習個案</a>
+                <a href="/studentCaseList">補習個案</a>
               </li>
               <li>
                 <a href="/tuitionFeeReference">學費參考</a>
@@ -100,7 +100,7 @@ const Navbar = () => {
               <a href="/tutorList">星級導師</a>
             </li>
             <li>
-              <a href="/studentCase">補習個案</a>
+              <a href="/studentCaseList">補習個案</a>
             </li>
             <li>
               <a href="/tuitionFeeReference">學費參考</a>
