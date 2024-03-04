@@ -3,7 +3,7 @@ import React from "react";
 const StudentCaseFilter = () => {
   return (
     <div>
-      <div>
+      <div className="student-case-filter">
         <ul style={{ display: "flex", listStyle: "none" }}>
           <li>補習</li>
           <li>會話</li>
@@ -11,7 +11,7 @@ const StudentCaseFilter = () => {
           <li>其他</li>
         </ul>
       </div>
-      <div>
+      <div className="student-case-filter">
         <ul style={{ display: "flex", listStyle: "none" }}>
           <li>全科</li>
           <li>中文</li>
@@ -22,7 +22,6 @@ const StudentCaseFilter = () => {
           <li>生物</li>
           <li>化學</li>
         </ul>
-        <span> filter</span>
       </div>
     </div>
   );

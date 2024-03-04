@@ -99,19 +99,10 @@ const addressOptions = inputData.location.map((location) => ({
 
 const StudentCasePage1 = ({ studentCase, setStudentCase, next, prev }) => {
   const [form] = Form.useForm();
-  const [tutorType, setTutorType] = useState("");
-  const [studentLevelType, setStudentLevelType] = useState("");
-  const [tutorMethod, setTutorMethod] = useState("");
 
   const onFinish = () => {
     const values = form.getFieldsValue();
-    // setStudentCase((prev) => ({
-    //   ...prev,
-    //   values,
-    // }));
-    // console.log(values);
     if (studentCase.tutorMethod === "視像補習") {
-      console.log("hihi");
       setStudentCase((prev) => ({
         ...prev,
         address: "",
