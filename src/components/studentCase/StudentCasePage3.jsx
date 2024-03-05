@@ -27,6 +27,7 @@ const StudentCasePage3 = ({
           ? studentCase.detailsAddress
           : "",
       tutorRequest: studentCase.tutorRequest.join(","),
+      tutorGender: studentCase.tutorGender,
       minSalary: studentCase.lowestSalary[0],
       maxSalary: studentCase.lowestSalary[1],
     };

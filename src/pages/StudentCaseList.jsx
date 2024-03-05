@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getStudentCaseList } from "../redux/student/studentAction";
 import { Spin } from "antd";
 import { LoadingOutlined } from "@ant-design/icons";
+import StudentCaseSideFilter from "../components/studentCaseList/StudentCaseSideFilter";
 
 const StudentCaseList = () => {
   const [queryData, setQueryData] = useState({
@@ -23,10 +24,10 @@ const StudentCaseList = () => {
 
   useEffect(() => {
     dispatch(getStudentCaseList(queryData));
-  }, []);
+  }, [queryData]);
 
   return (
-    <div className="page-xm page-container">
+    <div className="page-xll page-container">
       <div className="student-case-header">補習個案</div>
       <Spin
         spinning={loading}
@@ -40,9 +41,14 @@ const StudentCaseList = () => {
           />
         }
       />
-      <StudentCaseFilter />
-      <div>
-        <StudentCaseTable studentCaseList={studentCaseList} />
+      <div className="student-case-separate">
+        <div className="student-case-left">
+          <StudentCaseSideFilter setQueryData={setQueryData} />
+        </div>
+        <div className="student-case-right">
+          <StudentCaseFilter setQueryData={setQueryData} />
+          <StudentCaseTable studentCaseList={studentCaseList} />
+        </div>
       </div>
     </div>
   );
