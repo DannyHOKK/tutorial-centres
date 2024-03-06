@@ -1,5 +1,6 @@
 import React from "react";
 import TutorCard from "./TutorCard";
+import TutorCards from "./TutorCards";
 
 const TutorListTable = ({ loading, tutorList }) => {
   return (
@@ -10,6 +11,7 @@ const TutorListTable = ({ loading, tutorList }) => {
         {tutorList.map((tutor) => (
           <div key={tutor.id}>
             <TutorCard tutor={tutor} />
+            <TutorCards tutor={tutor} />
           </div>
         ))}
       </div>

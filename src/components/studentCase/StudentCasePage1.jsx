@@ -365,8 +365,8 @@ const StudentCasePage1 = ({ studentCase, setStudentCase, next, prev }) => {
           rules={[{ required: true, message: "請選擇你的性別" }]}
         >
           <Radio.Group>
-            <Radio value="male">男</Radio>
-            <Radio value="female">女</Radio>
+            <Radio value="男">男</Radio>
+            <Radio value="女">女</Radio>
           </Radio.Group>
         </Form.Item>
 

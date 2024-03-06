@@ -33,7 +33,7 @@ const StudentCaseCard = ({ studentCase }) => {
         )} */}
       <div className="tutor-request">
         {studentCase.tutorGender}
-        {studentCase.tutorRequest.replaceAll(",", "  ")}
+        {" " + studentCase.tutorRequest.replaceAll(",", "  ")}
       </div>
     </div>
   );

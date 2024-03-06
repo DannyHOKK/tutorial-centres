@@ -30,7 +30,7 @@ const StudentCaseFilter = ({ setQueryData }) => {
   return (
     <div className="student-case-filter">
       <div>
-        <ul style={{ display: "flex", listStyle: "none" }}>
+        <ul>
           <li
             className={activeItem === 0 ? "active" : ""}
             onClick={() => {
@@ -103,7 +103,7 @@ const StudentCaseFilter = ({ setQueryData }) => {
       </div>
       {activeItem === 1 && (
         <div>
-          <ul style={{ display: "flex", listStyle: "none" }}>
+          <ul>
             <li
               className={activeItemTwo === 0 ? "active" : ""}
               onClick={() => {
@@ -205,7 +205,7 @@ const StudentCaseFilter = ({ setQueryData }) => {
       )}
       {activeItem === 2 && (
         <div>
-          <ul style={{ display: "flex", listStyle: "none" }}>
+          <ul>
             <li
               className={activeItemThree === 0 ? "active" : ""}
               onClick={() => {
@@ -297,7 +297,7 @@ const StudentCaseFilter = ({ setQueryData }) => {
 
       {activeItem === 3 && (
         <div>
-          <ul style={{ display: "flex", listStyle: "none" }}>
+          <ul>
             <li
               className={activeItemFour === 0 ? "active" : ""}
               onClick={() => {
@@ -375,7 +375,7 @@ const StudentCaseFilter = ({ setQueryData }) => {
       )}
       {activeItem === 4 && (
         <div>
-          <ul style={{ display: "flex", listStyle: "none" }}>
+          <ul>
             <li
               className={activeItemFive === 0 ? "active" : ""}
               onClick={() => {

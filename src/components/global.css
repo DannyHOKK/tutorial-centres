@@ -84,6 +84,31 @@
   color: rgb(255, 255, 255);
 }
 
+/* Tutor Card  */
+.tutor-cards {
+  min-width: 400px;
+  height: 195px;
+  padding: 20px 30px;
+  background-color: white;
+  border: 1px solid rgba(199, 199, 199, 0.3);
+  border-radius: 6px;
+  box-shadow: 0 1px 10px 4px rgba(245, 245, 247, 0.6);
+  line-height: 1.8;
+  font-size: 15px;
+  transition: all 0.5s;
+}
+.tutor-cards:hover {
+  transform: scale(1.05);
+  box-shadow: 0 3px 10px 4px gray;
+}
+.tutor-cards-img {
+  width: 60px;
+}
+.tutor-cards-header {
+  display: flex;
+  flex-direction: row;
+}
+
 /* tutor details page */
 
 .tutor-details-flex {
@@ -182,43 +207,17 @@
   justify-content: center;
 }
 
-@media screen and (max-width: 1080px) {
+.page-header-title {
+  padding: 30px;
+  font-size: 36px;
+  font-weight: 900;
 }
-
-@media screen and (max-width: 820px) {
-}
-
-@media screen and (max-width: 575px) {
-  .page-xll {
-    /* padding: 25px; */
-  }
-  .page-xs {
-    padding: 25px;
-  }
-
-  /* Tutor Card */
-  .tutor-card {
-    position: relative;
-    padding: 0;
-    width: 190px;
-    height: 570px;
-
-    border-radius: 10px;
-    -webkit-box-shadow: 10px 10px 47px -28px rgba(0, 0, 0, 1);
-    -moz-box-shadow: 10px 10px 47px -28px rgba(0, 0, 0, 1);
-    box-shadow: 10px 10px 47px -28px rgba(0, 0, 0, 1);
-  }
-  .tutor-card-img {
-    width: 130px;
-    display: block;
-    margin: 0 auto;
-  }
-  .tutor-card-content {
-    padding: 0 10px;
-  }
-  .tutor-card-details {
-    font-size: 12px;
-  }
+.page-header-title::before {
+  content: "";
+  border-color: orange;
+  border-style: solid;
+  border-width: 0 4px 1px 0;
+  margin-right: 10px;
 }
 
 /* Student Case Table List */
@@ -227,32 +226,22 @@
   display: flex;
 }
 .student-case-left {
+  margin-top: 85px;
   width: 20%;
 }
 .student-case-right {
   width: 80%;
 }
-.student-case-header {
-  padding: 30px;
-  font-size: 36px;
-  font-weight: 900;
-}
-.student-case-header::before {
-  content: "";
-  border-color: orange;
-  border-style: solid;
-  border-width: 0 4px 1px 0;
-  margin-right: 10px;
-}
 .student-case-table-list {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-evenly;
+  gap: 14px;
+  margin: 0 15px;
 }
 
 /* Student Case Filter */
 .student-case-side {
-  margin-top: 150px;
   margin-right: 10px;
 
   box-shadow: 0px 1px 10px 4px rgba(132, 130, 126, 0.399);
@@ -269,6 +258,8 @@
   border-radius: 5px;
 }
 .student-case-filter ul {
+  display: flex;
+  list-style: none;
   padding: 7px;
 }
 .student-case-filter ul li {
@@ -287,23 +278,23 @@
 
 /* Student Case Card */
 .student-case-card {
-  width: 600px;
+  min-width: 400px;
   height: 195px;
   padding: 20px 30px;
-  margin: 10px;
+  background-color: white;
   border: 1px solid rgba(199, 199, 199, 0.3);
   border-radius: 6px;
   box-shadow: 0 1px 10px 4px rgba(245, 245, 247, 0.6);
   line-height: 1.8;
   font-size: 15px;
-  transition: all 0.6s;
+  transition: all 0.5s;
 }
 .student-case-card:hover {
   transform: scale(1.05);
+  box-shadow: 0 3px 10px 4px gray;
 }
-
-.student-case-card:hover > .student-subject:after {
-  width: 100%;
+.student-case-flex {
+  flex: 0 0 48%;
 }
 .student-case-card-header {
   display: flex;
@@ -344,4 +335,91 @@
 .lesson-time {
   font-size: 14px;
   color: green;
+}
+
+/* Student Case Pop Up */
+.student-case-popup {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 1px;
+  background-color: #ebebec;
+  margin-top: 30px;
+  border-top: 1px solid #ebebec;
+  border-bottom: 1px solid #ebebec;
+}
+.student-case-popup div {
+  display: flex;
+  align-items: center;
+  padding: 20px 25px;
+  background-color: white;
+}
+.student-case-popup div span:first-child {
+  color: grey;
+}
+.student-case-popup div span:nth-child(2) {
+  margin-left: 14px;
+  font-weight: 700;
+}
+
+@media screen and (max-width: 1080px) {
+  .student-case-flex {
+    flex: 0 0 100%;
+  }
+}
+
+@media screen and (max-width: 820px) {
+  .student-case-separate {
+    flex-direction: column;
+  }
+  .student-case-left {
+    margin: 10px 20px 20px 30px;
+    width: auto;
+  }
+  .student-case-right {
+    width: auto;
+  }
+  .student-case-card {
+    min-width: 100px;
+  }
+}
+
+@media screen and (max-width: 575px) {
+  .page-xs {
+    padding: 25px;
+  }
+
+  /* Tutor Card */
+  .tutor-card {
+    position: relative;
+    padding: 0;
+    width: 190px;
+    height: 570px;
+
+    border-radius: 10px;
+    -webkit-box-shadow: 10px 10px 47px -28px rgba(0, 0, 0, 1);
+    -moz-box-shadow: 10px 10px 47px -28px rgba(0, 0, 0, 1);
+    box-shadow: 10px 10px 47px -28px rgba(0, 0, 0, 1);
+  }
+  .tutor-card-img {
+    width: 130px;
+    display: block;
+    margin: 0 auto;
+  }
+  .tutor-card-content {
+    padding: 0 10px;
+  }
+  .tutor-card-details {
+    font-size: 12px;
+  }
+
+  .student-case-filter ul {
+    flex-direction: column;
+    text-align: center;
+  }
+  .student-case-filter ul:first-child {
+    border-bottom: 2px dotted grey;
+  }
+  .student-case-card {
+    height: auto;
+  }
 }

@@ -4,7 +4,7 @@ const PrimarySecondarySchool = () => {
   return (
     <div>
       <br />
-      <h1>學費參考價目</h1>
+      <div className="page-header-title">學費參考價目</div>
       <br />
       <br />
       <div>中小學學費</div>

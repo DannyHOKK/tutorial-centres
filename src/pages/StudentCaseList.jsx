@@ -28,7 +28,7 @@ const StudentCaseList = () => {
 
   return (
     <div className="page-xll page-container">
-      <div className="student-case-header">補習個案</div>
+      <div className="page-header-title">補習個案</div>
       <Spin
         spinning={loading}
         fullscreen

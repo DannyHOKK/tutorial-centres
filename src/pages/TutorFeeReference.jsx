@@ -5,7 +5,7 @@ const TutorFeeReference = () => {
   return (
     <div className="page-xs page-container">
       <br />
-      <h1>導師收費</h1>
+      <div className="page-header-title">導師收費</div>
       <TutorFeeHeader />
     </div>
   );
