@@ -32,7 +32,6 @@ const tutorGender = inputData.tutorGender.map((gender) => ({
 }));
 
 const StudentCaseSideFilter = ({ setQueryData }) => {
-  const [form] = Form.useForm();
   const [levelType, setLevelType] = useState("");
 
   return (
@@ -51,7 +50,6 @@ const StudentCaseSideFilter = ({ setQueryData }) => {
               studentLevelType: value,
               studentLevel: [],
             }));
-            form.setFieldValue("studentLevel");
           }}
           style={{ margin: "15px 0", width: "100%" }}
         />

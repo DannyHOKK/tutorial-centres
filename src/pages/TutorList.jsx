@@ -17,26 +17,22 @@ const TutorList = () => {
   const { loading, error, success, tutorList } = useSelector(
     (state) => state.tutor
   );
+
   useEffect(() => {
     dispatch(getTutorList(filteData));
-  }, []);
-
-  const queryTutorList = (filteData) => {
-    dispatch(getTutorList(filteData));
-    console.log(tutorList);
-  };
+    console.log(filteData);
+  }, [filteData]);
   return (
-    <div className="page-container tutor-list-container page-xll">
-      <div>導師搜尋器</div>
-      <br />
-      <div>
-        <TutorListFilter
-          queryTutorList={queryTutorList}
-          setFilteData={setFilteData}
-        />
+    <div className="page-container page-xll">
+      <div className="page-header-title">星級導師</div>
+      <div className="tutor-separate">
+        <div className="tutor-separate-left">
+          <TutorListFilter setFilteData={setFilteData} />
+        </div>
+        <div className="tutor-separate-right">
+          <TutorListTable loading={loading} tutorList={tutorList} />
+        </div>
       </div>
-      <br />
-      <TutorListTable loading={loading} tutorList={tutorList} />
     </div>
   );
 };

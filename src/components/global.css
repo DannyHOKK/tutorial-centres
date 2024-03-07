@@ -31,69 +31,37 @@
 .tutor-list {
   display: flex;
   flex-wrap: wrap;
-  /* column-gap: 60px;
-  row-gap: 20px; */
+  margin: 0 10px;
+  row-gap: 20px;
   justify-content: space-around;
 }
-.tutor-list-container {
-  width: 100%;
-  text-align: center;
-  flex-wrap: nowrap;
-  justify-content: center;
-  margin: auto;
-  padding-top: 30px;
-}
-
-.tutor-card {
-  position: relative;
-  margin: 20px 0;
-  padding: 0;
-  width: 300px;
-  height: 570px;
-
-  border-radius: 10px;
-  -webkit-box-shadow: 10px 10px 47px -28px rgba(0, 0, 0, 1);
-  -moz-box-shadow: 10px 10px 47px -28px rgba(0, 0, 0, 1);
-  box-shadow: 10px 10px 47px -28px rgba(0, 0, 0, 1);
-}
-.tutor-card-content {
-  padding: 0 30px;
-}
-.tutor-card-details {
+.tutor-separate {
   display: flex;
-  flex-direction: column;
-  align-items: start;
-  line-height: 2.3;
+  position: relative;
 }
-.tutor-card-img {
-  width: 180px;
-  display: block;
-  margin: 0 auto;
+.tutor-separate-left {
+  width: 20%;
 }
-.tutor-card-button {
-  position: absolute;
-  margin: 0 auto;
-  width: 100%;
-  padding: 0 15px;
-  bottom: 10px;
+.tutor-separate-right {
+  width: 80%;
 }
-
-.tutor-card-button button {
-  width: 100%;
-  margin: 5px 0;
-  color: rgb(255, 255, 255);
+.tutor-side-filter {
+  margin: 0px 15px 0 15px;
+  box-shadow: 0px 1px 10px 4px rgba(132, 130, 126, 0.399);
+  border-radius: 5px;
+  padding: 25px;
 }
 
 /* Tutor Card  */
 .tutor-cards {
   min-width: 400px;
-  height: 195px;
+  min-height: 300px;
   padding: 20px 30px;
   background-color: white;
   border: 1px solid rgba(199, 199, 199, 0.3);
   border-radius: 6px;
   box-shadow: 0 1px 10px 4px rgba(245, 245, 247, 0.6);
-  line-height: 1.8;
+  line-height: 2;
   font-size: 15px;
   transition: all 0.5s;
 }
@@ -107,43 +75,53 @@
 .tutor-cards-header {
   display: flex;
   flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+.tutor-cards-header-first {
+  display: flex;
+  flex-direction: row;
+}
+.tutor-cards-details {
+  margin-top: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+}
+.tutor-cards-details div {
+  display: flex;
+  text-align: start;
+}
+.tutor-cards-details div span:first-child {
+  color: orange;
+}
+.tutor-cards-details div span:nth-child(2) {
+  margin-left: 10px;
+}
+
+/* Tutor Cards Popup */
+.tutor-cards-popup-title {
+  font-size: 20px;
+  font-weight: 700;
+  margin-top: 10px;
+  padding: 14px 0;
+  border-top: 1px solid grey;
+}
+.tutor-cards-details-table {
+  margin: 10px 0 10px 30px;
+  display: grid;
+  grid-template-columns: 1fr 5fr;
+  row-gap: 10px;
+}
+.tutor-cards-details-table span:nth-child(2n-1) {
+  color: gray;
+}
+.tutor-cards-details-table span:nth-child(2n) {
+  font-weight: 800;
+  font-size: 15px;
 }
 
 /* tutor details page */
-
-.tutor-details-flex {
-  min-width: 700px;
-  display: flex;
-  flex-wrap: wrap;
-}
-
-.tutor-details-left {
-  width: 30%;
-}
-
-.tutor-details-right {
-  width: 70%;
-}
-.tutor-details-card-left {
-  margin: 15px;
-  height: 500px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  border-radius: 10px;
-  -webkit-box-shadow: 10px 10px 47px -28px rgba(0, 0, 0, 1);
-  -moz-box-shadow: 10px 10px 47px -28px rgba(0, 0, 0, 1);
-  box-shadow: 10px 10px 47px -28px rgba(0, 0, 0, 1);
-}
-.tutor-details-card-right {
-  margin: 15px;
-  padding: 30px;
-  min-height: 900px;
-  border-radius: 10px;
-  -webkit-box-shadow: 10px 10px 47px -28px rgba(0, 0, 0, 1);
-  -moz-box-shadow: 10px 10px 47px -28px rgba(0, 0, 0, 1);
-  box-shadow: 10px 10px 47px -28px rgba(0, 0, 0, 1);
-}
 .details-exam-table {
   border-collapse: collapse;
   padding: 60px;
@@ -242,7 +220,7 @@
 
 /* Student Case Filter */
 .student-case-side {
-  margin-right: 10px;
+  margin: 0 10px;
 
   box-shadow: 0px 1px 10px 4px rgba(132, 130, 126, 0.399);
   border-radius: 5px;
@@ -361,6 +339,15 @@
   font-weight: 700;
 }
 
+/* Pop up card footer button */
+.popup-card-footer-btn {
+  background-color: orange;
+  color: white;
+  width: 140px;
+  height: 40px;
+  margin: 0 30px 10px 0;
+}
+
 @media screen and (max-width: 1080px) {
   .student-case-flex {
     flex: 0 0 100%;
@@ -400,16 +387,8 @@
     -moz-box-shadow: 10px 10px 47px -28px rgba(0, 0, 0, 1);
     box-shadow: 10px 10px 47px -28px rgba(0, 0, 0, 1);
   }
-  .tutor-card-img {
-    width: 130px;
-    display: block;
-    margin: 0 auto;
-  }
   .tutor-card-content {
     padding: 0 10px;
-  }
-  .tutor-card-details {
-    font-size: 12px;
   }
 
   .student-case-filter ul {

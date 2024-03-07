@@ -2,169 +2,111 @@ import React, { useState } from "react";
 import { Button, Form, Input, Select, Slider } from "antd";
 import subjectList from "../../staticData/subjectList.json";
 import inputData from "../../staticData/inputData.json";
+import { useDispatch, useSelector } from "react-redux";
 
-const TutorListFilter = ({ queryTutorList, setFilteData }) => {
-  const [form] = Form.useForm();
-  const [sliderValues, setSliderValues] = useState([100, 1000]);
+const tutorContent = subjectList.tutorContent.map((content) => ({
+  label: content.category,
+  options: content.type.map((type) => ({
+    label: type,
+    value: type,
+  })),
+}));
 
-  const onFinish = async () => {
-    try {
-      await form.validateFields();
-      submitForm();
-    } catch (error) {
-      console.log("Form validation failed:", error);
-    }
-  };
+const tutorAreas = inputData.location.map((location) => ({
+  label: location.region,
+  options: location.area.map((area) => ({
+    label: area,
+    value: area,
+  })),
+}));
 
-  const submitForm = () => {
-    form.setFieldValue("lowestSalary", sliderValues);
-    const values = form.getFieldsValue();
-    const transformedData = {
-      ...values,
-      lowestSalary: values.lowestSalary[0],
-      maxSalary: values.lowestSalary[1],
-    };
-    setFilteData(transformedData);
-    queryTutorList(transformedData);
-  };
+const tutorLevel = subjectList.tutorContent.map((content) => ({
+  label: content.category,
+  options: content.level.map((level) => ({
+    label: level,
+    value: level,
+  })),
+}));
 
-  const onFinishFailed = (errorInfo) => {
-    console.log("Failed:", errorInfo);
-  };
-
-  const handleSliderChange = (values) => {
-    setSliderValues(values);
-  };
-
-  const tutorContent = subjectList.tutorContent.map((content) => ({
-    label: content.category,
-    options: content.type.map((type) => ({
-      label: type,
-      value: type,
-    })),
-  }));
-
-  const tutorAreas = inputData.location.map((location) => ({
-    label: location.region,
-    options: location.area.map((area) => ({
-      label: area,
-      value: area,
-    })),
-  }));
-
-  const tutorLevel = subjectList.tutorContent.map((content) => ({
-    label: content.category,
-    options: content.level.map((level) => ({
-      label: level,
-      value: level,
-    })),
-  }));
-
-  const formItemLayout = {
-    labelCol: {
-      xs: {
-        span: 24,
-      },
-      sm: {
-        span: 6,
-      },
-    },
-    wrapperCol: {
-      xs: {
-        span: 24,
-      },
-      sm: {
-        span: 16,
-      },
-    },
-  };
-
-  const tailFormItemLayout = {
-    wrapperCol: {
-      xs: {
-        span: 24,
-        offset: 0,
-      },
-      sm: {
-        span: 16,
-        offset: 6,
-      },
-    },
-  };
+const TutorListFilter = ({ setFilteData }) => {
+  const dispatch = useDispatch();
+  const { loading, error, success } = useSelector((state) => state.tutor);
 
   return (
     <>
-      <Form
-        form={form}
-        name="filter"
-        {...formItemLayout}
-        className="page-xs"
-        initialValues={{
-          remember: true,
-        }}
-        onFinish={onFinish}
-        onFinishFailed={onFinishFailed}
-        autoComplete="off"
-      >
-        <Form.Item label="教授科目" name="tutorContent">
-          <Select
-            mode="multiple"
-            allowClear
-            placeholder="教授科目"
-            options={tutorContent}
-          />
-        </Form.Item>
+      <div className="tutor-side-filter">
+        <div>教授科目：</div>
+        <Select
+          mode="multiple"
+          allowClear
+          placeholder="教授科目"
+          options={tutorContent}
+          onChange={(value) => {
+            setFilteData((prev) => ({
+              ...prev,
+              tutorContent: value,
+            }));
+          }}
+          style={{ margin: "15px 0", width: "100%" }}
+        />
 
-        <Form.Item label="可補地區" name="tutorAreas">
-          <Select
-            mode="multiple"
-            allowClear
-            placeholder="可補地區"
-            options={tutorAreas}
-          />
-        </Form.Item>
+        <div>可補地區：</div>
+        <Select
+          mode="multiple"
+          allowClear
+          placeholder="可補地區"
+          options={tutorAreas}
+          onChange={(value) => {
+            setFilteData((prev) => ({
+              ...prev,
+              tutorAreas: value,
+            }));
+          }}
+          style={{ margin: "15px 0", width: "100%" }}
+        />
 
-        <Form.Item label="教授年級" name="tutorLevel">
-          <Select
-            mode="multiple"
-            allowClear
-            placeholder="教授年級"
-            options={tutorLevel}
-          />
-        </Form.Item>
-
-        <Form.Item label="學費" name="lowestSalary">
-          <Slider
-            range={{ draggableTrack: true }}
-            min={100}
-            max={1000}
-            step={5}
-            defaultValue={sliderValues}
-            marks={{
-              100: "$100",
-              200: "$200",
-              300: "$300",
-              500: "$500",
-              1000: "$1000",
+        <div>教授年級：</div>
+        <Select
+          mode="multiple"
+          allowClear
+          placeholder="教授年級"
+          options={tutorLevel}
+          onChange={(value) => {
+            setFilteData((prev) => ({
+              ...prev,
+              tutorLevel: value,
+            }));
+          }}
+          style={{ margin: "15px 0", width: "100%" }}
+        />
+        <div>學費：</div>
+        <div style={{ display: "flex", marginTop: "15px" }}>
+          <Input
+            pattern="[0-9]*"
+            defaultValue={100}
+            placeholder="最低"
+            onChange={(value) => {
+              setFilteData((prev) => ({
+                ...prev,
+                lowestSalary: parseInt(value.target.value),
+              }));
             }}
-            onChange={handleSliderChange}
           />
-        </Form.Item>
-
-        <Form.Item {...tailFormItemLayout}>
-          <Button
-            type="button"
-            style={{
-              backgroundColor: "orange",
-              color: "white",
-              margin: "0 10px",
+          ～
+          <Input
+            pattern="[0-9]*"
+            defaultValue={1000}
+            placeholder="最高"
+            onChange={(value) => {
+              console.log(parseInt(value.target.value));
+              setFilteData((prev) => ({
+                ...prev,
+                maxSalary: parseInt(value.target.value),
+              }));
             }}
-            onClick={onFinish}
-          >
-            搜尋
-          </Button>
-        </Form.Item>
-      </Form>
+          />
+        </div>
+      </div>
     </>
   );
 };

@@ -23,18 +23,7 @@ const StudentCasePopUp = ({ isModalOpen, toggleModal, index, studentCase }) => {
         onCancel={() => toggleModal(index, false)}
         footer={
           <>
-            <Button
-              style={{
-                backgroundColor: "orange",
-                color: "white",
-                width: "140px",
-                height: "40px",
-                marginRight: "30px",
-                marginBottom: "10px",
-              }}
-            >
-              申請
-            </Button>
+            <Button className="popup-card-footer-btn">申請</Button>
           </>
         }
         width={900}

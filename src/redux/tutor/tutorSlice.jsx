@@ -3,7 +3,7 @@ import { getTutor, getTutorList } from "./tutorAction";
 
 const initialState = {
   tutorList: [],
-  tutor: [],
+  tutorDetails: [],
   loading: false,
   error: null,
   success: false, // for monitoring the registration process.
@@ -35,7 +35,7 @@ const tutorSlice = createSlice({
       .addCase(getTutor.fulfilled, (state, { payload }) => {
         state.loading = false;
         state.success = true;
-        state.tutor = payload.data;
+        state.tutorDetails = payload.data;
         console.log(payload.data);
       })
       .addCase(getTutor.rejected, (state, { payload }) => {
