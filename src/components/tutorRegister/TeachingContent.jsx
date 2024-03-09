@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import RegionSelect from "./RegionSelect";
 import TutorContent from "./TutorContent";
 import TutorLevel from "./TutorLevel";
-import "./registerForm.css";
 import { Button, Form } from "antd";
 import "../global.css";
 

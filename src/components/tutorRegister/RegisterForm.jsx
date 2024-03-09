@@ -14,7 +14,6 @@ import {
   Select,
   Tooltip,
 } from "antd";
-import "./registerForm.css";
 import "../global.css";
 import axios from "axios";
 import AuthService from "../api/AuthService";

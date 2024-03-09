@@ -1,18 +1,45 @@
 import { Button, Modal } from "antd";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import FEMALE from "../../assets/female_avatar.png";
 import MALE from "../../assets/male_avatar.svg";
 import { useDispatch, useSelector } from "react-redux";
 import DoneIcon from "@mui/icons-material/Done";
 import CloseIcon from "@mui/icons-material/Close";
+import { useNavigate } from "react-router-dom";
+import { matchingTutor } from "../../redux/student/studentAction";
 
 const TutorCardsPopUp = ({ toggleModal, isModalOpen, index, tutor }) => {
+  const { userToken, userIdentity, userDetails } = useSelector(
+    (state) => state.auth
+  );
+  const navigate = useNavigate();
   const dispatch = useDispatch();
+  const [open, setOpen] = useState(false);
+  const [login, setLogin] = useState(false);
 
-  useEffect(() => {
-    // dispatch(getTutor());
-    console.log(tutor.id);
-  }, []);
+  const applyTutorHandler = () => {
+    console.log(userDetails);
+    if (
+      userDetails !== null &&
+      userDetails !== undefined &&
+      userIdentity.includes("ROLE_STUDENT")
+    ) {
+      setOpen(true);
+    } else if (
+      userDetails !== null &&
+      userDetails !== undefined &&
+      userIdentity.includes("ROLE_TUTOR")
+    ) {
+    } else {
+      setLogin(true);
+    }
+  };
+
+  const applyConfirmHandler = (tutorId) => {
+    console.log(tutorId);
+    dispatch(matchingTutor(tutorId));
+  };
+
   return (
     <div>
       <Modal
@@ -42,13 +69,27 @@ const TutorCardsPopUp = ({ toggleModal, isModalOpen, index, tutor }) => {
             </div>
           </>
         }
+        centered
         open={isModalOpen[index]}
         onOk={() => toggleModal(index, false)}
         onCancel={() => toggleModal(index, false)}
         width={950}
         footer={
           <>
-            <Button className="popup-card-footer-btn">立即預約</Button>
+            {userDetails !== null &&
+            userDetails !== undefined &&
+            userIdentity.includes("ROLE_TUTOR") ? (
+              <></>
+            ) : (
+              <>
+                <Button
+                  className="popup-card-footer-btn"
+                  onClick={applyTutorHandler}
+                >
+                  立即預約
+                </Button>
+              </>
+            )}
           </>
         }
       >
@@ -115,6 +156,43 @@ const TutorCardsPopUp = ({ toggleModal, isModalOpen, index, tutor }) => {
           <div className="tutor-cards-popup-title">補習資料</div>
 
           <div className="tutor-cards-details-table">
+            {tutor.tutorLevel && (
+              <>
+                <span>可教授程度(補習)：</span>
+                <span>
+                  {tutor.tutorLevel !== undefined &&
+                    tutor.tutorLevel.replaceAll(",", " | ")}
+                </span>
+              </>
+            )}
+            {tutor.tutorMusic && (
+              <>
+                <span>可教授程度(補習)：</span>
+                <span>
+                  {tutor.tutorMusic !== undefined &&
+                    tutor.tutorMusic.replaceAll(",", " | ")}
+                </span>
+              </>
+            )}
+            {tutor.tutorOtherLevel && (
+              <>
+                <span>可教授程度(補習)：</span>
+                <span>
+                  {tutor.tutorOtherLevel !== undefined &&
+                    tutor.tutorOtherLevel.replaceAll(",", " | ")}
+                </span>
+              </>
+            )}
+            {tutor.tutorSpeaking && (
+              <>
+                <span>可教授程度(補習)：</span>
+                <span>
+                  {tutor.tutorSpeaking !== undefined &&
+                    tutor.tutorSpeaking.replaceAll(",", " | ")}
+                </span>
+              </>
+            )}
+
             <span>補習地區：</span>
             <span>
               {tutor.tutorAreas !== undefined &&
@@ -128,9 +206,57 @@ const TutorCardsPopUp = ({ toggleModal, isModalOpen, index, tutor }) => {
             </span>
 
             <span>可提供補習筆記：</span>
-            <span>{tutor.noteProvided ? <DoneIcon /> : <CloseIcon />}</span>
+            <span>
+              {tutor.noteProvided ? (
+                <DoneIcon style={{ color: "green" }} />
+              ) : (
+                <CloseIcon style={{ color: "red" }} />
+              )}
+            </span>
           </div>
         </>
+      </Modal>
+
+      <Modal
+        title={<div> 申請 {tutor.engName} 導師</div>}
+        centered
+        open={open}
+        onCancel={() => setOpen(false)}
+        footer={
+          <>
+            <Button onClick={() => setOpen(false)}>取消申請</Button>
+            <Button
+              onClick={() => applyConfirmHandler(tutor.id)}
+              style={{ backgroundColor: "orange", color: "white" }}
+            >
+              確認申請
+            </Button>
+          </>
+        }
+      >
+        <div>請按下確認申請 {tutor.engName} 導師</div>
+      </Modal>
+
+      <Modal
+        title="請登入學生帳戶"
+        centered
+        open={login}
+        onCancel={() => setLogin(false)}
+        footer={
+          <>
+            <Button onClick={() => setLogin(false)}>取消</Button>
+            <Button
+              onClick={() => {
+                navigate("/login");
+              }}
+              style={{ backgroundColor: "orange", color: "white" }}
+            >
+              登入
+            </Button>
+          </>
+        }
+      >
+        <div>請登入</div>
       </Modal>
     </div>
   );

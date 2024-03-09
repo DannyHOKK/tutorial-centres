@@ -16,7 +16,6 @@ import {
   Space,
 } from "antd";
 import { CloseOutlined } from "@ant-design/icons";
-import "./registerForm.css";
 import subjectList from "../../staticData/subjectList.json";
 import inputData from "../../staticData/inputData.json";
 import "../global.css";

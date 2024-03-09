@@ -1,5 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { createStudentCase, getStudentCaseList } from "./studentAction";
+import {
+  createStudentCase,
+  getStudentCaseList,
+  matchingTutor,
+} from "./studentAction";
 
 const initialState = {
   loading: false,
@@ -36,6 +40,18 @@ const tutorSlice = createSlice({
         state.studentCaseList = payload.data;
       })
       .addCase(getStudentCaseList.rejected, (state, { payload }) => {
+        state.loading = false;
+        state.error = payload;
+      })
+      .addCase(matchingTutor.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(matchingTutor.fulfilled, (state, { payload }) => {
+        state.loading = false;
+        state.success = true;
+      })
+      .addCase(matchingTutor.rejected, (state, { payload }) => {
         state.loading = false;
         state.error = payload;
       });
