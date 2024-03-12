@@ -7,11 +7,13 @@ import DoneIcon from "@mui/icons-material/Done";
 import CloseIcon from "@mui/icons-material/Close";
 import { useNavigate } from "react-router-dom";
 import { matchingTutor } from "../../redux/student/studentAction";
+import TutorCardsMatchingForm from "./TutorCardsMatchingForm";
 
 const TutorCardsPopUp = ({ toggleModal, isModalOpen, index, tutor }) => {
   const { userToken, userIdentity, userDetails } = useSelector(
     (state) => state.auth
   );
+  const { loading, success, error } = useSelector((state) => state.tutor);
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [open, setOpen] = useState(false);
@@ -35,9 +37,12 @@ const TutorCardsPopUp = ({ toggleModal, isModalOpen, index, tutor }) => {
     }
   };
 
-  const applyConfirmHandler = (tutorId) => {
-    console.log(tutorId);
-    dispatch(matchingTutor(tutorId));
+  const applyConfirmHandler = (formData) => {
+    console.log(formData);
+    dispatch(matchingTutor(formData));
+    if (success) {
+      navigate("/studentMatching");
+    }
   };
 
   return (
@@ -217,25 +222,12 @@ const TutorCardsPopUp = ({ toggleModal, isModalOpen, index, tutor }) => {
         </>
       </Modal>
 
-      <Modal
-        title={<div> 申請 {tutor.engName} 導師</div>}
-        centered
+      <TutorCardsMatchingForm
+        tutor={tutor}
         open={open}
-        onCancel={() => setOpen(false)}
-        footer={
-          <>
-            <Button onClick={() => setOpen(false)}>取消申請</Button>
-            <Button
-              onClick={() => applyConfirmHandler(tutor.id)}
-              style={{ backgroundColor: "orange", color: "white" }}
-            >
-              確認申請
-            </Button>
-          </>
-        }
-      >
-        <div>請按下確認申請 {tutor.engName} 導師</div>
-      </Modal>
+        setOpen={setOpen}
+        applyConfirmHandler={applyConfirmHandler}
+      />
 
       <Modal
         title="請登入學生帳戶"

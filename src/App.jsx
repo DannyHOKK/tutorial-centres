@@ -27,22 +27,30 @@ import TutorFeeReference from "./pages/TutorFeeReference";
 import ContactUs from "./pages/ContactUs";
 import TuitionFeeReference from "./pages/TuitionFeeReference";
 import StudentCaseList from "./pages/StudentCaseList";
+import TutorMatching from "./pages/TutorMatching";
+import StudentMatching from "./pages/StudentMatching";
 
 function App() {
   const { userToken, userIdentity, userDetails } = useSelector(
     (state) => state.auth
   );
 
-  const checkStudentAuthority = () => {
+  const checkAuthority = () => {
     if (
       userDetails !== null &&
       userDetails !== undefined &&
       userIdentity.includes("ROLE_STUDENT")
     ) {
       console.log(userIdentity);
-      return true;
+      return "student";
+    } else if (
+      userDetails !== null &&
+      userDetails !== undefined &&
+      userIdentity.includes("ROLE_TUTOR")
+    ) {
+      return "tutor";
     } else {
-      return false;
+      return null;
     }
   };
 
@@ -68,10 +76,33 @@ function App() {
           <Route
             path="/createStudentCase"
             element={
-              checkStudentAuthority() ? <StudentCase /> : <Navigate to="/" />
+              checkAuthority() === "student" ? (
+                <StudentCase />
+              ) : (
+                <Navigate to="/" />
+              )
             }
           />
-
+          <Route
+            path="/tutorMatching"
+            element={
+              checkAuthority() === "tutor" ? (
+                <TutorMatching />
+              ) : (
+                <Navigate to="/" />
+              )
+            }
+          />
+          <Route
+            path="/studentMatching"
+            element={
+              checkAuthority() === "student" ? (
+                <StudentMatching />
+              ) : (
+                <Navigate to="/" />
+              )
+            }
+          />
           <Route path="/studentCaseList" element={<StudentCaseList />} />
           <Route path="/tutorList" element={<TutorList />} />
           <Route path="/contactUs" element={<ContactUs />} />

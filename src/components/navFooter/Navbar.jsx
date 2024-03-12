@@ -23,6 +23,7 @@ const Navbar = () => {
   };
 
   const checkStudentAuthority = () => {
+    console.log(userToken);
     if (userDetails !== null && userIdentity.includes("ROLE_STUDENT")) {
       console.log(userDetails.authorities);
       console.log(userToken);
@@ -70,9 +71,14 @@ const Navbar = () => {
             {checkAuthenticated() ? (
               <div>
                 {checkStudentAuthority() ? (
-                  <a href="/createStudentCase">創建補習個案</a>
+                  <>
+                    <a href="/createStudentCase">創建補習個案</a>
+                    <a href="/studentMatching">配對記錄</a>
+                  </>
                 ) : (
-                  <>faile</>
+                  <>
+                    <a href="/tutorMatching">配對記錄</a>
+                  </>
                 )}
                 <a type="button" onClick={logoutHandler} className="login">
                   登出
@@ -121,7 +127,9 @@ const Navbar = () => {
                     創建補習方案
                   </a>
                 ) : (
-                  <>faile</>
+                  <>
+                    <a href="/tutorMatching">配對記錄</a>
+                  </>
                 )}
                 <button type="button" onClick={logoutHandler} className="login">
                   登出

@@ -1,7 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
 import {
+  cancelMatchingTutor,
   createStudentCase,
   getStudentCaseList,
+  getStudentMatching,
   matchingTutor,
 } from "./studentAction";
 
@@ -10,6 +12,7 @@ const initialState = {
   error: null,
   success: false, // for monitoring the registration process.
   studentCaseList: [],
+  studentMatching: [],
 };
 
 const tutorSlice = createSlice({
@@ -52,6 +55,31 @@ const tutorSlice = createSlice({
         state.success = true;
       })
       .addCase(matchingTutor.rejected, (state, { payload }) => {
+        state.loading = false;
+        state.error = payload;
+      })
+      .addCase(getStudentMatching.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(getStudentMatching.fulfilled, (state, { payload }) => {
+        state.loading = false;
+        state.success = true;
+        state.studentMatching = payload.data;
+      })
+      .addCase(getStudentMatching.rejected, (state, { payload }) => {
+        state.loading = false;
+        state.error = payload;
+      })
+      .addCase(cancelMatchingTutor.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(cancelMatchingTutor.fulfilled, (state, { payload }) => {
+        state.loading = false;
+        state.success = true;
+      })
+      .addCase(cancelMatchingTutor.rejected, (state, { payload }) => {
         state.loading = false;
         state.error = payload;
       });

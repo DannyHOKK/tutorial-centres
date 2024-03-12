@@ -1,9 +1,18 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { getTutor, getTutorList } from "./tutorAction";
+import {
+  cancelMatchingCase,
+  getMatchingCase,
+  getStudentMatching,
+  getTutor,
+  getTutorList,
+  matchingStudentCase,
+} from "./tutorAction";
 
 const initialState = {
   tutorList: [],
   tutorDetails: [],
+  matchingStudentCaseDetails: [],
+  studentMatching: [],
   loading: false,
   error: null,
   success: false, // for monitoring the registration process.
@@ -39,6 +48,58 @@ const tutorSlice = createSlice({
         console.log(payload.data);
       })
       .addCase(getTutor.rejected, (state, { payload }) => {
+        state.loading = false;
+        state.error = payload;
+      })
+      .addCase(matchingStudentCase.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(matchingStudentCase.fulfilled, (state, { payload }) => {
+        state.loading = false;
+        state.success = true;
+      })
+      .addCase(matchingStudentCase.rejected, (state, { payload }) => {
+        state.loading = false;
+        state.error = payload;
+      })
+      .addCase(getMatchingCase.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(getMatchingCase.fulfilled, (state, { payload }) => {
+        state.loading = false;
+        state.success = true;
+        state.matchingStudentCaseDetails = payload.data;
+        console.log(payload.data);
+      })
+      .addCase(getMatchingCase.rejected, (state, { payload }) => {
+        state.loading = false;
+        state.error = payload;
+      })
+      .addCase(getStudentMatching.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(getStudentMatching.fulfilled, (state, { payload }) => {
+        state.loading = false;
+        state.success = true;
+        state.studentMatching = payload.data;
+        console.log(payload.data);
+      })
+      .addCase(getStudentMatching.rejected, (state, { payload }) => {
+        state.loading = false;
+        state.error = payload;
+      })
+      .addCase(cancelMatchingCase.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(cancelMatchingCase.fulfilled, (state, { payload }) => {
+        state.loading = false;
+        state.success = true;
+      })
+      .addCase(cancelMatchingCase.rejected, (state, { payload }) => {
         state.loading = false;
         state.error = payload;
       });

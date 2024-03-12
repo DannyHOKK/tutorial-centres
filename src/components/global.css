@@ -52,6 +52,10 @@
   row-gap: 20px;
   justify-content: space-around;
 }
+.tutor-list-flex {
+  flex: 0 0 48%;
+  cursor: pointer;
+}
 .tutor-separate {
   display: flex;
   position: relative;
@@ -365,8 +369,23 @@
   margin: 0 30px 10px 0;
 }
 
+/* Tutor Map Student Case Table  */
+.tutor-map-student-table {
+  overflow-x: auto;
+}
+.tutor-map-student-table > div {
+  min-width: 1020px;
+}
+.tutor-map-student-table-subtitle div {
+  font-size: 13px;
+  color: grey;
+}
+
 @media screen and (max-width: 1080px) {
   .student-case-flex {
+    flex: 0 0 100%;
+  }
+  .tutor-list-flex {
     flex: 0 0 100%;
   }
 }
@@ -384,6 +403,17 @@
   }
   .student-case-card {
     min-width: 100px;
+  }
+
+  .tutor-separate {
+    flex-direction: column;
+  }
+  .tutor-separate-left {
+    margin: 10px 20px 20px 30px;
+    width: auto;
+  }
+  .tutor-separate-right {
+    width: auto;
   }
 }
 

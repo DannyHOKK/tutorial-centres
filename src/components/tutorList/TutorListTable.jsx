@@ -26,7 +26,7 @@ const TutorListTable = ({ loading, tutorList }) => {
     <div>
       <div className="tutor-list">
         {tutorList.map((tutor, index) => (
-          <div key={index} style={{ flex: "0 0 48%", cursor: "pointer" }}>
+          <div key={index} className="tutor-list-flex">
             <div
               onClick={() => {
                 toggleModal(index, true);

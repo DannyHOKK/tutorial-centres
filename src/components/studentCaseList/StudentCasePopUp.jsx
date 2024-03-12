@@ -1,7 +1,45 @@
 import { Button, Divider, Modal } from "antd";
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { matchingStudentCase } from "../../redux/tutor/tutorAction";
 
 const StudentCasePopUp = ({ isModalOpen, toggleModal, index, studentCase }) => {
+  const { userToken, userIdentity, userDetails } = useSelector(
+    (state) => state.auth
+  );
+  const { loading, error, success } = useSelector((state) => state.tutor);
+  const [open, setOpen] = useState(false);
+  const [login, setLogin] = useState(false);
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  const applyStudentHandler = () => {
+    if (
+      userDetails !== null &&
+      userDetails !== undefined &&
+      userIdentity.includes("ROLE_TUTOR")
+    ) {
+      setOpen(true);
+    } else if (
+      userDetails !== null &&
+      userDetails !== undefined &&
+      userIdentity.includes("ROLE_STUDENT")
+    ) {
+    } else {
+      setLogin(true);
+    }
+  };
+
+  const applyConfirmHandler = (studentCaseId) => {
+    console.log(studentCaseId);
+    dispatch(matchingStudentCase(studentCaseId));
+  };
+
+  useEffect(() => {
+    if (success) navigate("/tutorMatching");
+  }, [success]);
+
   return (
     <div>
       <Modal
@@ -23,7 +61,18 @@ const StudentCasePopUp = ({ isModalOpen, toggleModal, index, studentCase }) => {
         onCancel={() => toggleModal(index, false)}
         footer={
           <>
-            <Button className="popup-card-footer-btn">申請</Button>
+            {userDetails !== null &&
+            userDetails !== undefined &&
+            userIdentity.includes("ROLE_STUDENT") ? (
+              <></>
+            ) : (
+              <Button
+                className="popup-card-footer-btn"
+                onClick={applyStudentHandler}
+              >
+                申請
+              </Button>
+            )}
           </>
         }
         width={900}
@@ -94,7 +143,7 @@ const StudentCasePopUp = ({ isModalOpen, toggleModal, index, studentCase }) => {
             <span>{studentCase.lessonPerWeek}</span>
           </div>
           <div>
-            <span> 每堂長度：</span>
+            <span> 每堂時長：</span>
             <span>{studentCase.lessonDuration}</span>
           </div>
           <div>
@@ -121,6 +170,48 @@ const StudentCasePopUp = ({ isModalOpen, toggleModal, index, studentCase }) => {
           <span> 時間表：</span>
           <span>{studentCase.timeslot}</span>
         </div>
+      </Modal>
+
+      <Modal
+        title={<div> 申請 {studentCase.caseId} 個案</div>}
+        centered
+        open={open}
+        onCancel={() => setOpen(false)}
+        footer={
+          <>
+            <Button onClick={() => setOpen(false)}>取消申請</Button>
+            <Button
+              onClick={() => applyConfirmHandler(studentCase.caseId)}
+              style={{ backgroundColor: "orange", color: "white" }}
+            >
+              確認申請
+            </Button>
+          </>
+        }
+      >
+        <div>請按下確認申請 {studentCase.caseId} 個案</div>
+      </Modal>
+
+      <Modal
+        title="請登入導師帳戶"
+        centered
+        open={login}
+        onCancel={() => setLogin(false)}
+        footer={
+          <>
+            <Button onClick={() => setLogin(false)}>取消</Button>
+            <Button
+              onClick={() => {
+                navigate("/login");
+              }}
+              style={{ backgroundColor: "orange", color: "white" }}
+            >
+              登入
+            </Button>
+          </>
+        }
+      >
+        <div>請登入</div>
       </Modal>
     </div>
   );
