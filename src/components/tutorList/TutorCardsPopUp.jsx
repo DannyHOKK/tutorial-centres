@@ -1,4 +1,4 @@
-import { Button, Modal } from "antd";
+import { Button, Modal, notification } from "antd";
 import React, { useEffect, useState } from "react";
 import FEMALE from "../../assets/female_avatar.png";
 import MALE from "../../assets/male_avatar.svg";
@@ -13,14 +13,13 @@ const TutorCardsPopUp = ({ toggleModal, isModalOpen, index, tutor }) => {
   const { userToken, userIdentity, userDetails } = useSelector(
     (state) => state.auth
   );
-  const { loading, success, error } = useSelector((state) => state.tutor);
+
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [open, setOpen] = useState(false);
   const [login, setLogin] = useState(false);
 
   const applyTutorHandler = () => {
-    console.log(userDetails);
     if (
       userDetails !== null &&
       userDetails !== undefined &&
@@ -38,11 +37,7 @@ const TutorCardsPopUp = ({ toggleModal, isModalOpen, index, tutor }) => {
   };
 
   const applyConfirmHandler = (formData) => {
-    console.log(formData);
     dispatch(matchingTutor(formData));
-    if (success) {
-      navigate("/studentMatching");
-    }
   };
 
   return (

@@ -9,9 +9,6 @@ const StudentRegister = () => {
   );
   const dispatch = useDispatch();
   const studentRegister = (credential) => {
-    // AuthService.loginTutor(credential).then((res) => {
-    //   console.log(res);
-    // });
     dispatch(registerStduentUser(credential));
   };
 

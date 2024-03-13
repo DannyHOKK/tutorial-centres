@@ -166,3 +166,35 @@ export const cancelMatchingTutor = createAsyncThunk(
     }
   }
 );
+
+export const getStudentCaseById = createAsyncThunk(
+  "api/case/getStudentCaseById",
+  async (empty, { rejectWithValue }) => {
+    try {
+      const response = await axios.get(
+        `${backendURL}/api/case/getStudentCaseById`,
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: "Bearer " + localStorage.getItem("userToken"),
+          },
+        }
+      );
+
+      console.log(response);
+
+      if (response.data.code === -1) {
+        return rejectWithValue(response.data.msg);
+      } else {
+        return response.data;
+      }
+    } catch (error) {
+      // return custom error message from backend if present
+      if (error.response && error.response.data.message) {
+        return rejectWithValue(error.response.data.message);
+      } else {
+        return rejectWithValue(error.message);
+      }
+    }
+  }
+);

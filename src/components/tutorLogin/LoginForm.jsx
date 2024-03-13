@@ -21,10 +21,6 @@ const LoginForm = ({ loginHandler }) => {
     loginHandler(values);
   };
 
-  const onFinishFailed = (errorInfo) => {
-    console.log("Failed:", errorInfo);
-  };
-
   const tailFormItemLayout = {
     wrapperCol: {
       xs: {
@@ -56,7 +52,6 @@ const LoginForm = ({ loginHandler }) => {
         remember: true,
       }}
       onFinish={onFinish}
-      onFinishFailed={onFinishFailed}
       autoComplete="off"
     >
       <Form.Item

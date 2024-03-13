@@ -12,9 +12,6 @@ const TutorLogin = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const loginHandler = (studentInfo) => {
-    // AuthService.loginTutor(credential).then((res) => {
-    //   console.log(res);
-    // });
     dispatch(loginUser(studentInfo));
     if (success) navigate("/");
   };

@@ -105,11 +105,7 @@ const StudentRegisterForm = ({ studentRegister }) => {
           },
         ]}
       >
-        <CheckCard.Group
-          onChange={(value) => {
-            console.log("value", value);
-          }}
-        >
+        <CheckCard.Group>
           {inputData.studentRegisterIdentity.map((item, index) => (
             <CheckCard
               key={index}

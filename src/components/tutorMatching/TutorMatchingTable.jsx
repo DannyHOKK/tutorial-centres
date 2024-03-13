@@ -169,7 +169,6 @@ const TutorMatchingTable = ({ matchingStudentCaseDetails }) => {
   const cancelMatchingHandler = (caseId) => {
     dispatch(cancelMatchingCase(caseId));
     window.location.reload();
-    console.log(caseId);
   };
 
   return (

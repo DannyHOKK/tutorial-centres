@@ -32,13 +32,8 @@ const StudentCasePopUp = ({ isModalOpen, toggleModal, index, studentCase }) => {
   };
 
   const applyConfirmHandler = (studentCaseId) => {
-    console.log(studentCaseId);
     dispatch(matchingStudentCase(studentCaseId));
   };
-
-  useEffect(() => {
-    if (success) navigate("/tutorMatching");
-  }, [success]);
 
   return (
     <div>

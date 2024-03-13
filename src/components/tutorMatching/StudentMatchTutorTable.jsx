@@ -1,16 +1,20 @@
 import { Badge, Button, Table } from "antd";
 import React from "react";
+import { useDispatch } from "react-redux";
+import { cancelMatchingTutor } from "../../redux/student/studentAction";
 
-const StudentMatchTutorTable = ({
-  studentMatching,
-  identity,
-  studentCancelMatchingHandler,
-}) => {
+const StudentMatchTutorTable = ({ studentMatching, identity }) => {
+  const dispatch = useDispatch();
   const columns = [
     {
       title: "#",
       dataIndex: "id",
       key: "id",
+    },
+    {
+      title: "導師ID",
+      dataIndex: "tutorId",
+      key: "tutorId",
     },
     {
       title: "學歷等級",
@@ -98,6 +102,7 @@ const StudentMatchTutorTable = ({
 
   const data = studentMatching.map((match, index) => ({
     id: index + 1,
+    tutorId: match.tutorUser.id,
     studentLevelType: match.studentLevelType,
     studentLevel: match.studentLevel,
     tutorMethod: match.tutorMethod,
@@ -135,6 +140,11 @@ const StudentMatchTutorTable = ({
     recordStatus: match.status,
     recordId: match.id,
   }));
+
+  const studentCancelMatchingHandler = (caseId) => {
+    dispatch(cancelMatchingTutor(caseId));
+    window.location.reload();
+  };
 
   return (
     <div className="tutor-map-student-table">

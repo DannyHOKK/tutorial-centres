@@ -22,14 +22,12 @@ const TutorRegister = () => {
   const next = () => {
     setPreviousStep(current);
     setCurrent(current + 1);
-    console.log(userInfo);
   };
 
   const prev = () => {
     if (current > 0) {
       setPreviousStep(current);
       setCurrent(current - 1);
-      console.log(userInfo);
     }
   };
 
@@ -46,7 +44,6 @@ const TutorRegister = () => {
         return !Array.isArray(value) || value.length > 0;
       })
     );
-    console.log(userInfo);
 
     const emptyArray = [];
     let finalResult = { ...filteredData };
@@ -98,7 +95,6 @@ const TutorRegister = () => {
       finalResult = { ...info, examResult };
     }
 
-    console.log(finalResult);
     // AuthService.registerTutor(finalResult);
     dispatch(registerTutorUser(finalResult));
   };

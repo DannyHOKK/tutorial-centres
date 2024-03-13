@@ -162,7 +162,6 @@ const StudentCaseSideFilter = ({ setQueryData }) => {
             defaultValue={1000}
             placeholder="最高"
             onChange={(value) => {
-              console.log(parseInt(value.target.value));
               setQueryData((prev) => ({
                 ...prev,
                 maxSalary: parseInt(value.target.value),

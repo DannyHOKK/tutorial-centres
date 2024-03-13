@@ -29,8 +29,6 @@ const Introduction = ({ userInfo, setUserInfo, current, prev, submitForm }) => {
 
   useEffect(() => {
     if (userInfo.introTitle && userInfo.intro) {
-      console.log(userInfo);
-      console.log("hi");
       submitForm(); // Call submitForm() after userInfo is updated
     }
   }, [userInfo]);

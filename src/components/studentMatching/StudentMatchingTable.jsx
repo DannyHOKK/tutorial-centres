@@ -8,15 +8,9 @@ const StudentMatchingTable = ({
 }) => {
   return (
     <div>
-      {/* <Table
-        columns={columns}
-        dataSource={data}
-        className="tutor-map-student-table"
-      /> */}
       <StudentMatchTutorTable
         studentMatching={studentMatching}
         identity="student"
-        studentCancelMatchingHandler={studentCancelMatchingHandler}
       />
     </div>
   );

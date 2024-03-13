@@ -98,7 +98,6 @@ const TutorListFilter = ({ setFilteData }) => {
             defaultValue={1000}
             placeholder="最高"
             onChange={(value) => {
-              console.log(parseInt(value.target.value));
               setFilteData((prev) => ({
                 ...prev,
                 maxSalary: parseInt(value.target.value),

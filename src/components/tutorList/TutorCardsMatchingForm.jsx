@@ -142,7 +142,7 @@ const TutorCardsMatchingForm = ({
             options={studentLevel}
             onChange={(value) => {
               setStudentLevelType(value);
-              console.log(value);
+
               form.setFieldValue("studentLevel");
             }}
           />
@@ -237,7 +237,11 @@ const TutorCardsMatchingForm = ({
             },
           ]}
         >
-          <Select mode="multiple" options={tutorContentOptions} />
+          <Select
+            mode="multiple"
+            placeholder="請選擇授課內容"
+            options={tutorContentOptions}
+          />
         </Form.Item>
         <Form.Item
           name="salary"
@@ -249,7 +253,7 @@ const TutorCardsMatchingForm = ({
             },
           ]}
         >
-          <Input />
+          <Input placeholder="請輸入時薪" />
         </Form.Item>
 
         <Form.Item

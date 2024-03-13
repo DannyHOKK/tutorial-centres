@@ -135,14 +135,9 @@ const StudentCasePage1 = ({ studentCase, setStudentCase, next, prev }) => {
       await form.validateFields();
       onFinish();
       next();
-    } catch (error) {
-      console.log("Form validation failed:", error);
-    }
+    } catch (error) {}
   };
 
-  useEffect(() => {
-    console.log(studentCase);
-  }, []);
   return (
     <div className="student-case-form">
       <Form
@@ -172,7 +167,7 @@ const StudentCasePage1 = ({ studentCase, setStudentCase, next, prev }) => {
                 studentLevelType: value,
               }));
               // setStudentLevelType(value);
-              console.log(value);
+
               form.setFieldValue("studentLevel");
             }}
           />

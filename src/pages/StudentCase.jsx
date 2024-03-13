@@ -28,7 +28,6 @@ const StudentCase = () => {
 
   const submitCaseHandler = (caseData) => {
     dispatch(createStudentCase(caseData));
-    console.log(caseData);
   };
 
   useEffect(() => {

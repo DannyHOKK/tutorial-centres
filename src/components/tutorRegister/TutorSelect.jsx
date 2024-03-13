@@ -18,12 +18,7 @@ const TutorSelect = ({ subjectType }) => {
         },
       ]}
     >
-      <CheckCard.Group
-        multiple
-        onChange={(value) => {
-          console.log("value", value);
-        }}
-      >
+      <CheckCard.Group multiple>
         {subjectType.map((item, index) => (
           <CheckCard
             key={index}

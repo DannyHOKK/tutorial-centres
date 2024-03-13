@@ -12,19 +12,15 @@ const StudentCaseFilter = ({ setQueryData }) => {
   };
   const handleItemTwoClick = (index) => {
     setActiveItemTwo(index);
-    console.log(activeItem);
   };
   const handleItemThreeClick = (index) => {
     setActiveItemThree(index);
-    console.log(activeItem);
   };
   const handleItemFourClick = (index) => {
     setActiveItemFour(index);
-    console.log(activeItem);
   };
   const handleItemFiveClick = (index) => {
     setActiveItemFive(index);
-    console.log(activeItem);
   };
 
   return (

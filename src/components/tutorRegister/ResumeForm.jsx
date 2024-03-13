@@ -57,8 +57,6 @@ const ResumeForm = ({ userInfo, setUserInfo, current, next, prev }) => {
         values.allist3
       );
 
-      console.log(alResult);
-
       setUserInfo((prevInfo) => ({
         ...prevInfo,
         // alResult: alResult,
@@ -77,8 +75,6 @@ const ResumeForm = ({ userInfo, setUserInfo, current, next, prev }) => {
         subject,
         grade,
       }));
-
-      console.log(convertedDataFormat);
       setUserInfo((prevInfo) => ({
         ...prevInfo,
         alLang: [], // Reset selected values for AL language subjects

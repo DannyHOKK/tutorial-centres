@@ -13,12 +13,7 @@ const RegionAreaSelect = ({ area }) => {
         },
       ]}
     >
-      <CheckCard.Group
-        multiple
-        onChange={(value) => {
-          console.log("value", value);
-        }}
-      >
+      <CheckCard.Group multiple>
         {area.map((item, index) => (
           <CheckCard
             key={index}

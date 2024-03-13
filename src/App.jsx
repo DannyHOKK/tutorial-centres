@@ -41,7 +41,6 @@ function App() {
       userDetails !== undefined &&
       userIdentity.includes("ROLE_STUDENT")
     ) {
-      console.log(userIdentity);
       return "student";
     } else if (
       userDetails !== null &&

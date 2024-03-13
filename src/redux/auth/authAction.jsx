@@ -51,7 +51,7 @@ export const registerStduentUser = createAsyncThunk(
       }
     } catch (error) {
       // return custom error message from backend if present
-      console.log("error");
+
       if (error.response && error.response.data.message) {
         return rejectWithValue(error.response.data.message);
       } else {
@@ -64,7 +64,6 @@ export const registerStduentUser = createAsyncThunk(
 export const loginUser = createAsyncThunk(
   "api/user/login",
   async (credential, { rejectWithValue }) => {
-    console.log("hihi");
     try {
       const response = await axios.post(
         `${backendURL}/api/user/login`,
