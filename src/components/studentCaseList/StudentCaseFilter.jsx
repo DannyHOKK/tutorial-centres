@@ -1,4 +1,24 @@
 import React, { useState } from "react";
+import FilterAltIcon from "@mui/icons-material/FilterAlt";
+import StudentCaseFilterPopUp from "./StudentCaseFilterPopUp";
+import subjectList from "../../staticData/subjectList.json";
+
+const other = subjectList.tutorContent[3].type.map((type) => ({
+  value: type,
+  label: type,
+}));
+const music = subjectList.tutorContent[2].type.map((type) => ({
+  value: type,
+  label: type,
+}));
+const speaking = subjectList.tutorContent[1].type.map((type) => ({
+  value: type,
+  label: type,
+}));
+const tutorial = subjectList.tutorContent[0].type.map((type) => ({
+  value: type,
+  label: type,
+}));
 
 const StudentCaseFilter = ({ setQueryData }) => {
   const [activeItem, setActiveItem] = useState(0);
@@ -6,21 +26,42 @@ const StudentCaseFilter = ({ setQueryData }) => {
   const [activeItemThree, setActiveItemThree] = useState(0);
   const [activeItemFour, setActiveItemFour] = useState(0);
   const [activeItemFive, setActiveItemFive] = useState(0);
+  const [isModalOpen, setIsModalOpen] = useState([false, false, false, false]);
+  const [filterBtn, setFilterBtn] = useState(false);
+
+  const toggleModal = (idx, target) => {
+    setIsModalOpen((p) => {
+      p[idx] = target;
+      return [...p];
+    });
+  };
 
   const handleItemClick = (index) => {
     setActiveItem(index);
+    setFilterBtn(false);
   };
   const handleItemTwoClick = (index) => {
     setActiveItemTwo(index);
+    setFilterBtn(false);
   };
   const handleItemThreeClick = (index) => {
     setActiveItemThree(index);
+    setFilterBtn(false);
   };
   const handleItemFourClick = (index) => {
     setActiveItemFour(index);
+    setFilterBtn(false);
   };
   const handleItemFiveClick = (index) => {
     setActiveItemFive(index);
+    setFilterBtn(false);
+  };
+  const handleFilterBtn = () => {
+    setActiveItemTwo(-1);
+    setActiveItemThree(-1);
+    setActiveItemFour(-1);
+    setActiveItemFive(-1);
+    setFilterBtn(true);
   };
 
   return (
@@ -50,6 +91,7 @@ const StudentCaseFilter = ({ setQueryData }) => {
               setQueryData((prev) => ({
                 ...prev,
                 tutorCategory: "補習",
+                tutorContent: [],
               }));
             }}
             set
@@ -64,6 +106,7 @@ const StudentCaseFilter = ({ setQueryData }) => {
               setQueryData((prev) => ({
                 ...prev,
                 tutorCategory: "會話",
+                tutorContent: [],
               }));
             }}
           >
@@ -77,6 +120,7 @@ const StudentCaseFilter = ({ setQueryData }) => {
               setQueryData((prev) => ({
                 ...prev,
                 tutorCategory: "音樂",
+                tutorContent: [],
               }));
             }}
           >
@@ -90,6 +134,7 @@ const StudentCaseFilter = ({ setQueryData }) => {
               setQueryData((prev) => ({
                 ...prev,
                 tutorCategory: "其他",
+                tutorContent: [],
               }));
             }}
           >
@@ -98,7 +143,7 @@ const StudentCaseFilter = ({ setQueryData }) => {
         </ul>
       </div>
       {activeItem === 1 && (
-        <div>
+        <div className="student-case-filter-items">
           <ul>
             <li
               className={activeItemTwo === 0 ? "active" : ""}
@@ -197,10 +242,24 @@ const StudentCaseFilter = ({ setQueryData }) => {
               化學
             </li>
           </ul>
+          <div
+            onClick={() => toggleModal(0, true)}
+            className={filterBtn === true ? "active" : ""}
+          >
+            <FilterAltIcon />
+          </div>
+          <StudentCaseFilterPopUp
+            toggleModal={toggleModal}
+            isModalOpen={isModalOpen}
+            index={0}
+            info={tutorial}
+            setQueryData={setQueryData}
+            handleFilterBtn={handleFilterBtn}
+          />
         </div>
       )}
       {activeItem === 2 && (
-        <div>
+        <div className="student-case-filter-items">
           <ul>
             <li
               className={activeItemThree === 0 ? "active" : ""}
@@ -288,11 +347,27 @@ const StudentCaseFilter = ({ setQueryData }) => {
               法語
             </li>
           </ul>
+          <div
+            onClick={() => {
+              toggleModal(1, true);
+            }}
+            className={filterBtn === true ? "active" : ""}
+          >
+            <FilterAltIcon />
+          </div>
+          <StudentCaseFilterPopUp
+            toggleModal={toggleModal}
+            isModalOpen={isModalOpen}
+            index={1}
+            info={speaking}
+            setQueryData={setQueryData}
+            handleFilterBtn={handleFilterBtn}
+          />
         </div>
       )}
 
       {activeItem === 3 && (
-        <div>
+        <div className="student-case-filter-items">
           <ul>
             <li
               className={activeItemFour === 0 ? "active" : ""}
@@ -367,10 +442,25 @@ const StudentCaseFilter = ({ setQueryData }) => {
               樂理
             </li>
           </ul>
+
+          <div
+            onClick={() => toggleModal(2, true)}
+            className={filterBtn === true ? "active" : ""}
+          >
+            <FilterAltIcon />
+          </div>
+          <StudentCaseFilterPopUp
+            toggleModal={toggleModal}
+            isModalOpen={isModalOpen}
+            index={2}
+            info={music}
+            setQueryData={setQueryData}
+            handleFilterBtn={handleFilterBtn}
+          />
         </div>
       )}
       {activeItem === 4 && (
-        <div>
+        <div className="student-case-filter-items">
           <ul>
             <li
               className={activeItemFive === 0 ? "active" : ""}
@@ -433,6 +523,21 @@ const StudentCaseFilter = ({ setQueryData }) => {
               珠心算
             </li>
           </ul>
+
+          <div
+            onClick={() => toggleModal(3, true)}
+            className={filterBtn === true ? "active" : ""}
+          >
+            <FilterAltIcon />
+          </div>
+          <StudentCaseFilterPopUp
+            toggleModal={toggleModal}
+            isModalOpen={isModalOpen}
+            index={3}
+            info={other}
+            setQueryData={setQueryData}
+            handleFilterBtn={handleFilterBtn}
+          />
         </div>
       )}
     </div>

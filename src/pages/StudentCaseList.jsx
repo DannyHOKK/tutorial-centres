@@ -20,9 +20,12 @@ const StudentCaseList = () => {
   });
   const dispatch = useDispatch();
   const { loading, studentCaseList } = useSelector((state) => state.student);
-  const { success, error, tutorSuccessMsg } = useSelector(
-    (state) => state.tutor
-  );
+  const {
+    tutorListSuccess,
+    tutorListError,
+    tutorListLoading,
+    tutorSuccessMsg,
+  } = useSelector((state) => state.tutorList);
 
   const openNotification = (status, msg) => {
     if (status === "success") {
@@ -46,13 +49,17 @@ const StudentCaseList = () => {
   };
 
   useEffect(() => {
-    if (success) {
+    if (tutorListSuccess) {
       openNotification("success", tutorSuccessMsg);
+      setTimeout(() => {
+        window.location.reload();
+      }, 800);
     }
-    if (error) {
-      openNotification("error", error);
+    if (tutorListError) {
+      openNotification("error", tutorListError);
     }
-  }, [success, error]);
+    console.log("testing");
+  }, [tutorListSuccess, tutorListError]);
 
   useEffect(() => {
     dispatch(getStudentCaseList(queryData));

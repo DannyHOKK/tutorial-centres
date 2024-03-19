@@ -1,20 +1,82 @@
-import { Badge, Button, Table } from "antd";
-import React from "react";
-import { useDispatch } from "react-redux";
+import { Badge, Button, Table, notification } from "antd";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { cancelMatchingTutor } from "../../redux/student/studentAction";
+import TutorCardsPopUp from "../tutorList/TutorCardsPopUp";
+import {
+  acceptStudentMatching,
+  getTutor,
+  rejectStudentMatching,
+} from "../../redux/tutor/tutorAction";
+import TaskAltIcon from "@mui/icons-material/TaskAlt";
 
-const StudentMatchTutorTable = ({ studentMatching, identity }) => {
+const StudentMatchTutorTable = ({ studentMatching }) => {
   const dispatch = useDispatch();
+  const [isModalOpen, setIsModalOpen] = useState(() =>
+    studentMatching.map((cases) => false)
+  );
+  const { tutorDetails } = useSelector((state) => state.tutor);
+
+  const toggleModal = (idx, target) => {
+    setIsModalOpen((p) => {
+      p[idx] = target;
+      return [...p];
+    });
+  };
+
+  const { studentCaseSuccess, studentCaseError, studentSuccessMsg } =
+    useSelector((state) => state.studentCase);
+
+  useEffect(() => {
+    console.log(studentCaseSuccess);
+    if (studentCaseSuccess) {
+      openNotification("success", studentSuccessMsg);
+      setTimeout(() => {
+        window.location.reload();
+      }, 1000);
+      // navigate("/tutorList");
+    }
+    if (studentCaseError) {
+      openNotification("error", studentCaseError);
+    }
+  }, [studentCaseSuccess, studentCaseError]);
+
+  const openNotification = (status, msg) => {
+    if (status === "success") {
+      notification.open({
+        message: (
+          <>
+            <TaskAltIcon style={{ color: "green" }} />
+            {msg}
+          </>
+        ),
+        top,
+      });
+    }
+    if (status === "error") {
+      notification.open({
+        message: msg,
+        description: "如有需要請聯絡我們",
+        top,
+      });
+    }
+  };
+
+  const rejectStudentMatchingHandler = (studentMatchId) => {
+    dispatch(rejectStudentMatching(studentMatchId));
+    window.location.reload();
+  };
+
+  const acceptStudentMatchingHandler = (studentMatchId) => {
+    dispatch(acceptStudentMatching(studentMatchId));
+    window.location.reload();
+  };
+
   const columns = [
     {
       title: "#",
       dataIndex: "id",
       key: "id",
-    },
-    {
-      title: "導師ID",
-      dataIndex: "tutorId",
-      key: "tutorId",
     },
     {
       title: "學歷等級",
@@ -65,44 +127,36 @@ const StudentMatchTutorTable = ({ studentMatching, identity }) => {
       title: "行動",
       key: "operation",
       render: (text, record) => {
-        if (identity === "student") {
-          if (record.recordStatus === "pending") {
-            return (
+        return (
+          <>
+            {record.recordStatus === "pending" && (
               <>
                 <Button
+                  style={{
+                    backgroundColor: "green",
+                    color: "white",
+                    marginRight: "14px",
+                  }}
+                  onClick={() => acceptStudentMatchingHandler(record.recordId)}
+                >
+                  確認配對
+                </Button>
+                <Button
                   style={{ backgroundColor: "red", color: "white" }}
-                  onClick={() => studentCancelMatchingHandler(record.recordId)}
+                  onClick={() => rejectStudentMatchingHandler(record.recordId)}
                 >
                   取消配對
                 </Button>
               </>
-            );
-          }
-        } else if (identity === "tutor") {
-          return (
-            <>
-              <Button
-                style={{
-                  backgroundColor: "green",
-                  color: "white",
-                  marginRight: "14px",
-                }}
-              >
-                確認配對
-              </Button>
-              <Button style={{ backgroundColor: "red", color: "white" }}>
-                取消配對
-              </Button>
-            </>
-          );
-        }
+            )}
+          </>
+        );
       },
     },
   ];
 
   const data = studentMatching.map((match, index) => ({
     id: index + 1,
-    tutorId: match.tutorUser.id,
     studentLevelType: match.studentLevelType,
     studentLevel: match.studentLevel,
     tutorMethod: match.tutorMethod,
@@ -115,7 +169,7 @@ const StudentMatchTutorTable = ({ studentMatching, identity }) => {
       <>
         {match.status === "pending" && (
           <>
-            <Badge status="processing" text="處理中" />
+            <Badge status="processing" text="待確認" />
           </>
         )}
 
@@ -124,15 +178,15 @@ const StudentMatchTutorTable = ({ studentMatching, identity }) => {
             <Badge status="default" text="已取消" />
           </>
         )}
-        {match.status === "success" && (
+        {match.status === "waitAdmin" && (
           <>
-            <Badge status="success" text="成功配對" />
+            <Badge status="success" text="等待管理員聯絡" />
           </>
         )}
 
         {match.status === "rejected" && (
           <>
-            <Badge status="error" text="被拒絕" />
+            <Badge status="error" text="已拒絕" />
           </>
         )}
       </>
@@ -141,11 +195,6 @@ const StudentMatchTutorTable = ({ studentMatching, identity }) => {
     recordId: match.id,
   }));
 
-  const studentCancelMatchingHandler = (caseId) => {
-    dispatch(cancelMatchingTutor(caseId));
-    window.location.reload();
-  };
-
   return (
     <div className="tutor-map-student-table">
       <Table
@@ -153,6 +202,15 @@ const StudentMatchTutorTable = ({ studentMatching, identity }) => {
         dataSource={data}
         // style={{ minWidth: "1000px" }}
       />
+
+      {studentMatching.map((match, index) => (
+        <TutorCardsPopUp
+          toggleModal={toggleModal}
+          isModalOpen={isModalOpen}
+          index={index}
+          tutor={tutorDetails}
+        />
+      ))}
     </div>
   );
 };

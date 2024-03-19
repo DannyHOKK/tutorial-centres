@@ -8,7 +8,6 @@ const StudentCasePopUp = ({ isModalOpen, toggleModal, index, studentCase }) => {
   const { userToken, userIdentity, userDetails } = useSelector(
     (state) => state.auth
   );
-  const { loading, error, success } = useSelector((state) => state.tutor);
   const [open, setOpen] = useState(false);
   const [login, setLogin] = useState(false);
   const navigate = useNavigate();

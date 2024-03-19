@@ -29,6 +29,7 @@ import TuitionFeeReference from "./pages/TuitionFeeReference";
 import StudentCaseList from "./pages/StudentCaseList";
 import TutorMatching from "./pages/TutorMatching";
 import StudentMatching from "./pages/StudentMatching";
+import StudentOtpVerify from "./components/studentRegister/StudentOtpVerify";
 
 function App() {
   const { userToken, userIdentity, userDetails } = useSelector(
@@ -72,6 +73,11 @@ function App() {
             path="/studentRegister"
             element={userToken ? <Navigate to="/" /> : <StudentRegister />}
           />
+          <Route
+            path="/studentRegister/:userInfo"
+            element={<StudentOtpVerify />}
+          />
+
           <Route
             path="/createStudentCase"
             element={

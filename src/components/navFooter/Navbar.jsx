@@ -123,9 +123,15 @@ const Navbar = () => {
             {checkAuthenticated() ? (
               <li>
                 {checkStudentAuthority() ? (
-                  <a href="/createStudentCase" style={{ marginRight: "20px" }}>
-                    創建補習方案
-                  </a>
+                  <>
+                    <a
+                      href="/createStudentCase"
+                      style={{ marginRight: "20px" }}
+                    >
+                      創建補習方案
+                    </a>
+                    <a href="/studentMatching">配對記錄</a>
+                  </>
                 ) : (
                   <>
                     <a href="/tutorMatching">配對記錄</a>

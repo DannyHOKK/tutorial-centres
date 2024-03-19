@@ -1,71 +1,90 @@
 import { Button, Cascader, Checkbox, Divider, Form, Input, Radio } from "antd";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "../global.css";
 import inputData from "../../staticData/inputData.json";
 import { CheckCard } from "@ant-design/pro-components";
 import { useDispatch } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
+import { sendOtp } from "../../redux/tutor/tutorAction";
+import AuthService from "../api/AuthService";
 
-const StudentRegisterForm = ({ studentRegister }) => {
+const formItemLayout = {
+  labelCol: {
+    xs: {
+      span: 24,
+    },
+    sm: {
+      span: 6,
+    },
+  },
+  wrapperCol: {
+    xs: {
+      span: 24,
+    },
+    sm: {
+      span: 16,
+    },
+  },
+};
+const tailFormItemLayout = {
+  wrapperCol: {
+    xs: {
+      span: 24,
+      offset: 0,
+    },
+    sm: {
+      span: 16,
+      offset: 6,
+    },
+  },
+};
+
+const options = inputData.location.map((location) => ({
+  value: location.region,
+  label: location.region,
+  children: location.area.map((area) => ({
+    value: area,
+    label: area,
+  })),
+}));
+
+const dropdownRender = (menus) => (
+  <div>
+    {menus}
+    <Divider style={{ margin: "0 250px" }} />
+  </div>
+);
+
+const StudentRegisterForm = () => {
   const [form] = Form.useForm();
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const [emailList, setEmailList] = useState([]);
   const onFinish = () => {
     const values = form.getFieldsValue();
     const address = values.fullAddress[1];
     const { confirm, agreement, fullAddress, ...info } = values;
     const studentInfo = { ...info, address };
-    studentRegister(studentInfo);
+    const encodedInfo = encodeURIComponent(JSON.stringify(studentInfo));
+
+    dispatch(sendOtp(studentInfo?.phone));
+    navigate(`/studentRegister/${encodedInfo}`);
   };
 
-  const options = inputData.location.map((location) => ({
-    value: location.region,
-    label: location.region,
-    children: location.area.map((area) => ({
-      value: area,
-      label: area,
-    })),
-  }));
+  useEffect(() => {
+    getEmailListHandler();
+  }, []);
 
-  // const filter = (inputValue, path) =>
-  //   path.some(
-  //     (option) =>
-  //       option.label.toLowerCase().indexOf(inputValue.toLowerCase()) > -1
-  //   );
-
-  const dropdownRender = (menus) => (
-    <div>
-      {menus}
-      <Divider style={{ margin: "0 250px" }} />
-    </div>
-  );
-
-  const formItemLayout = {
-    labelCol: {
-      xs: {
-        span: 24,
-      },
-      sm: {
-        span: 6,
-      },
-    },
-    wrapperCol: {
-      xs: {
-        span: 24,
-      },
-      sm: {
-        span: 16,
-      },
-    },
-  };
-  const tailFormItemLayout = {
-    wrapperCol: {
-      xs: {
-        span: 24,
-        offset: 0,
-      },
-      sm: {
-        span: 16,
-        offset: 6,
-      },
-    },
+  const getEmailListHandler = () => {
+    // const response = await AuthService.getAllEmail();
+    // setEmailList(response.data.data);
+    AuthService.getAllEmail()
+      .then((res) => {
+        setEmailList(res.data.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   const handleSubmit = async () => {
@@ -129,6 +148,14 @@ const StudentRegisterForm = ({ studentRegister }) => {
             required: true,
             message: "請輸入你的電郵",
           },
+          ({ getFieldValue }) => ({
+            validator(_, value) {
+              if (emailList !== undefined && emailList.includes(value)) {
+                return Promise.reject("電郵已經被註冊");
+              }
+              return Promise.resolve();
+            },
+          }),
         ]}
       >
         <Input />

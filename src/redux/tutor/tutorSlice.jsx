@@ -16,7 +16,6 @@ const initialState = {
   loading: false,
   error: null,
   success: false, // for monitoring the registration process.
-  tutorSuccessMsg: null,
 };
 
 const tutorSlice = createSlice({
@@ -51,21 +50,6 @@ const tutorSlice = createSlice({
       .addCase(getTutor.rejected, (state, { payload }) => {
         state.loading = false;
         state.error = payload;
-      })
-      .addCase(matchingStudentCase.pending, (state) => {
-        state.loading = true;
-        state.error = null;
-        state.success = false;
-      })
-      .addCase(matchingStudentCase.fulfilled, (state, { payload }) => {
-        state.loading = false;
-        state.success = true;
-        state.tutorSuccessMsg = payload.msg;
-      })
-      .addCase(matchingStudentCase.rejected, (state, { payload }) => {
-        state.loading = false;
-        state.error = payload;
-        state.success = false;
       })
       .addCase(getMatchingCase.pending, (state) => {
         state.loading = true;

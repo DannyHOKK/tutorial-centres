@@ -12,6 +12,8 @@ import data from "../../staticData/inputData.json";
 import TeachingContent from "./TeachingContent";
 import { motion } from "framer-motion";
 import Introduction from "./Introduction";
+import SmartphoneIcon from "@mui/icons-material/Smartphone";
+import OtpPhoneVerify from "./OtpPhoneVerify";
 
 const RegisterProgressBar = ({
   userInfo,
@@ -35,6 +37,11 @@ const RegisterProgressBar = ({
           next={next}
         />
       ),
+    },
+    {
+      title: "電話驗證",
+      icon: <SmartphoneIcon />,
+      content: <OtpPhoneVerify userInfo={userInfo} next={next} prev={prev} />,
     },
     {
       title: "履歷資料",
@@ -130,6 +137,15 @@ const RegisterProgressBar = ({
         </motion.div>
       )}
 
+      {current === 4 && (
+        <motion.div
+          initial={{ x: delta >= 0 ? "20%" : "-20%", opacity: 0 }}
+          animate={{ x: 0, opacity: 1 }}
+          transition={{ duration: 0.3, ease: "easeInOut" }}
+        >
+          {steps[current].content}
+        </motion.div>
+      )}
       {current < steps.length - 1 && (
         <Button type="primary" onClick={() => next()}>
           Next

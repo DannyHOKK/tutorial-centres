@@ -56,13 +56,13 @@ const speaking = subjectList.tutorContent[1].type.map((type) => ({
   value: type,
   label: type,
 }));
-const tutorCategory = subjectList.tutorContent.map((content) => ({
-  value: content.category,
-  label: content.category,
-}));
 const tutorial = subjectList.tutorContent[0].type.map((type) => ({
   value: type,
   label: type,
+}));
+const tutorCategory = subjectList.tutorContent.map((content) => ({
+  value: content.category,
+  label: content.category,
 }));
 const studentLevel = inputData.studentLevel.map((level) => ({
   label: level.type,

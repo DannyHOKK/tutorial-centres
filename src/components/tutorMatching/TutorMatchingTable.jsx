@@ -140,7 +140,7 @@ const TutorMatchingTable = ({ matchingStudentCaseDetails }) => {
       <>
         {caseDetails.status === "pending" && (
           <>
-            <Badge status="processing" text="處理中" />
+            <Badge status="processing" text="待確認" />
           </>
         )}
 
@@ -151,7 +151,7 @@ const TutorMatchingTable = ({ matchingStudentCaseDetails }) => {
         )}
         {caseDetails.status === "success" && (
           <>
-            <Badge status="success" text="成功配對" />
+            <Badge status="success" text="等待管理員聯絡" />
           </>
         )}
 

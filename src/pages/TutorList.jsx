@@ -10,7 +10,6 @@ import TaskAltIcon from "@mui/icons-material/TaskAlt";
 
 const TutorList = () => {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
   const [filteData, setFilteData] = useState({
     lowestSalary: 100,
     maxSalary: 1000,
@@ -21,20 +20,21 @@ const TutorList = () => {
 
   const { loading, tutorList } = useSelector((state) => state.tutor);
 
-  const { success, error, studentSuccessMsg } = useSelector(
-    (state) => state.student
-  );
+  const { studentCaseSuccess, studentCaseError, studentSuccessMsg } =
+    useSelector((state) => state.studentCase);
 
   useEffect(() => {
-    if (success) {
+    console.log(studentCaseSuccess);
+    if (studentCaseSuccess) {
       openNotification("success", studentSuccessMsg);
-      // window.location.reload();
-      // navigate("/tutorList");
+      setTimeout(() => {
+        window.location.reload();
+      }, 1000);
     }
-    if (error) {
-      openNotification("error", error);
+    if (studentCaseError) {
+      openNotification("error", studentCaseError);
     }
-  }, [success, error]);
+  }, [studentCaseSuccess, studentCaseError]);
 
   const openNotification = (status, msg) => {
     if (status === "success") {

@@ -9,6 +9,7 @@ const StudentCaseTable = ({ studentCaseList }) => {
   );
 
   const toggleModal = (idx, target) => {
+    console.log(idx);
     setIsModalOpen((p) => {
       p[idx] = target;
       return [...p];

@@ -270,6 +270,16 @@
   background-color: rgba(128, 128, 128, 0.159);
   border-radius: 5px;
 }
+.student-case-filter-items {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.student-case-filter-items div {
+  margin-right: 30px;
+  padding: 5px 5px 3px 5px;
+  cursor: pointer;
+}
 .active {
   background-color: rgba(128, 128, 128, 0.68) !important;
   border-radius: 5px;
@@ -380,6 +390,43 @@
   font-size: 13px;
   color: grey;
 }
+
+/* Phone vaildation OTP */
+.otp-container-layout {
+  width: 500px;
+  padding: 30px;
+  margin: auto;
+  border-radius: 10px;
+  -webkit-box-shadow: 10px 10px 47px -28px rgba(0, 0, 0, 1);
+  -moz-box-shadow: 10px 10px 47px -28px rgba(0, 0, 0, 1);
+  box-shadow: 10px 10px 47px -28px rgba(0, 0, 0, 1);
+}
+.otp-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 200px;
+}
+.otp-input {
+  width: 26px;
+  border: none;
+  border-bottom: 3px solid rgba(0, 0, 0, 0.5);
+  margin: 0 10px;
+  text-align: center;
+  font-size: 30px;
+  cursor: not-allowed;
+  cursor: pointer;
+  pointer-events: all;
+}
+.otp-input:focus {
+  border-bottom: 3px solid orange;
+  outline: none;
+}
+
+/* .otp-input:nth-child(1) {
+  cursor: pointer;
+  pointer-events: all;
+} */
 
 @media screen and (max-width: 1080px) {
   .student-case-flex {

@@ -63,17 +63,17 @@ const TutorCards = ({ tutor }) => {
           <span>
             <ImportContactsIcon />{" "}
           </span>
-          <span>
-            {tutor.tutorContent && tutor.tutorContent.replaceAll(",", " / ")}
-          </span>
+          <span>{tutor.tutorContent?.replaceAll(",", " / ")}</span>
         </div>
         <div>
           <span>
             <CastForEducationIcon />
           </span>
           <span>
-            {" "}
-            {tutor.tutorLevel && tutor.tutorLevel.replaceAll(",", " | ")}
+            {tutor.tutorLevel?.replaceAll(",", " | ")}
+            {tutor.tutorMusicLevel?.replaceAll(",", " | ")}
+            {tutor.tutorOtherLevel?.replaceAll(",", " | ")}
+            {tutor.tutorSpeakingLevel?.replaceAll(",", " | ")}
           </span>
         </div>
         <div>

@@ -198,3 +198,136 @@ export const cancelMatchingCase = createAsyncThunk(
     }
   }
 );
+
+export const rejectStudentMatching = createAsyncThunk(
+  "tutor/rejectStudentMatching",
+  async (studentMatchId, { rejectWithValue }) => {
+    try {
+      console.log(studentMatchId);
+      const response = await axios.post(
+        `${backendURL}/tutor/rejectStudentMatching?studentMatchId=` +
+          studentMatchId,
+        "",
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: "Bearer " + localStorage.getItem("userToken"),
+          },
+        }
+      );
+
+      console.log(response);
+
+      if (response.data.code === -1) {
+        return rejectWithValue(response.data.msg);
+      } else {
+        return response.data;
+      }
+    } catch (error) {
+      // return custom error message from backend if present
+      if (error.response && error.response.data.message) {
+        return rejectWithValue(error.response.data.message);
+      } else {
+        return rejectWithValue(error.message);
+      }
+    }
+  }
+);
+
+export const acceptStudentMatching = createAsyncThunk(
+  "tutor/acceptStudentMatching",
+  async (studentMatchId, { rejectWithValue }) => {
+    try {
+      const response = await axios.post(
+        `${backendURL}/tutor/acceptStudentMatching?studentMatchId=` +
+          studentMatchId,
+        "",
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: "Bearer " + localStorage.getItem("userToken"),
+          },
+        }
+      );
+
+      console.log(response);
+
+      if (response.data.code === -1) {
+        return rejectWithValue(response.data.msg);
+      } else {
+        return response.data;
+      }
+    } catch (error) {
+      // return custom error message from backend if present
+      if (error.response && error.response.data.message) {
+        return rejectWithValue(error.response.data.message);
+      } else {
+        return rejectWithValue(error.message);
+      }
+    }
+  }
+);
+
+export const sendOtp = createAsyncThunk(
+  "twilio/auth/sendOtp",
+  async (phone, { rejectWithValue }) => {
+    try {
+      const response = await axios.post(
+        `${backendURL}/twilio/auth/sendOtp?phone=` + phone,
+        "",
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+
+      console.log(response);
+
+      if (response.data.code === -1) {
+        return rejectWithValue(response.data.msg);
+      } else {
+        return response.data;
+      }
+    } catch (error) {
+      // return custom error message from backend if present
+      if (error.response && error.response.data.message) {
+        return rejectWithValue(error.response.data.message);
+      } else {
+        return rejectWithValue(error.message);
+      }
+    }
+  }
+);
+
+export const verifyOtpPhone = createAsyncThunk(
+  "twilio/auth/verifyPhone",
+  async (twilioOtpDTO, { rejectWithValue }) => {
+    try {
+      const response = await axios.post(
+        `${backendURL}/twilio/auth/verifyPhone`,
+        twilioOtpDTO,
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+
+      console.log(response);
+
+      if (response.data.code === -1) {
+        return rejectWithValue(response.data.msg);
+      } else {
+        return response.data;
+      }
+    } catch (error) {
+      // return custom error message from backend if present
+      if (error.response && error.response.data.message) {
+        return rejectWithValue(error.response.data.message);
+      } else {
+        return rejectWithValue(error.message);
+      }
+    }
+  }
+);

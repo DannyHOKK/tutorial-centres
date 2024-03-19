@@ -7,16 +7,57 @@ import {
   getStudentMatching,
 } from "../redux/student/studentAction";
 import StudentCaseRecordTable from "../components/studentMatching/StudentCaseRecordTable";
+import { notification } from "antd";
+import TaskAltIcon from "@mui/icons-material/TaskAlt";
 
 const StudentMatching = () => {
   const dispatch = useDispatch();
   const { loading, error, sucess, studentMatching, studentCaseMatching } =
     useSelector((state) => state.student);
 
+  const { studentCaseSuccess, studentCaseError, studentSuccessMsg } =
+    useSelector((state) => state.studentCase);
+
   useEffect(() => {
     dispatch(getStudentMatching());
     dispatch(getStudentCaseById());
   }, []);
+
+  useEffect(() => {
+    console.log(studentCaseSuccess);
+    if (studentCaseSuccess) {
+      openNotification("success", studentSuccessMsg);
+      setTimeout(() => {
+        window.location.reload();
+      }, 1000);
+      // navigate("/tutorList");
+    }
+    if (studentCaseError) {
+      openNotification("error", studentCaseError);
+    }
+  }, [studentCaseSuccess, studentCaseError]);
+
+  const openNotification = (status, msg) => {
+    if (status === "success") {
+      notification.open({
+        message: (
+          <>
+            <TaskAltIcon style={{ color: "green" }} />
+            {msg}
+          </>
+        ),
+        top,
+      });
+    }
+    if (status === "error") {
+      notification.open({
+        message: msg,
+        description: "如有需要請聯絡我們",
+        top,
+      });
+    }
+  };
+
   return (
     <div className="page-xm page-container">
       <div className="page-header-title">你配對的導師</div>
