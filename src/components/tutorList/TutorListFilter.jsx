@@ -47,6 +47,7 @@ const TutorListFilter = ({ setFilteData }) => {
               tutorContent: value,
             }));
           }}
+          listHeight={500}
           style={{ margin: "15px 0", width: "100%" }}
         />
 
@@ -62,6 +63,7 @@ const TutorListFilter = ({ setFilteData }) => {
               tutorAreas: value,
             }));
           }}
+          listHeight={500}
           style={{ margin: "15px 0", width: "100%" }}
         />
 
@@ -77,6 +79,7 @@ const TutorListFilter = ({ setFilteData }) => {
               tutorLevel: value,
             }));
           }}
+          listHeight={500}
           style={{ margin: "15px 0", width: "100%" }}
         />
         <div>學費：</div>

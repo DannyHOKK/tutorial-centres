@@ -79,7 +79,7 @@ const RegisterForm = ({ userInfo, setUserInfo, current, next }) => {
     Object.keys(filteredData).forEach((key) => {
       setUserInfo((prevInfo) => ({
         ...prevInfo,
-        [key]: values[key],
+        [key]: filteredData[key],
       }));
     });
   };

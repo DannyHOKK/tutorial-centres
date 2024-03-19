@@ -36,6 +36,31 @@
   display: flex;
   list-style: none;
 }
+.nav-link li {
+  margin: 0 5px;
+  font-size: 16px;
+}
+.nav-link li a {
+  text-decoration: none;
+  color: black;
+}
+.nav-link li::after {
+  content: "";
+  margin-top: 2px;
+  height: 2px;
+  width: 0;
+  display: block;
+  background-color: orange;
+}
+.nav-link li:hover::after {
+  content: "";
+  margin-top: 2px;
+  height: 2px;
+  width: 100%;
+  display: block;
+  background-color: orange;
+  transition: 0.5s;
+}
 
 .login {
   border: 1px solid orange;

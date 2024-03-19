@@ -29,7 +29,7 @@ const ResumeForm = ({ userInfo, setUserInfo, current, next, prev }) => {
   const onFinish = () => {
     // get the form data
     const values = form.getFieldsValue();
-
+    console.log(userInfo);
     // filter out the undefined values of form data
     const filteredData = Object.fromEntries(
       Object.entries(values).filter(([_, value]) => value !== undefined)

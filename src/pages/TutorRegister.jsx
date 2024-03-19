@@ -94,7 +94,7 @@ const TutorRegister = () => {
       } = filteredData;
       finalResult = { ...info, examResult };
     }
-
+    console.log(finalResult);
     // AuthService.registerTutor(finalResult);
     dispatch(registerTutorUser(finalResult));
   };
