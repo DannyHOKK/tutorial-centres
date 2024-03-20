@@ -85,32 +85,34 @@ const StudentOtpVerify = () => {
   };
 
   const OtpCodeHandler = () => {
-    setLoading(true);
+    // setLoading(true);
 
-    const twilioOtpDTO = {
-      phone: "67308138",
-      otpCode: otpValue,
-    };
+    // const twilioOtpDTO = {
+    //   phone: "67308138",
+    //   otpCode: otpValue,
+    // };
 
-    // dispatch(verifyOtpPhone(twilioOtpDTO));
-    axios
-      .post("http://localhost:8080/twilio/auth/verifyPhone", twilioOtpDTO, {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      })
-      .then((res) => {
-        console.log(res.data.code);
-        if (res.data.code === 0) {
-          dispatch(registerStduentUser(studentInfo));
-        } else if (res.data.code === -1) {
-          setError(true);
-        }
-        setLoading(false);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    // // dispatch(verifyOtpPhone(twilioOtpDTO));
+    // axios
+    //   .post("http://localhost:8080/twilio/auth/verifyPhone", twilioOtpDTO, {
+    //     headers: {
+    //       "Content-Type": "application/json",
+    //     },
+    //   })
+    //   .then((res) => {
+    //     console.log(res.data.code);
+    //     if (res.data.code === 0) {
+    //       dispatch(registerStduentUser(studentInfo));
+    //     } else if (res.data.code === -1) {
+    //       setError(true);
+    //     }
+    //     setLoading(false);
+    //   })
+    //   .catch((err) => {
+    //     console.log(err);
+    //   });
+
+    dispatch(registerStduentUser(studentInfo));
   };
 
   const resendOtpHandler = () => {
