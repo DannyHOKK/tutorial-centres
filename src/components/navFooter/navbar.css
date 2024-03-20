@@ -22,6 +22,11 @@
 .navbar-container a {
   text-decoration: none;
 }
+
+.nav-active {
+  background-color: orange;
+}
+
 .nav-list-container {
   width: 80%;
   display: flex;
@@ -43,6 +48,7 @@
 .nav-link li a {
   text-decoration: none;
   color: black;
+  padding: 6px 20px;
 }
 .nav-link li::after {
   content: "";
@@ -55,7 +61,8 @@
 .nav-link li:hover::after {
   content: "";
   margin-top: 2px;
-  height: 2px;
+  height: 3px;
+
   width: 100%;
   display: block;
   background-color: orange;

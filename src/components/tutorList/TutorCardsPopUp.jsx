@@ -143,10 +143,10 @@ const TutorCardsPopUp = ({ toggleModal, isModalOpen, index, tutor }) => {
                   </tr>
                 </thead>
                 <tbody>
-                  {tutor.examResult.map((result) => (
+                  {tutor.examResult.split(",").map((result) => (
                     <tr key={result.id}>
-                      <td>{result.subject}</td>
-                      <td>{result.grade}</td>
+                      <td>{result.split(":")[0]}</td>
+                      <td>{result.split(":")[1]}</td>
                     </tr>
                   ))}
                 </tbody>

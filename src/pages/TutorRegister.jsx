@@ -44,58 +44,67 @@ const TutorRegister = () => {
         return !Array.isArray(value) || value.length > 0;
       })
     );
+    filteredData.address = filteredData.address.join(",");
 
     const emptyArray = [];
-    let finalResult = { ...filteredData };
+    let finalResult;
 
+    const convertdData = [];
     if (filteredData.hkOpenExam === "HKDSE") {
-      const convertedDataFormat = Object.entries(userInfo.dseCompulsory).map(
-        ([subject, grade]) => ({
-          subject,
-          grade,
-        })
-      );
+      Object.keys(filteredData?.dseCompulsory).forEach((dse) => {
+        console.log(dse);
+        convertdData.push(`${dse}:${filteredData.dseCompulsory[dse]}`);
+      });
+      filteredData?.dseElective.map((elective) => {
+        convertdData.push(`${elective.subject}:${elective.grade}`);
+      });
 
-      const examResult = emptyArray.concat(
-        convertedDataFormat,
-        userInfo.dseElective
-      );
-
-      const { dseCompulsory, dseElective, agreement, confirm, ...info } =
-        filteredData;
-      finalResult = { ...info, examResult };
+      const { dseCompulsory, dseElective, ...info } = filteredData;
+      const examResult = convertdData.join(",");
+      if (examResult !== "") {
+        finalResult = { ...info, examResult };
+      } else {
+        finalResult = { ...info };
+      }
     } else if (filteredData.hkOpenExam === "HKAL") {
-      const examResult = emptyArray.concat(
+      const alResult = emptyArray.concat(
         userInfo.alLang,
         userInfo.allist,
         userInfo.allist2,
         userInfo.allist3
       );
-      const { alLang, allist, allist2, allist3, agreement, confirm, ...info } =
-        filteredData;
-      finalResult = { ...info, examResult };
+      alResult?.map((al) => {
+        convertdData.push(`${al.subject}:${al.grade}`);
+      });
+      const { alLang, allist, allist2, allist3, ...info } = filteredData;
+      const examResult = convertdData.join(",");
+      if (examResult !== "") {
+        finalResult = { ...info, examResult };
+      } else {
+        finalResult = { ...info };
+      }
     } else if (filteredData.hkOpenExam === "IB") {
-      const examResult = emptyArray.concat(
+      const ibResult = emptyArray.concat(
         userInfo.languages,
         userInfo.ctv,
         userInfo.hss,
         userInfo.science,
         userInfo.mathematics
       );
-      const {
-        languages,
-        ctv,
-        hss,
-        science,
-        mathematics,
-        agreement,
-        confirm,
-        ...info
-      } = filteredData;
-      finalResult = { ...info, examResult };
+      ibResult?.map((ib) => {
+        convertdData.push(`${ib.subject}:${ib.grade}`);
+      });
+
+      const { languages, ctv, hss, science, mathematics, ...info } =
+        filteredData;
+      const examResult = convertdData.join(",");
+      if (examResult !== "") {
+        finalResult = { ...info, examResult };
+      } else {
+        finalResult = { ...info };
+      }
     }
     console.log(finalResult);
-    // AuthService.registerTutor(finalResult);
     dispatch(registerTutorUser(finalResult));
   };
 
