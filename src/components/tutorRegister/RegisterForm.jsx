@@ -72,10 +72,6 @@ const RegisterForm = ({ userInfo, setUserInfo, current, next }) => {
       Object.entries(values).filter(([_, value]) => value !== undefined)
     );
 
-    filteredData.address = filteredData.address.join("/");
-
-    console.log(filteredData);
-
     Object.keys(filteredData).forEach((key) => {
       setUserInfo((prevInfo) => ({
         ...prevInfo,

@@ -4,9 +4,12 @@ import TutorContent from "./TutorContent";
 import TutorLevel from "./TutorLevel";
 import { Button, Form } from "antd";
 import "../global.css";
+import CloseIcon from "@mui/icons-material/Close";
 
 const TeachingContent = ({ userInfo, setUserInfo, current, next, prev }) => {
   const [form] = Form.useForm();
+  const [region, setRegion] = useState([]);
+  const [content, setContent] = useState([]);
   const onFinish = () => {
     const values = form.getFieldsValue();
     const filteredData = Object.fromEntries(
@@ -71,9 +74,51 @@ const TeachingContent = ({ userInfo, setUserInfo, current, next, prev }) => {
     >
       <div className="register-subheader">授課區域</div>
 
-      <RegionSelect />
+      <RegionSelect setRegion={setRegion} />
+      <div style={{ display: "flex", margin: "10px", flexWrap: "wrap" }}>
+        {region && (
+          <>
+            {region.map((item) => (
+              <div className="region-item-show">
+                {item}
+                {/* <CloseIcon
+                  style={{
+                    fontSize: "14px",
+                    marginLeft: "8px",
+                    cursor: "pointer",
+                  }}
+                  onClick={() => {
+                    console.log("hihi");
+                  }}
+                /> */}
+              </div>
+            ))}
+          </>
+        )}
+      </div>
       <div className="register-subheader">授課內容</div>
-      <TutorContent />
+      <TutorContent setContent={setContent} />
+      <div style={{ display: "flex", margin: "10px", flexWrap: "wrap" }}>
+        {content && (
+          <>
+            {content.map((item) => (
+              <div className="region-item-show">
+                {item}
+                {/* <CloseIcon
+                  style={{
+                    fontSize: "14px",
+                    marginLeft: "8px",
+                    cursor: "pointer",
+                  }}
+                  onClick={() => {
+                    console.log("hihi");
+                  }}
+                /> */}
+              </div>
+            ))}
+          </>
+        )}
+      </div>
       <div className="register-subheader">授課程度</div>
       <TutorLevel next={next} prev={prev} />
 

@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import "./navbar.css";
 import { useSelector } from "react-redux";
 import MenuIcon from "@mui/icons-material/Menu";
+import { NavLink } from "react-router-dom";
 
 const Navbar = () => {
   const { userDetails, userToken, userIdentity } = useSelector(
@@ -48,22 +49,34 @@ const Navbar = () => {
           <div className="nav-list-left">
             <ul className="nav-link">
               <li>
-                <a href="/tutorList">星級導師</a>
+                <NavLink activeclassname="nav-active" to="/tutorList">
+                  星級導師
+                </NavLink>
               </li>
               <li>
-                <a href="/studentCaseList">補習個案</a>
+                <NavLink activeclassname="nav-active" to="/studentCaseList">
+                  補習個案
+                </NavLink>
               </li>
               <li>
-                <a href="/tuitionFeeReference">學費參考</a>
+                <NavLink activeclassname="nav-active" to="/tuitionFeeReference">
+                  學費參考
+                </NavLink>
               </li>
               <li>
-                <a href="/tutorFeeReference">導師收費</a>
+                <NavLink activeclassname="nav-active" to="/tutorFeeReference">
+                  導師收費
+                </NavLink>
               </li>
               <li>
-                <a href="/tutorRegister">成為導師</a>
+                <NavLink activeclassname="nav-active" to="/tutorRegister">
+                  成為導師
+                </NavLink>
               </li>
               <li>
-                <a href="/contactUs">聯絡我們</a>
+                <NavLink activeclassname="nav-active" to="/contactUs">
+                  聯絡我們
+                </NavLink>
               </li>
             </ul>
           </div>
