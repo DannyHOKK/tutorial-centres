@@ -3,6 +3,7 @@ import TutorCards from "./TutorCards";
 import TutorCardsPopUp from "./TutorCardsPopUp";
 import { useDispatch, useSelector } from "react-redux";
 import { getTutor } from "../../redux/tutor/tutorAction";
+import { Skeleton } from "antd";
 
 const TutorListTable = ({ loading, tutorList }) => {
   const [isModalOpen, setIsModalOpen] = useState(() =>
@@ -25,25 +26,89 @@ const TutorListTable = ({ loading, tutorList }) => {
   return (
     <div>
       <div className="tutor-list">
-        {tutorList.map((tutor, index) => (
-          <div key={index} className="tutor-list-flex">
-            <div
-              onClick={() => {
-                toggleModal(index, true);
-                tutorDetailsHandler(tutor.id);
-              }}
-            >
-              <TutorCards tutor={tutor} />
-            </div>
+        {loading ? (
+          <>
+            <div className="tutor-list-flex">
+              <div>
+                <div className="tutor-cards">
+                  <Skeleton active avatar paragraph={{ rows: 1 }} />
+                  <div className="tutor-cards-header">
+                    <div className="tutor-cards-header-first"></div>
+                  </div>
 
-            <TutorCardsPopUp
-              toggleModal={toggleModal}
-              isModalOpen={isModalOpen}
-              index={index}
-              tutor={tutorDetails}
-            />
-          </div>
-        ))}
+                  <div className="tutor-cards-details">
+                    <Skeleton active />
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="tutor-list-flex">
+              <div>
+                <div className="tutor-cards">
+                  <Skeleton active avatar paragraph={{ rows: 1 }} />
+                  <div className="tutor-cards-header">
+                    <div className="tutor-cards-header-first"></div>
+                  </div>
+
+                  <div className="tutor-cards-details">
+                    <Skeleton active />
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="tutor-list-flex">
+              <div>
+                <div className="tutor-cards">
+                  <Skeleton active avatar paragraph={{ rows: 1 }} />
+                  <div className="tutor-cards-header">
+                    <div className="tutor-cards-header-first"></div>
+                  </div>
+
+                  <div className="tutor-cards-details">
+                    <Skeleton active />
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="tutor-list-flex">
+              <div>
+                <div className="tutor-cards">
+                  <Skeleton active avatar paragraph={{ rows: 1 }} />
+                  <div className="tutor-cards-header">
+                    <div className="tutor-cards-header-first"></div>
+                  </div>
+
+                  <div className="tutor-cards-details">
+                    <Skeleton active />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </>
+        ) : (
+          <>
+            {" "}
+            {tutorList.map((tutor, index) => (
+              <div key={index} className="tutor-list-flex">
+                <div
+                  onClick={() => {
+                    toggleModal(index, true);
+                    tutorDetailsHandler(tutor.id);
+                  }}
+                >
+                  <TutorCards tutor={tutor} />
+                </div>
+
+                <TutorCardsPopUp
+                  toggleModal={toggleModal}
+                  isModalOpen={isModalOpen}
+                  index={index}
+                  tutor={tutorDetails}
+                />
+              </div>
+            ))}
+          </>
+        )}
       </div>
     </div>
   );

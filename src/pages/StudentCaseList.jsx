@@ -4,7 +4,6 @@ import StudentCaseTable from "../components/studentCaseList/StudentCaseTable";
 import { useDispatch, useSelector } from "react-redux";
 import { getStudentCaseList } from "../redux/student/studentAction";
 import { Spin, notification } from "antd";
-import { LoadingOutlined } from "@ant-design/icons";
 import StudentCaseSideFilter from "../components/studentCaseList/StudentCaseSideFilter";
 import { TaskAltOutlined } from "@mui/icons-material";
 
@@ -68,25 +67,17 @@ const StudentCaseList = () => {
   return (
     <div className="page-xll page-container">
       <div className="page-header-title">補習個案</div>
-      <Spin
-        spinning={loading}
-        fullscreen
-        indicator={
-          <LoadingOutlined
-            style={{
-              fontSize: 24,
-            }}
-            spin
-          />
-        }
-      />
+
       <div className="student-case-separate">
         <div className="student-case-left">
           <StudentCaseSideFilter setQueryData={setQueryData} />
         </div>
         <div className="student-case-right">
           <StudentCaseFilter setQueryData={setQueryData} />
-          <StudentCaseTable studentCaseList={studentCaseList} />
+          <StudentCaseTable
+            studentCaseList={studentCaseList}
+            loading={loading}
+          />
         </div>
       </div>
     </div>
