@@ -64,7 +64,7 @@ const dropdownRender = (menus) => (
 );
 
 const TutorCardsMatchingForm = ({
-  tutor,
+  tutorDetails,
   open,
   setOpen,
   applyConfirmHandler,
@@ -73,7 +73,8 @@ const TutorCardsMatchingForm = ({
   const [form] = Form.useForm();
   const [tutorMethod, setTutorMethod] = useState("");
   const [studentLevelType, setStudentLevelType] = useState("");
-  const tutorContentArray = tutor.tutorContent && tutor.tutorContent.split(",");
+  const tutorContentArray =
+    tutorDetails.tutorContent && tutorDetails.tutorContent.split(",");
   const tutorContentOptions =
     tutorContentArray &&
     tutorContentArray.map((content) => ({
@@ -85,7 +86,7 @@ const TutorCardsMatchingForm = ({
     try {
       await form.validateFields();
       let formData = {
-        tutorId: tutor.id,
+        tutorId: tutorDetails.id,
         studentLevelType: form.getFieldValue("studentLevelType"),
         studentLevel: form.getFieldValue("studentLevel"),
         tutorContent: form.getFieldValue("tutorContent").join(","),
@@ -105,7 +106,7 @@ const TutorCardsMatchingForm = ({
 
   return (
     <Modal
-      title={<div> 申請 {tutor.engName} 導師</div>}
+      title={<div> 申請 {tutorDetails.engName} 導師</div>}
       centered
       open={open}
       onCancel={() => setOpen(false)}

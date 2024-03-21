@@ -9,7 +9,9 @@ const TutorListTable = ({ loading, tutorList }) => {
   const [isModalOpen, setIsModalOpen] = useState(() =>
     tutorList.map((cases) => false)
   );
-  const { error, success, tutorDetails } = useSelector((state) => state.tutor);
+  const { error, success, getTutorLoading, tutorDetails } = useSelector(
+    (state) => state.tutor
+  );
   const dispatch = useDispatch();
 
   const toggleModal = (idx, target) => {
@@ -100,10 +102,11 @@ const TutorListTable = ({ loading, tutorList }) => {
                 </div>
 
                 <TutorCardsPopUp
+                  getTutorLoading={getTutorLoading}
                   toggleModal={toggleModal}
                   isModalOpen={isModalOpen}
                   index={index}
-                  tutor={tutorDetails}
+                  tutorDetails={tutorDetails}
                 />
               </div>
             ))}
