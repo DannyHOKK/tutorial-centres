@@ -5,7 +5,10 @@ import { cancelMatchingTutor } from "../../redux/student/studentAction";
 import TutorCardsPopUp from "../tutorList/TutorCardsPopUp";
 import { getTutor } from "../../redux/tutor/tutorAction";
 import TaskAltIcon from "@mui/icons-material/TaskAlt";
-const StudentMatchingTable = ({ studentMatching }) => {
+const StudentMatchingTable = ({
+  getStudentMatchingLoading,
+  studentMatching,
+}) => {
   const dispatch = useDispatch();
   const [filteredInfo, setFilteredInfo] = useState({});
   const [sortedInfo, setSortedInfo] = useState({});
@@ -172,6 +175,7 @@ const StudentMatchingTable = ({ studentMatching }) => {
   return (
     <div className="tutor-map-student-table">
       <Table
+        loading={getStudentMatchingLoading}
         columns={columns}
         dataSource={data}
         // style={{ minWidth: "1000px" }}

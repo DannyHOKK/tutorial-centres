@@ -12,8 +12,12 @@ import TaskAltIcon from "@mui/icons-material/TaskAlt";
 
 const StudentMatching = () => {
   const dispatch = useDispatch();
-  const { loading, error, sucess, studentMatching, studentCaseMatching } =
-    useSelector((state) => state.student);
+  const {
+    getStudentMatchingLoading,
+    studentMatching,
+    loading,
+    studentCaseMatching,
+  } = useSelector((state) => state.student);
 
   const { studentCaseSuccess, studentCaseError, studentSuccessMsg } =
     useSelector((state) => state.studentCase);
@@ -61,9 +65,15 @@ const StudentMatching = () => {
   return (
     <div className="page-xm page-container">
       <div className="page-header-title">你配對的導師</div>
-      <StudentMatchingTable studentMatching={studentMatching} />
+      <StudentMatchingTable
+        getStudentMatchingLoading={getStudentMatchingLoading}
+        studentMatching={studentMatching}
+      />
       <div className="page-header-title">你的補習個案</div>
-      <StudentCaseRecordTable studentCaseMatching={studentCaseMatching} />
+      <StudentCaseRecordTable
+        loading={loading}
+        studentCaseMatching={studentCaseMatching}
+      />
     </div>
   );
 };

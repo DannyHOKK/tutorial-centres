@@ -8,7 +8,7 @@ import {
   rejectStudentCase,
 } from "../../redux/student/studentAction";
 
-const StudentCaseRecordTable = ({ studentCaseMatching }) => {
+const StudentCaseRecordTable = ({ loading, studentCaseMatching }) => {
   const dispatch = useDispatch();
   const [filteredInfo, setFilteredInfo] = useState({});
   const [sortedInfo, setSortedInfo] = useState({});
@@ -460,6 +460,7 @@ const StudentCaseRecordTable = ({ studentCaseMatching }) => {
   return (
     <div>
       <Table
+        loading={loading}
         columns={columns}
         dataSource={data}
         expandable={{

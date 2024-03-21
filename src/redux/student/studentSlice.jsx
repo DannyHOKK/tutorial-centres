@@ -16,6 +16,9 @@ const initialState = {
   studentCaseList: [],
   studentMatching: [],
   studentCaseMatching: [],
+  getStudentMatchingLoading: false,
+  getStudentMatchingSuccess: false,
+  getStudentMatchingError: null,
 };
 
 const tutorSlice = createSlice({
@@ -64,17 +67,17 @@ const tutorSlice = createSlice({
         state.error = payload;
       })
       .addCase(getStudentMatching.pending, (state) => {
-        state.loading = true;
-        state.error = null;
+        state.getStudentMatchingLoading = true;
+        state.getStudentMatchingError = null;
       })
       .addCase(getStudentMatching.fulfilled, (state, { payload }) => {
-        state.loading = false;
-        state.success = true;
+        state.getStudentMatchingLoading = false;
+        state.getStudentMatchingSuccess = true;
         state.studentMatching = payload.data;
       })
       .addCase(getStudentMatching.rejected, (state, { payload }) => {
-        state.loading = false;
-        state.error = payload;
+        state.getStudentMatchingLoading = false;
+        state.getStudentMatchingError = payload;
       })
       .addCase(cancelMatchingTutor.pending, (state) => {
         state.loading = true;
