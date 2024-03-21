@@ -4,7 +4,7 @@ import { fontSize } from "@mui/system";
 import { useDispatch, useSelector } from "react-redux";
 import { cancelMatchingCase } from "../../redux/tutor/tutorAction";
 
-const TutorMatchingTable = ({ matchingStudentCaseDetails }) => {
+const TutorMatchingTable = ({ loading, matchingStudentCaseDetails }) => {
   const dispatch = useDispatch();
 
   const expandedRowRender = (record) => {
@@ -174,6 +174,7 @@ const TutorMatchingTable = ({ matchingStudentCaseDetails }) => {
   return (
     <div>
       <Table
+        loading={loading}
         columns={columns}
         expandable={{
           expandedRowRender,

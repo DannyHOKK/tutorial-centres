@@ -10,7 +10,7 @@ import {
 } from "../../redux/tutor/tutorAction";
 import TaskAltIcon from "@mui/icons-material/TaskAlt";
 
-const StudentMatchTutorTable = ({ studentMatching }) => {
+const StudentMatchTutorTable = ({ loading, studentMatching }) => {
   const dispatch = useDispatch();
   const [isModalOpen, setIsModalOpen] = useState(() =>
     studentMatching.map((cases) => false)
@@ -198,6 +198,7 @@ const StudentMatchTutorTable = ({ studentMatching }) => {
   return (
     <div className="tutor-map-student-table">
       <Table
+        loading={loading}
         columns={columns}
         dataSource={data}
         // style={{ minWidth: "1000px" }}

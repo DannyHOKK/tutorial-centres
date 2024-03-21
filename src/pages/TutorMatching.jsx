@@ -30,13 +30,17 @@ const TutorMatching = () => {
       <div className="page-header-title">學生個案配對記錄</div>
       <div>
         <TutorMatchingTable
+          loading={loading}
           matchingStudentCaseDetails={matchingStudentCaseDetails}
         />
       </div>
       <br />
       <div className="page-header-title">學生搵你</div>
       <div>
-        <StudentMatchTutorTable studentMatching={studentMatching} />
+        <StudentMatchTutorTable
+          loading={loading}
+          studentMatching={studentMatching}
+        />
       </div>
     </div>
   );
