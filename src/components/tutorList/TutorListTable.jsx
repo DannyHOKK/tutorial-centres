@@ -31,13 +31,13 @@ const TutorListTable = ({ loading, tutorList }) => {
             <div className="tutor-list-flex">
               <div>
                 <div className="tutor-cards">
-                  <Skeleton active avatar paragraph={{ rows: 1 }} />
+                  <Skeleton avatar paragraph={{ rows: 1 }} />
                   <div className="tutor-cards-header">
                     <div className="tutor-cards-header-first"></div>
                   </div>
 
                   <div className="tutor-cards-details">
-                    <Skeleton active />
+                    <Skeleton />
                   </div>
                 </div>
               </div>
@@ -45,13 +45,13 @@ const TutorListTable = ({ loading, tutorList }) => {
             <div className="tutor-list-flex">
               <div>
                 <div className="tutor-cards">
-                  <Skeleton active avatar paragraph={{ rows: 1 }} />
+                  <Skeleton avatar paragraph={{ rows: 1 }} />
                   <div className="tutor-cards-header">
                     <div className="tutor-cards-header-first"></div>
                   </div>
 
                   <div className="tutor-cards-details">
-                    <Skeleton active />
+                    <Skeleton />
                   </div>
                 </div>
               </div>
@@ -59,13 +59,13 @@ const TutorListTable = ({ loading, tutorList }) => {
             <div className="tutor-list-flex">
               <div>
                 <div className="tutor-cards">
-                  <Skeleton active avatar paragraph={{ rows: 1 }} />
+                  <Skeleton avatar paragraph={{ rows: 1 }} />
                   <div className="tutor-cards-header">
                     <div className="tutor-cards-header-first"></div>
                   </div>
 
                   <div className="tutor-cards-details">
-                    <Skeleton active />
+                    <Skeleton />
                   </div>
                 </div>
               </div>
@@ -73,13 +73,13 @@ const TutorListTable = ({ loading, tutorList }) => {
             <div className="tutor-list-flex">
               <div>
                 <div className="tutor-cards">
-                  <Skeleton active avatar paragraph={{ rows: 1 }} />
+                  <Skeleton avatar paragraph={{ rows: 1 }} />
                   <div className="tutor-cards-header">
                     <div className="tutor-cards-header-first"></div>
                   </div>
 
                   <div className="tutor-cards-details">
-                    <Skeleton active />
+                    <Skeleton />
                   </div>
                 </div>
               </div>

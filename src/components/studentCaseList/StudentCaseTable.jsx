@@ -35,7 +35,7 @@ const StudentCaseTable = ({ studentCaseList, loading }) => {
             <div>
               <div className="student-case-card">
                 <div className="student-case-card-header">
-                  <Skeleton active />
+                  <Skeleton />
                 </div>
               </div>
             </div>
@@ -44,7 +44,7 @@ const StudentCaseTable = ({ studentCaseList, loading }) => {
             <div>
               <div className="student-case-card">
                 <div className="student-case-card-header">
-                  <Skeleton active />
+                  <Skeleton />
                 </div>
               </div>
             </div>
@@ -53,7 +53,7 @@ const StudentCaseTable = ({ studentCaseList, loading }) => {
             <div>
               <div className="student-case-card">
                 <div className="student-case-card-header">
-                  <Skeleton active />
+                  <Skeleton />
                 </div>
               </div>
             </div>
@@ -62,7 +62,7 @@ const StudentCaseTable = ({ studentCaseList, loading }) => {
             <div>
               <div className="student-case-card">
                 <div className="student-case-card-header">
-                  <Skeleton active />
+                  <Skeleton />
                 </div>
               </div>
             </div>
