@@ -111,7 +111,7 @@ const TutorCardsPopUp = ({
             <Skeleton.Button />
           ) : (
             <>
-              {userIdentity?.includes("ROLE_TUTOR") && (
+              {!userIdentity?.includes("ROLE_TUTOR") && (
                 <Button
                   className="popup-card-footer-btn"
                   onClick={applyTutorHandler}
