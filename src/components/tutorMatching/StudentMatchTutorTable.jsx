@@ -208,7 +208,7 @@ const StudentMatchTutorTable = ({ studentMatching }) => {
           toggleModal={toggleModal}
           isModalOpen={isModalOpen}
           index={index}
-          tutor={tutorDetails}
+          tutorDetails={tutorDetails}
         />
       ))}
     </div>
