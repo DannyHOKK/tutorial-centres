@@ -15,7 +15,7 @@ const StudentCaseRecordTable = ({ studentCaseMatching }) => {
   const [isModalOpen, setIsModalOpen] = useState(() =>
     studentCaseMatching.map((cases) => false)
   );
-  const { tutorDetails } = useSelector((state) => state.tutor);
+  const { tutorDetails, getTutorLoading } = useSelector((state) => state.tutor);
 
   const handleChange = (pagination, filters, sorter) => {
     // console.log("Various parameters", pagination, filters, sorter);
@@ -473,10 +473,11 @@ const StudentCaseRecordTable = ({ studentCaseMatching }) => {
 
       {studentCaseMatching.map((match, index) => (
         <TutorCardsPopUp
+          getTutorLoading={getTutorLoading}
           toggleModal={toggleModal}
           isModalOpen={isModalOpen}
           index={index}
-          tutor={tutorDetails}
+          tutorDetails={tutorDetails}
         />
       ))}
     </div>

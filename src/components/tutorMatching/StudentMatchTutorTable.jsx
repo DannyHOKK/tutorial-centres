@@ -15,7 +15,7 @@ const StudentMatchTutorTable = ({ studentMatching }) => {
   const [isModalOpen, setIsModalOpen] = useState(() =>
     studentMatching.map((cases) => false)
   );
-  const { tutorDetails } = useSelector((state) => state.tutor);
+  const { tutorDetails, getTutorLoading } = useSelector((state) => state.tutor);
 
   const toggleModal = (idx, target) => {
     setIsModalOpen((p) => {
@@ -205,6 +205,7 @@ const StudentMatchTutorTable = ({ studentMatching }) => {
 
       {studentMatching.map((match, index) => (
         <TutorCardsPopUp
+          getTutorLoading={getTutorLoading}
           toggleModal={toggleModal}
           isModalOpen={isModalOpen}
           index={index}

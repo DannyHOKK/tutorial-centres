@@ -21,6 +21,8 @@ const TutorCardsPopUp = ({
     (state) => state.auth
   );
 
+  console.log(tutorDetails);
+
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [open, setOpen] = useState(false);
