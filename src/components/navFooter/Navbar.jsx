@@ -3,6 +3,8 @@ import "./navbar.css";
 import { useSelector } from "react-redux";
 import MenuIcon from "@mui/icons-material/Menu";
 import { NavLink } from "react-router-dom";
+import TUTOR_ICON from "../../assets/smart_tutor_icon.png";
+import ExitToAppIcon from "@mui/icons-material/ExitToApp";
 
 const Navbar = () => {
   const { userDetails, userToken, userIdentity } = useSelector(
@@ -43,68 +45,116 @@ const Navbar = () => {
     <div className="navbar">
       <div className="navbar-container page-xl">
         <div>
-          <a href="/">Hong Kong Tutorial Centres</a>
+          <a href="/">
+            <img
+              alt="Smart Tutor Centres Icon"
+              src={TUTOR_ICON}
+              width={"150px"}
+            />
+          </a>
         </div>
         <div className="nav-list-container">
           <div className="nav-list-left">
             <ul className="nav-link">
               <li>
-                <NavLink activeclassname="nav-active" to="/tutorList">
+                <NavLink activeclassname="active" to="/tutorList">
                   星級導師
                 </NavLink>
               </li>
               <li>
-                <NavLink activeclassname="nav-active" to="/studentCaseList">
+                <NavLink activeclassname="active" to="/studentCaseList">
                   補習個案
                 </NavLink>
               </li>
               <li>
-                <NavLink activeclassname="nav-active" to="/tuitionFeeReference">
+                <NavLink activeclassname="active" to="/tuitionFeeReference">
                   學費參考
                 </NavLink>
               </li>
               <li>
-                <NavLink activeclassname="nav-active" to="/tutorFeeReference">
+                <NavLink activeclassname="active" to="/tutorFeeReference">
                   導師收費
                 </NavLink>
               </li>
               <li>
-                <NavLink activeclassname="nav-active" to="/tutorRegister">
+                <NavLink activeclassname="active" to="/tutorRegister">
                   成為導師
                 </NavLink>
               </li>
               <li>
-                <NavLink activeclassname="nav-active" to="/contactUs">
+                <NavLink activeclassname="active" to="/contactUs">
                   聯絡我們
                 </NavLink>
               </li>
             </ul>
           </div>
           <div className="nav-list-right">
-            {checkAuthenticated() ? (
-              <div>
-                {checkStudentAuthority() ? (
-                  <>
-                    <a href="/createStudentCase">創建補習個案</a>
-                    <a href="/studentMatching">配對記錄</a>
-                  </>
-                ) : (
-                  <>
-                    <a href="/tutorMatching">配對記錄</a>
-                  </>
-                )}
-                <a type="button" onClick={logoutHandler} className="login">
-                  登出
-                </a>
-              </div>
-            ) : (
-              <div>
-                <a href="/login" className="login">
-                  登入
-                </a>
-                <a href="/studentRegister">學生註冊</a>
-              </div>
-            )}
+            <ul className="nav-link">
+              {checkAuthenticated() ? (
+                <>
+                  {checkStudentAuthority() ? (
+                    <>
+                      <li>
+                        <NavLink
+                          activeclassname="active"
+                          to="/createStudentCase"
+                        >
+                          創建補習個案
+                        </NavLink>
+                      </li>
+                      <li>
+                        <NavLink activeclassname="active" to="/studentMatching">
+                          配對記錄
+                        </NavLink>
+                      </li>
+                    </>
+                  ) : (
+                    <>
+                      <li>
+                        <NavLink
+                          className="nav-button"
+                          activeclassname="active"
+                          to="/tutorMatching"
+                        >
+                          配對記錄
+                        </NavLink>
+                      </li>
+                    </>
+                  )}
+
+                  <li>
+                    <div
+                      type="button"
+                      onClick={logoutHandler}
+                      className="login"
+                    >
+                      <ExitToAppIcon />
+                    </div>
+                  </li>
+                </>
+              ) : (
+                <>
+                  <li>
+                    <NavLink
+                      className="nav-button login"
+                      activeclassname="active"
+                      to="/login"
+                    >
+                      登入
+                    </NavLink>
+                  </li>
+                  <li>
+                    <NavLink
+                      className="nav-button login"
+                      activeclassname="active"
+                      to="/studentRegister"
+                    >
+                      學生註冊
+                    </NavLink>
+                  </li>
+                </>
+              )}
+            </ul>
           </div>
           <div className="toggle-btn" onClick={toggleDropdown}>
             <MenuIcon />
@@ -116,51 +166,90 @@ const Navbar = () => {
         >
           <ul className="nav-link">
             <li>
-              <a href="/tutorList">星級導師</a>
+              <NavLink activeclassname="active" to="/tutorList">
+                星級導師
+              </NavLink>
             </li>
             <li>
-              <a href="/studentCaseList">補習個案</a>
+              <NavLink activeclassname="active" to="/studentCaseList">
+                補習個案
+              </NavLink>
             </li>
             <li>
-              <a href="/tuitionFeeReference">學費參考</a>
+              <NavLink activeclassname="active" to="/tuitionFeeReference">
+                學費參考
+              </NavLink>
             </li>
             <li>
-              <a href="/tutorFeeReference">導師收費</a>
+              <NavLink activeclassname="active" to="/tutorFeeReference">
+                導師收費
+              </NavLink>
             </li>
             <li>
-              <a href="/tutorRegister">成為導師</a>
+              <NavLink activeclassname="active" to="/tutorRegister">
+                成為導師
+              </NavLink>
             </li>
             <li>
-              <a href="/contactUs">聯絡我們</a>
+              <NavLink activeclassname="active" to="/contactUs">
+                聯絡我們
+              </NavLink>
             </li>
             {checkAuthenticated() ? (
-              <li>
+              <>
                 {checkStudentAuthority() ? (
                   <>
-                    <a
-                      href="/createStudentCase"
-                      style={{ marginRight: "20px" }}
-                    >
-                      創建補習方案
-                    </a>
-                    <a href="/studentMatching">配對記錄</a>
+                    <li>
+                      <NavLink
+                        style={{ marginRight: "20px" }}
+                        activeclassname="active"
+                        to="/createStudentCase"
+                      >
+                        創建補習方案
+                      </NavLink>
+                    </li>
+                    <li>
+                      <NavLink activeclassname="active" to="/studentMatching">
+                        配對記錄
+                      </NavLink>
+                    </li>
                   </>
                 ) : (
                   <>
-                    <a href="/tutorMatching">配對記錄</a>
+                    <li>
+                      <NavLink activeclassname="active" to="/tutorMatching">
+                        配對記錄
+                      </NavLink>
+                    </li>
                   </>
                 )}
-                <button type="button" onClick={logoutHandler} className="login">
-                  登出
-                </button>
-              </li>
+                <li>
+                  <div type="button" onClick={logoutHandler} className="login">
+                    <ExitToAppIcon />
+                  </div>
+                </li>
+              </>
             ) : (
-              <li>
-                <a href="/login" className="login">
-                  登入
-                </a>
-                <a href="/studentRegister">學生註冊</a>
-              </li>
+              <>
+                <li>
+                  <NavLink
+                    className="nav-button login"
+                    activeclassname="active"
+                    to="/login"
+                  >
+                    登入
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink
+                    className="nav-button login"
+                    activeclassname="active"
+                    to="/studentRegister"
+                  >
+                    學生註冊
+                  </NavLink>
+                </li>
+              </>
             )}
           </ul>
         </div>

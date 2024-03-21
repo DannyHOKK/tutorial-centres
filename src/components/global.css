@@ -20,6 +20,38 @@
   margin-top: 40px;
 }
 
+/* Home Page */
+.home-six-promise {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: space-evenly;
+  margin: 30px 0;
+  max-width: 1000px;
+}
+.home-six-promise-card {
+  min-width: 250px;
+  background-color: #ffe7c9;
+  padding: 20px;
+  flex: 0 0 30%;
+  margin: 10px 0;
+  border-radius: 20px;
+  display: grid;
+  width: 100%;
+  grid-template-rows: 1fr;
+}
+.home-six-promise-card div:first-child {
+  font-size: 26px;
+  font-weight: 700;
+}
+.home-six-promise-card div:nth-child(3) {
+  font-size: 15px;
+  text-align: center;
+}
+.home-six-promise-card div {
+  margin: 10px auto;
+}
+
 /* Tutor Register Form */
 .register-subheader::before {
   content: "";
