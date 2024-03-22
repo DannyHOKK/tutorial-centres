@@ -1,9 +1,10 @@
 import { Button, Form, Input, Select } from "antd";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import "../global.css";
 
 const Introduction = ({ userInfo, setUserInfo, current, prev, submitForm }) => {
   const [form] = Form.useForm();
+  const [submit, setSubmit] = useState(false);
 
   const handleSubmit = async () => {
     try {
@@ -22,16 +23,18 @@ const Introduction = ({ userInfo, setUserInfo, current, prev, submitForm }) => {
         introTitle: values.introTitle,
         intro: values.intro,
       }));
+      setSubmit(true);
     } catch (error) {
       console.log("Form validation failed:", error);
     }
   };
 
   useEffect(() => {
-    if (userInfo.introTitle && userInfo.intro) {
+    if (submit) {
+      console.log("bug");
       submitForm(); // Call submitForm() after userInfo is updated
     }
-  }, [userInfo]);
+  }, [submit]);
 
   const formItemLayout = {
     labelCol: {
