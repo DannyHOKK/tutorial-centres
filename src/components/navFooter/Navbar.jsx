@@ -12,9 +12,32 @@ const Navbar = () => {
   );
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef(null);
+  const menuRef = useRef(null);
+
+  useEffect(() => {
+    const handleDocumentClick = (event) => {
+      if (
+        menuRef.current &&
+        !menuRef.current.contains(event.target) &&
+        !dropdownRef.current.contains(event.target)
+      ) {
+        setIsOpen(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleDocumentClick);
+
+    return () => {
+      document.removeEventListener("mousedown", handleDocumentClick);
+    };
+  }, [dropdownRef.current]);
 
   const toggleDropdown = () => {
     setIsOpen(!isOpen);
+  };
+
+  const onNavLinkHandler = () => {
+    setIsOpen(false);
   };
 
   const checkAuthenticated = () => {
@@ -26,10 +49,10 @@ const Navbar = () => {
   };
 
   const checkStudentAuthority = () => {
-    console.log(userToken);
+    // console.log(userToken);
     if (userDetails !== null && userIdentity.includes("ROLE_STUDENT")) {
-      console.log(userDetails.authorities);
-      console.log(userToken);
+      // console.log(userDetails.authorities);
+      // console.log(userToken);
       return true;
     } else {
       return false;
@@ -156,7 +179,7 @@ const Navbar = () => {
               )}
             </ul>
           </div>
-          <div className="toggle-btn" onClick={toggleDropdown}>
+          <div ref={menuRef} className="toggle-btn" onClick={toggleDropdown}>
             <MenuIcon />
           </div>
         </div>
@@ -166,32 +189,56 @@ const Navbar = () => {
         >
           <ul className="nav-link">
             <li>
-              <NavLink activeclassname="active" to="/tutorList">
+              <NavLink
+                activeclassname="active"
+                to="/tutorList"
+                onClick={onNavLinkHandler}
+              >
                 星級導師
               </NavLink>
             </li>
             <li>
-              <NavLink activeclassname="active" to="/studentCaseList">
+              <NavLink
+                activeclassname="active"
+                to="/studentCaseList"
+                onClick={onNavLinkHandler}
+              >
                 補習個案
               </NavLink>
             </li>
             <li>
-              <NavLink activeclassname="active" to="/tuitionFeeReference">
+              <NavLink
+                activeclassname="active"
+                to="/tuitionFeeReference"
+                onClick={onNavLinkHandler}
+              >
                 學費參考
               </NavLink>
             </li>
             <li>
-              <NavLink activeclassname="active" to="/tutorFeeReference">
+              <NavLink
+                activeclassname="active"
+                to="/tutorFeeReference"
+                onClick={onNavLinkHandler}
+              >
                 導師收費
               </NavLink>
             </li>
             <li>
-              <NavLink activeclassname="active" to="/tutorRegister">
+              <NavLink
+                activeclassname="active"
+                to="/tutorRegister"
+                onClick={onNavLinkHandler}
+              >
                 成為導師
               </NavLink>
             </li>
             <li>
-              <NavLink activeclassname="active" to="/contactUs">
+              <NavLink
+                activeclassname="active"
+                to="/contactUs"
+                onClick={onNavLinkHandler}
+              >
                 聯絡我們
               </NavLink>
             </li>
@@ -204,12 +251,17 @@ const Navbar = () => {
                         style={{ marginRight: "20px" }}
                         activeclassname="active"
                         to="/createStudentCase"
+                        onClick={onNavLinkHandler}
                       >
                         創建補習方案
                       </NavLink>
                     </li>
                     <li>
-                      <NavLink activeclassname="active" to="/studentMatching">
+                      <NavLink
+                        activeclassname="active"
+                        to="/studentMatching"
+                        onClick={onNavLinkHandler}
+                      >
                         配對記錄
                       </NavLink>
                     </li>
@@ -217,7 +269,11 @@ const Navbar = () => {
                 ) : (
                   <>
                     <li>
-                      <NavLink activeclassname="active" to="/tutorMatching">
+                      <NavLink
+                        activeclassname="active"
+                        to="/tutorMatching"
+                        onClick={onNavLinkHandler}
+                      >
                         配對記錄
                       </NavLink>
                     </li>
@@ -236,6 +292,7 @@ const Navbar = () => {
                     className="nav-button login"
                     activeclassname="active"
                     to="/login"
+                    onClick={onNavLinkHandler}
                   >
                     登入
                   </NavLink>
@@ -245,6 +302,7 @@ const Navbar = () => {
                     className="nav-button login"
                     activeclassname="active"
                     to="/studentRegister"
+                    onClick={onNavLinkHandler}
                   >
                     學生註冊
                   </NavLink>

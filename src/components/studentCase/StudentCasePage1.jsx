@@ -140,6 +140,7 @@ const StudentCasePage1 = ({ studentCase, setStudentCase, next, prev }) => {
 
   return (
     <div className="student-case-form">
+      <div className="student-case-form-header">填寫學生資料</div>
       <Form
         {...formItemLayout}
         form={form}

@@ -30,6 +30,7 @@ import StudentCaseList from "./pages/StudentCaseList";
 import TutorMatching from "./pages/TutorMatching";
 import StudentMatching from "./pages/StudentMatching";
 import StudentOtpVerify from "./components/studentRegister/StudentOtpVerify";
+import TermsAndConditions from "./pages/TermsAndConditions";
 
 function App() {
   const { userToken, userIdentity, userDetails } = useSelector(
@@ -116,6 +117,7 @@ function App() {
             path="/tuitionFeeReference"
             element={<TuitionFeeReference />}
           />
+          <Route path="/termsAndConditions" element={<TermsAndConditions />} />
         </Routes>
 
         {/* <FloatButton

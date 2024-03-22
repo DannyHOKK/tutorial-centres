@@ -2,21 +2,28 @@ import React from "react";
 import HomeSixPromise from "../components/home/HomeSixPromise";
 import HOME_STUDENT_STEPS from "../assets/home_student_steps.png";
 import HOME_STUDENT_STEPS_1000 from "../assets/home_student_steps_1000px.png";
-import HOME_STUDENT_STEPS_400 from "../assets/home_student_steps_400px.png";
+import HOME_BANNER from "../assets/home_banner.png";
+import HOME_BANNER_400 from "../assets/home_banner_400px.png";
 import { Button } from "antd";
 import { useNavigate } from "react-router-dom";
 
 const Home = () => {
   const navigate = useNavigate();
   return (
-    <div>
+    <div className="page-container">
       <div
         style={{
           textAlign: "center",
         }}
       >
-        <br />
-        <h1>補聰補習平台</h1>
+        <picture>
+          <source media="(max-width: 460px)" srcSet={HOME_BANNER_400} />
+          <img
+            alt="Smart Tutor Centres Introduction 補聰中心Banner"
+            src={HOME_BANNER}
+            style={{ width: "100%" }}
+          />
+        </picture>
         <br />
         <picture>
           <source
@@ -50,7 +57,7 @@ const Home = () => {
           </Button>
         </div>
       </div>
-      <div className="page-container page-xm home-container">
+      <div className="page-xm home-container">
         <br />
         <br />
         <HomeSixPromise />

@@ -43,23 +43,57 @@ const StudentCasePage3 = ({
 
   return (
     <div className="student-case-form">
+      <div className="student-case-form-header">確認補習個案資料</div>
       <div className="student-case-confrim">
-        <div>確認補習個案資料</div>
-        <div>學生就讀的類別: {studentCase.studentLevelType}</div>
-        <div>
-          {studentCase.studentLevelType}: {studentCase.studentLevel}
-        </div>
-        <div>學生就讀的類別: {studentCase.tutorCategory}</div>
-        <div>
-          {studentCase.tutorCategory}: {studentCase.tutorContent}
-        </div>
-        <div> 性別: {studentCase.gender}</div>
-        <div> 上課方式: {studentCase.tutorMethod}</div>
-        {studentCase.tutorMethod === "視像補習" ? <></> : <></>}
-        <div> 導師要求: {studentCase.tutorRequest}</div>
-        <div> 每星期堂數: {studentCase.lessonPerWeek}</div>
-        <div> 每堂時間（小時）: {studentCase.lessonDuration}</div>
+        <div>學生就讀的類別</div>
+        <div> {studentCase.studentLevelType}</div>
+        <div>{studentCase.studentLevelType}</div>
+        <div> {studentCase.studentLevel}</div>
+        <div>學生就讀的類別</div>
+        <div> {studentCase.tutorCategory}</div>
+        <div>{studentCase.tutorCategory}</div>
+        <div> {studentCase.tutorContent}</div>
+        <div> 性別</div>
+        <div> {studentCase.gender}</div>
+        <div> 上課方式</div>
+        <div> {studentCase.tutorMethod}</div>
+        {studentCase.tutorMethod !== "視像補習" && (
+          <>
+            <div>地區</div>
+            <div>{studentCase.address}</div>
+            <div>詳細地址</div>
+            <div>{studentCase.detailsAddress}</div>
+          </>
+        )}
+        {studentCase.tutorRemark && (
+          <>
+            <div> 其他要求</div>
+            <div> {studentCase.tutorRemark}</div>
+          </>
+        )}
 
+        <div> 導師要求</div>
+        <div> {studentCase.tutorRequest}</div>
+        <div> 每星期堂數</div>
+        <div> {studentCase.lessonPerWeek}</div>
+        <div> 每堂時間</div>
+        <div> {studentCase.lessonDuration}</div>
+        {studentCase.timeslot && (
+          <>
+            <div>時間表</div>
+            <div>
+              {studentCase.timeslot.map((slot) => (
+                <>
+                  {console.log(slot.week + ": " + slot.time)}
+                  {slot.week}: {slot.time}
+                  <br />
+                </>
+              ))}
+            </div>
+          </>
+        )}
+      </div>
+      <div style={{ textAlign: "center" }}>
         <Button
           style={{
             margin: "0 8px",

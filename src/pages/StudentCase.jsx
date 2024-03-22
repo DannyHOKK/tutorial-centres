@@ -10,7 +10,9 @@ const StudentCase = () => {
   const [current, setCurrent] = useState(0);
   const [previousStep, setPreviousStep] = useState(0);
   const [studentCase, setStudentCase] = useState({});
-  const { error, success, loading } = useSelector((state) => state.student);
+  const { error, createStudentCaseSuccess, loading } = useSelector(
+    (state) => state.student
+  );
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -28,11 +30,12 @@ const StudentCase = () => {
 
   const submitCaseHandler = (caseData) => {
     dispatch(createStudentCase(caseData));
+    navigate("/");
   };
 
-  useEffect(() => {
-    if (success) navigate("/");
-  }, [success]);
+  // useEffect(() => {
+  //   if (createStudentCaseSuccess) navigate("/");
+  // }, [createStudentCaseSuccess]);
 
   return (
     <div className="page-container page-xs">

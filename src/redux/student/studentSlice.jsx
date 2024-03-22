@@ -19,6 +19,9 @@ const initialState = {
   getStudentMatchingLoading: false,
   getStudentMatchingSuccess: false,
   getStudentMatchingError: null,
+  createStudentCaseLoading: false,
+  createStudentCaseSuccess: false,
+  createStudentCaseError: null,
 };
 
 const tutorSlice = createSlice({
@@ -28,16 +31,16 @@ const tutorSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(createStudentCase.pending, (state) => {
-        state.loading = true;
-        state.error = null;
+        state.createStudentCaseLoading = true;
+        state.createStudentCaseError = null;
       })
       .addCase(createStudentCase.fulfilled, (state, { payload }) => {
-        state.loading = false;
-        state.success = true;
+        state.createStudentCaseLoading = false;
+        state.createStudentCaseSuccess = true;
       })
       .addCase(createStudentCase.rejected, (state, { payload }) => {
-        state.loading = false;
-        state.error = payload;
+        state.createStudentCaseLoading = false;
+        state.createStudentCaseError = payload;
       })
       .addCase(getStudentCaseList.pending, (state) => {
         state.loading = true;

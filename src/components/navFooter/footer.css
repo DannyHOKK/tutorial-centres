@@ -22,6 +22,8 @@
 .footer-container a {
   padding: 0 15px;
   margin: 10px 0;
+  text-decoration: none;
+  color: black;
 }
 
 .copyright {

@@ -31,12 +31,12 @@ const TutorRegister = () => {
     }
   };
 
-  useEffect(() => {
-    // redirect user to login page if registration was successful
-    if (success) navigate("/login");
-    // redirect authenticated user to profile screen
-    // if (userInfo) navigate('/user-profile')
-  }, [navigate, userInfo, success]);
+  // useEffect(() => {
+  //   // redirect user to login page if registration was successful
+  //   if (success) navigate("/login");
+  //   // redirect authenticated user to profile screen
+  //   // if (userInfo) navigate('/user-profile')
+  // }, [userInfo, success]);
 
   const submitForm = () => {
     const filteredData = Object.fromEntries(
@@ -44,7 +44,7 @@ const TutorRegister = () => {
         return !Array.isArray(value) || value.length > 0;
       })
     );
-    filteredData.address = filteredData.address.join(",");
+    filteredData.address = filteredData.address?.join(",");
 
     const emptyArray = [];
     let finalResult;
@@ -60,7 +60,7 @@ const TutorRegister = () => {
       });
 
       const { dseCompulsory, dseElective, ...info } = filteredData;
-      const examResult = convertdData.join(",");
+      const examResult = convertdData?.join(",");
       if (examResult !== "") {
         finalResult = { ...info, examResult };
       } else {
@@ -77,7 +77,7 @@ const TutorRegister = () => {
         convertdData.push(`${al.subject}:${al.grade}`);
       });
       const { alLang, allist, allist2, allist3, ...info } = filteredData;
-      const examResult = convertdData.join(",");
+      const examResult = convertdData?.join(",");
       if (examResult !== "") {
         finalResult = { ...info, examResult };
       } else {
@@ -97,7 +97,7 @@ const TutorRegister = () => {
 
       const { languages, ctv, hss, science, mathematics, ...info } =
         filteredData;
-      const examResult = convertdData.join(",");
+      const examResult = convertdData?.join(",");
       if (examResult !== "") {
         finalResult = { ...info, examResult };
       } else {

@@ -96,6 +96,7 @@ const StudentCasePage2 = ({ studentCase, setStudentCase, next, prev }) => {
         [key]: filteredData[key],
       }));
     });
+    console.log(filteredData);
     next();
   };
 
@@ -105,6 +106,7 @@ const StudentCasePage2 = ({ studentCase, setStudentCase, next, prev }) => {
 
   return (
     <div className="student-case-form">
+      <div className="student-case-form-header">填寫岩岩導師資料</div>
       <Form
         {...formItemLayout}
         form={form}
