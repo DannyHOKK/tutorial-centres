@@ -471,6 +471,13 @@
   pointer-events: all;
 } */
 
+/* Student Info Record */
+.student-info-list {
+  padding: 10px 30px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+}
+
 @media screen and (max-width: 1080px) {
   .student-case-flex {
     flex: 0 0 100%;
