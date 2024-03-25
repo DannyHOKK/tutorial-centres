@@ -57,7 +57,7 @@ const options = inputData.location.map((location) => ({
 const dropdownRender = (menus) => (
   <div>
     {menus}
-    <Divider style={{ margin: "0 250px" }} />
+    <Divider style={{ margin: "0 160px" }} />
   </div>
 );
 
@@ -193,7 +193,6 @@ const RegisterForm = ({ userInfo, setUserInfo, current, next }) => {
         <Form.Item
           name="engName"
           label="英文名稱"
-          tooltip="提示：必須與身份証上資料相同"
           rules={[
             {
               required: true,
@@ -213,7 +212,6 @@ const RegisterForm = ({ userInfo, setUserInfo, current, next }) => {
         <Form.Item
           name="chineseName"
           label="中文名稱"
-          tooltip="提示：必須與身份証上資料相同"
           rules={[
             {
               required: true,

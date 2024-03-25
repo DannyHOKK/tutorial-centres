@@ -19,7 +19,6 @@ const StudentMatchingTable = ({
 
   const handleChange = (pagination, filters, sorter) => {
     // console.log("Various parameters", pagination, filters, sorter);
-    console.log(sorter);
     setFilteredInfo(filters);
     setSortedInfo(sorter);
   };
@@ -115,7 +114,6 @@ const StudentMatchingTable = ({
       ellipsis: true,
       render: (status) => (
         <>
-          {console.log(status)}
           {status === "pending" && <Badge status="processing" text="處理中" />}
 
           {status === "cancel" && <Badge status="default" text="已取消" />}

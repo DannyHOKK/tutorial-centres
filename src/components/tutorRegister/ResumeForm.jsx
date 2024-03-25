@@ -26,6 +26,14 @@ const ResumeForm = ({ userInfo, setUserInfo, current, next, prev }) => {
     userInfo.hkOpenExam ? userInfo.hkOpenExam : ""
   );
 
+  useEffect(() => {
+    scrollToTop();
+  }, []);
+
+  const scrollToTop = () => {
+    window.scrollTo(0, 0);
+  };
+
   const onFinish = () => {
     // get the form data
     const values = form.getFieldsValue();

@@ -9,7 +9,9 @@ import VERIFICATION_ICON from "../../assets/verification_icon.png";
 const HomeSixPromise = () => {
   return (
     <>
-      <h2>登記 SMART TUTOR 補習平台的 "六大承諾"</h2>
+      <h2 style={{ textAlign: "center" }}>
+        登記 SMART TUTOR 補習平台的 "六大優勢"
+      </h2>
       <div className="home-six-promise">
         <div className="home-six-promise-card">
           <div>自助網上配合平台</div>

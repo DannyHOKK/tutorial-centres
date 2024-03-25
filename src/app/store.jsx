@@ -5,6 +5,7 @@ import tutorOtpReducer from "../redux/tutor/tutorOtpSlice";
 import tutorListReducer from "../redux/tutor/tutorListSlice";
 import studentReducer from "../redux/student/studentSlice";
 import studentCaseReducer from "../redux/student/studentCaseSlice";
+import studentInfoReducer from "../redux/student/studentInfoSlice";
 import { authApi } from "../redux/auth/authService";
 
 const store = configureStore({
@@ -15,6 +16,7 @@ const store = configureStore({
     studentCase: studentCaseReducer,
     tutorList: tutorListReducer,
     tutorOtp: tutorOtpReducer,
+    studentInfo: studentInfoReducer,
     // [authApi.reducerPath]: authApi.reducer,
   },
   middleware: (getDefaultMiddleware) =>

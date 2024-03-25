@@ -24,6 +24,9 @@ const initialState = {
   userIdentity,
   error: null,
   success: false, // for monitoring the registration process.
+  loginError: null,
+  loginSuccess: false,
+  loginLoading: false,
 };
 
 const authSlice = createSlice({
@@ -65,12 +68,12 @@ const authSlice = createSlice({
         state.error = payload;
       })
       .addCase(loginUser.pending, (state) => {
-        state.loading = true;
-        state.error = null;
+        state.loginLoading = true;
+        state.loginError = null;
       })
       .addCase(loginUser.fulfilled, (state, { payload }) => {
-        state.loading = false;
-        state.success = true;
+        state.loginLoading = false;
+        state.loginSuccess = true;
         state.userDetails = {
           id: payload.data.id,
           email: payload.data.email,
@@ -84,9 +87,10 @@ const authSlice = createSlice({
         );
       })
       .addCase(loginUser.rejected, (state, { payload }) => {
-        state.loading = false;
-        state.error = payload;
+        state.loginLoading = false;
+        state.loginError = payload;
         console.log("rejected");
+        console.log(payload);
       });
   },
 });

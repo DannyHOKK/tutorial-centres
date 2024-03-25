@@ -59,7 +59,7 @@ const adultLevel = inputData.studentLevel[4].level.map((level) => ({
 const dropdownRender = (menus) => (
   <div>
     {menus}
-    <Divider style={{ margin: "0 250px" }} />
+    <Divider style={{ margin: "0 160px" }} />
   </div>
 );
 

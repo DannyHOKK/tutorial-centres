@@ -12,6 +12,7 @@ const TutorListTable = ({ loading, tutorList }) => {
   const { error, success, getTutorLoading, tutorDetails } = useSelector(
     (state) => state.tutor
   );
+  const { userIdentity } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
 
   const toggleModal = (idx, target) => {
@@ -107,6 +108,7 @@ const TutorListTable = ({ loading, tutorList }) => {
                   isModalOpen={isModalOpen}
                   index={index}
                   tutorDetails={tutorDetails}
+                  userIdentity={userIdentity}
                 />
               </div>
             ))}

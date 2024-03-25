@@ -10,6 +10,15 @@ const TeachingContent = ({ userInfo, setUserInfo, current, next, prev }) => {
   const [form] = Form.useForm();
   const [region, setRegion] = useState([]);
   const [content, setContent] = useState([]);
+
+  useEffect(() => {
+    scrollToTop();
+  }, []);
+
+  const scrollToTop = () => {
+    window.scrollTo(0, 0);
+  };
+
   const onFinish = () => {
     const values = form.getFieldsValue();
     const filteredData = Object.fromEntries(

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { Fragment, useState } from "react";
 
 import "./App.css";
 import Navbar from "./components/navFooter/Navbar";
@@ -31,6 +31,7 @@ import TutorMatching from "./pages/TutorMatching";
 import StudentMatching from "./pages/StudentMatching";
 import StudentOtpVerify from "./components/studentRegister/StudentOtpVerify";
 import TermsAndConditions from "./pages/TermsAndConditions";
+import ScrollToTop from "./components/common/ScrollToTop";
 
 function App() {
   const { userToken, userIdentity, userDetails } = useSelector(
@@ -58,6 +59,7 @@ function App() {
   return (
     <>
       <Router>
+        <ScrollToTop />
         <Navbar />
         <Routes>
           <Route path="/user" element={<PrivateRoute />}></Route>

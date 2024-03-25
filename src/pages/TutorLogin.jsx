@@ -6,19 +6,19 @@ import { loginUser } from "../redux/auth/authAction";
 import { useNavigate } from "react-router-dom";
 
 const TutorLogin = () => {
-  const { loading, userDetails, error, success } = useSelector(
+  const { loading, userDetails, loginError, loginSuccess } = useSelector(
     (state) => state.auth
   );
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const loginHandler = (studentInfo) => {
     dispatch(loginUser(studentInfo));
-    if (success) navigate("/");
+    if (loginSuccess) navigate("/");
   };
 
   return (
-    <div className="login-container page-container page-xll">
-      <h2>導師登入或登記</h2>
+    <div className="page-container page-xs">
+      <div className="page-header-title">導師/學生登入</div>
       <LoginForm loginHandler={loginHandler} />
     </div>
   );

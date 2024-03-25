@@ -262,3 +262,33 @@ export const acceptStudentCase = createAsyncThunk(
     }
   }
 );
+
+export const getStudentById = createAsyncThunk(
+  "api/student/getStudentById",
+  async (tutorMatchCaseId, { rejectWithValue }) => {
+    try {
+      const response = await axios.get(
+        `${backendURL}/api/student/getStudentById`,
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: "Bearer " + localStorage.getItem("userToken"),
+          },
+        }
+      );
+
+      if (response.data.code === -1) {
+        return rejectWithValue(response.data.msg);
+      } else {
+        return response.data;
+      }
+    } catch (error) {
+      // return custom error message from backend if present
+      if (error.response && error.response.data.message) {
+        return rejectWithValue(error.response.data.message);
+      } else {
+        return rejectWithValue(error.message);
+      }
+    }
+  }
+);

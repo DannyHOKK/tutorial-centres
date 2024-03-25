@@ -15,7 +15,7 @@ import { useDispatch, useSelector } from "react-redux";
 const dropdownRender = (menus) => (
   <div>
     {menus}
-    <Divider style={{ margin: "0 200px" }} />
+    <Divider style={{ margin: "0 140px" }} />
   </div>
 );
 

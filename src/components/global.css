@@ -116,7 +116,7 @@
 
 /* Tutor Card  */
 .tutor-cards {
-  min-width: 400px;
+  min-width: 300px;
   min-height: 300px;
   padding: 20px 30px;
   background-color: white;
@@ -197,36 +197,20 @@
 /* Tutor Fee Page */
 .tutor-fee-header {
   margin-top: 30px;
+  line-height: 2;
 }
 
-.tutor-fee-table {
-  width: 100%;
-  border-collapse: collapse;
+.price-header-title {
+  padding: 20px;
+  font-size: 20px;
+  font-weight: 900;
 }
-
-.tutor-fee-table thead tr th {
-  border: 1px solid black;
-  padding: 10px 50px;
-}
-.tutor-fee-table tbody tr td {
-  border: 1px solid black;
-  padding: 10px 20px;
-}
-
-/* tuition fee table */
-
-.p-s-school-table {
-  width: 100%;
-  border-collapse: collapse;
-}
-.p-s-school-table thead tr th,
-.p-s-school-table tbody tr td {
-  border: 1px solid black;
-  padding: 10px;
-}
-
-.p-s-school-table tbody tr:nth-child(2n) {
-  background-color: rgb(205, 182, 226);
+.price-header-title::before {
+  content: "";
+  border-color: blue;
+  border-style: solid;
+  border-width: 0 4px 1px 0;
+  margin-right: 10px;
 }
 
 /* Student Case Form Style */
@@ -317,6 +301,7 @@
 .student-case-filter ul {
   display: flex;
   list-style: none;
+  width: 100%;
   padding: 7px;
 }
 .student-case-filter ul li {
@@ -334,7 +319,7 @@
   align-items: center;
 }
 .student-case-filter-items div {
-  margin-right: 30px;
+  /* margin-right: 30px; */
   padding: 5px 5px 3px 5px;
   cursor: pointer;
 }
@@ -529,6 +514,19 @@
 
   .student-case-confrim {
     grid-template-columns: 100px 200px;
+  }
+
+  .student-case-filter-items {
+    width: 100%;
+    flex-direction: column;
+  }
+
+  .css-dev-only-do-not-override-zl9ks2.ant-form
+    .ant-col-xs-24.ant-form-item-label {
+    padding: 0;
+    margin: 0;
+    white-space: initial;
+    text-align: start;
   }
 
   /* Tutor Card */

@@ -3,12 +3,14 @@ import StudentMatchingTable from "../components/studentMatching/StudentMatchingT
 import { useDispatch, useSelector } from "react-redux";
 import {
   cancelMatchingTutor,
+  getStudentById,
   getStudentCaseById,
   getStudentMatching,
 } from "../redux/student/studentAction";
 import StudentCaseRecordTable from "../components/studentMatching/StudentCaseRecordTable";
 import { notification } from "antd";
 import TaskAltIcon from "@mui/icons-material/TaskAlt";
+import StudentInfo from "../components/studentMatching/StudentInfo";
 
 const StudentMatching = () => {
   const dispatch = useDispatch();
@@ -18,6 +20,7 @@ const StudentMatching = () => {
     loading,
     studentCaseMatching,
   } = useSelector((state) => state.student);
+  const { studentDetails } = useSelector((state) => state.studentInfo);
 
   const { studentCaseSuccess, studentCaseError, studentSuccessMsg } =
     useSelector((state) => state.studentCase);
@@ -25,6 +28,7 @@ const StudentMatching = () => {
   useEffect(() => {
     dispatch(getStudentMatching());
     dispatch(getStudentCaseById());
+    dispatch(getStudentById());
   }, []);
 
   useEffect(() => {
@@ -64,6 +68,8 @@ const StudentMatching = () => {
 
   return (
     <div className="page-xm page-container">
+      <div className="page-header-title">個人資料</div>
+      <StudentInfo studentDetails={studentDetails} />
       <div className="page-header-title">你配對的導師</div>
       <StudentMatchingTable
         getStudentMatchingLoading={getStudentMatchingLoading}

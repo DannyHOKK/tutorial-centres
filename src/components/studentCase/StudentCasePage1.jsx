@@ -126,7 +126,7 @@ const StudentCasePage1 = ({ studentCase, setStudentCase, next, prev }) => {
   const dropdownRender = (menus) => (
     <div>
       {menus}
-      <Divider style={{ margin: "0 250px" }} />
+      <Divider style={{ margin: "0 160px" }} />
     </div>
   );
 

@@ -137,50 +137,6 @@ const StudentCaseRecordTable = ({ loading, studentCaseMatching }) => {
       },
     ];
 
-    // const data = Object.values(
-    //   studentCaseMatching.reduce((acc, curr) => {
-    //     const { caseId, ...rest } = curr;
-    //     if (acc[caseId]) {
-    //       acc[caseId] = [
-    //         ...acc[caseId],
-    //         {
-    //           key: caseId,
-
-    //           engName: rest.engName,
-    //           tutorGender: rest.tutorGender,
-    //           currentJob: rest.currentJob,
-    //           workExperience: rest.workExperience,
-    //           university: rest.university,
-    //           universityMajor: rest.universityMajor,
-    //           currentEducationLevel: rest.currentEducationLevel,
-    //           caseStatus: rest.caseStatus,
-    //           caseCreateDate:
-    //             rest.caseCreateDate && rest.caseCreateDate.split(" ")[0],
-    //         },
-    //       ];
-    //     } else {
-    //       acc[caseId] = [
-    //         {
-    //           key: caseId,
-
-    //           engName: rest.engName,
-    //           tutorGender: rest.tutorGender,
-    //           currentJob: rest.currentJob,
-    //           workExperience: rest.workExperience,
-    //           university: rest.university,
-    //           universityMajor: rest.universityMajor,
-    //           currentEducationLevel: rest.currentEducationLevel,
-    //           caseStatus: rest.caseStatus,
-    //           caseCreateDate:
-    //             rest.caseCreateDate && rest.caseCreateDate.split(" ")[0],
-    //         },
-    //       ];
-    //     }
-    //     console.log(acc);
-    //     return acc;
-    //   }, {})
-    // );
-
     let tempCaseId;
     const data = {};
     studentCaseMatching.forEach((cases, index) => {

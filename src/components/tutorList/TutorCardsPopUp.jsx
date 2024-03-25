@@ -16,30 +16,17 @@ const TutorCardsPopUp = ({
   isModalOpen,
   index,
   tutorDetails,
+  userIdentity,
 }) => {
-  const { userToken, userIdentity, userDetails } = useSelector(
-    (state) => state.auth
-  );
-
-  console.log(tutorDetails);
-
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [open, setOpen] = useState(false);
   const [login, setLogin] = useState(false);
 
   const applyTutorHandler = () => {
-    if (
-      userDetails !== null &&
-      userDetails !== undefined &&
-      userIdentity.includes("ROLE_STUDENT")
-    ) {
+    if (userIdentity?.includes("ROLE_STUDENT")) {
       setOpen(true);
-    } else if (
-      userDetails !== null &&
-      userDetails !== undefined &&
-      userIdentity.includes("ROLE_TUTOR")
-    ) {
+    } else if (userIdentity?.includes("ROLE_TUTOR")) {
     } else {
       setLogin(true);
     }
