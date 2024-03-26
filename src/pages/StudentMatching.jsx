@@ -20,15 +20,17 @@ const StudentMatching = () => {
     loading,
     studentCaseMatching,
   } = useSelector((state) => state.student);
-  const { studentDetails } = useSelector((state) => state.studentInfo);
+  const { getStudentLoading, studentDetails } = useSelector(
+    (state) => state.studentInfo
+  );
 
   const { studentCaseSuccess, studentCaseError, studentSuccessMsg } =
     useSelector((state) => state.studentCase);
 
   useEffect(() => {
+    dispatch(getStudentById());
     dispatch(getStudentMatching());
     dispatch(getStudentCaseById());
-    dispatch(getStudentById());
   }, []);
 
   useEffect(() => {
@@ -69,7 +71,10 @@ const StudentMatching = () => {
   return (
     <div className="page-xm page-container">
       <div className="page-header-title">個人資料</div>
-      <StudentInfo studentDetails={studentDetails} />
+      <StudentInfo
+        getStudentLoading={getStudentLoading}
+        studentDetails={studentDetails}
+      />
       <div className="page-header-title">你配對的導師</div>
       <StudentMatchingTable
         getStudentMatchingLoading={getStudentMatchingLoading}

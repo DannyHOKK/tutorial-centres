@@ -7,6 +7,7 @@ import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { sendOtp } from "../../redux/tutor/tutorAction";
 import AuthService from "../api/AuthService";
+import StudentOtpVerify from "./StudentOtpVerify";
 
 const formItemLayout = {
   labelCol: {
@@ -65,10 +66,11 @@ const StudentRegisterForm = () => {
     const address = values.fullAddress[1];
     const { confirm, agreement, fullAddress, ...info } = values;
     const studentInfo = { ...info, address };
-    const encodedInfo = encodeURIComponent(JSON.stringify(studentInfo));
+    // const encodedInfo = encodeURI(JSON.stringify(studentInfo));
 
     dispatch(sendOtp(studentInfo?.phone));
-    navigate(`/studentRegister/${encodedInfo}`);
+    // navigate(`/studentRegister/${encodedInfo}`);
+    navigate(`/studentRegister/otpVerify`, { state: { studentInfo } });
   };
 
   useEffect(() => {
@@ -297,7 +299,10 @@ const StudentRegisterForm = () => {
         {...tailFormItemLayout}
       >
         <Checkbox>
-          我已查閱並同意 <a href="">條款</a>
+          我已查閱並同意{" "}
+          <a href="/termsAndConditions" target="_blank">
+            條款
+          </a>
         </Checkbox>
       </Form.Item>
       <Form.Item {...tailFormItemLayout} className="form-button">

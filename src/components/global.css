@@ -472,10 +472,28 @@
 } */
 
 /* Student Info Record */
+
+.user-info-card {
+  padding: 30px;
+  margin: 15px;
+  line-height: 2.5;
+  background-color: white;
+  border: 1px solid rgba(199, 199, 199, 0.3);
+  border-radius: 6px;
+  box-shadow: 0 1px 10px 4px rgba(245, 245, 247, 0.6);
+}
+.user-info-card div > span:first-child {
+  color: grey;
+  /* text-align: right; */
+}
 .student-info-list {
-  padding: 10px 30px;
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(3, 1fr);
+  column-gap: 20px;
+}
+.student-info-list div {
+  display: grid;
+  grid-template-columns: 125px 1fr;
 }
 
 @media screen and (max-width: 1080px) {
@@ -484,6 +502,10 @@
   }
   .tutor-list-flex {
     flex: 0 0 100%;
+  }
+  .student-info-list {
+    grid-template-columns: 1fr 1fr;
+    column-gap: 40px;
   }
 }
 
@@ -561,5 +583,9 @@
   }
   .student-case-card {
     height: auto;
+  }
+
+  .student-info-list {
+    grid-template-columns: 1fr;
   }
 }

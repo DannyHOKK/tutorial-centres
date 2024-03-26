@@ -4,18 +4,20 @@ import { sendOtp, verifyOtpPhone } from "../../redux/tutor/tutorAction";
 import { Button } from "antd";
 import axios from "axios";
 import useCountDown from "../common/useCountDown";
-import { useNavigate, useParams } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { registerStduentUser } from "../../redux/auth/authAction";
 
 const StudentOtpVerify = () => {
   const dispatch = useDispatch();
+  const location = useLocation();
   const [otpValue, setOtpValue] = useState("");
   const [error, setError] = useState(false);
   const [loading, setLoading] = useState(false);
   const { secondsLeft, start } = useCountDown();
   const inputsRef = useRef([]);
-  const { userInfo } = useParams();
-  const studentInfo = JSON.parse(userInfo);
+  // const { userInfo } = useParams();
+  // const studentInfo = decodeURI(userInfo);
+  const studentInfo = location.state.studentInfo;
   const { success } = useSelector((state) => state.auth);
   const navigate = useNavigate();
   useEffect(() => {

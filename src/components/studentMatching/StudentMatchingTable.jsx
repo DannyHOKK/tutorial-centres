@@ -13,7 +13,7 @@ const StudentMatchingTable = ({
   const [filteredInfo, setFilteredInfo] = useState({});
   const [sortedInfo, setSortedInfo] = useState({});
   const [isModalOpen, setIsModalOpen] = useState(() =>
-    studentMatching.map((cases) => false)
+    studentMatching?.map((cases) => false)
   );
   const { tutorDetails, getTutorLoading } = useSelector((state) => state.tutor);
 
@@ -145,7 +145,7 @@ const StudentMatchingTable = ({
     },
   ];
 
-  const data = studentMatching.map((match, index) => ({
+  const data = studentMatching?.map((match, index) => ({
     id: index + 1,
     engName: (
       <a
@@ -180,7 +180,7 @@ const StudentMatchingTable = ({
         onChange={handleChange}
       />
 
-      {studentMatching.map((match, index) => (
+      {studentMatching?.map((match, index) => (
         <TutorCardsPopUp
           getTutorLoading={getTutorLoading}
           toggleModal={toggleModal}

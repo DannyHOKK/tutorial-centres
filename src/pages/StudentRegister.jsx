@@ -1,8 +1,6 @@
 import React from "react";
 import StudentRegisterForm from "../components/studentRegister/StudentRegisterForm";
 import { useDispatch, useSelector } from "react-redux";
-import { registerStduentUser } from "../redux/auth/authAction";
-import StudentOtpVerify from "../components/studentRegister/StudentOtpVerify";
 
 const StudentRegister = () => {
   const { loading, userDetails, error, success } = useSelector(

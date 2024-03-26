@@ -32,6 +32,7 @@ import StudentMatching from "./pages/StudentMatching";
 import StudentOtpVerify from "./components/studentRegister/StudentOtpVerify";
 import TermsAndConditions from "./pages/TermsAndConditions";
 import ScrollToTop from "./components/common/ScrollToTop";
+import TutorInfoEdit from "./components/tutorMatching/TutorInfoEdit";
 
 function App() {
   const { userToken, userIdentity, userDetails } = useSelector(
@@ -77,7 +78,7 @@ function App() {
             element={userToken ? <Navigate to="/" /> : <StudentRegister />}
           />
           <Route
-            path="/studentRegister/:userInfo"
+            path="/studentRegister/otpVerify"
             element={<StudentOtpVerify />}
           />
 
@@ -96,6 +97,17 @@ function App() {
             element={
               checkAuthority() === "tutor" ? (
                 <TutorMatching />
+              ) : (
+                <Navigate to="/" />
+              )
+            }
+          />
+
+          <Route
+            path="/tutorMatching/edit"
+            element={
+              checkAuthority() === "tutor" ? (
+                <TutorInfoEdit />
               ) : (
                 <Navigate to="/" />
               )

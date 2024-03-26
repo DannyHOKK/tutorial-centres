@@ -316,7 +316,10 @@ const RegisterForm = ({ userInfo, setUserInfo, current, next }) => {
           {...tailFormItemLayout}
         >
           <Checkbox>
-            我已查閱並同意 <a href="">條款</a>
+            我已查閱並同意
+            <a href="/tutorFeeReference" target="_blank">
+              條款
+            </a>
           </Checkbox>
         </Form.Item>
         <Form.Item {...tailFormItemLayout} className="form-button">
