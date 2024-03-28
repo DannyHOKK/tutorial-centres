@@ -3,11 +3,11 @@ import TutorCards from "./TutorCards";
 import TutorCardsPopUp from "./TutorCardsPopUp";
 import { useDispatch, useSelector } from "react-redux";
 import { getTutor } from "../../redux/tutor/tutorAction";
-import { Skeleton } from "antd";
+import { Pagination, Skeleton } from "antd";
 
-const TutorListTable = ({ loading, tutorList }) => {
-  const [isModalOpen, setIsModalOpen] = useState(() =>
-    tutorList.map((cases) => false)
+const TutorListTable = ({ loading, tutorList, setFilteData }) => {
+  const [isModalOpen, setIsModalOpen] = useState(
+    tutorList.list?.map(() => false) || []
   );
   const { error, success, getTutorLoading, tutorDetails } = useSelector(
     (state) => state.tutor
@@ -90,8 +90,7 @@ const TutorListTable = ({ loading, tutorList }) => {
           </>
         ) : (
           <>
-            {" "}
-            {tutorList.map((tutor, index) => (
+            {tutorList.list?.map((tutor, index) => (
               <div key={index} className="tutor-list-flex">
                 <div
                   onClick={() => {
@@ -114,6 +113,20 @@ const TutorListTable = ({ loading, tutorList }) => {
             ))}
           </>
         )}
+      </div>
+      <div style={{ textAlign: "center", margin: "40px 0 0 0" }}>
+        <Pagination
+          total={tutorList.pagination?.total}
+          current={tutorList.pagination?.currentPage}
+          pageSize={10}
+          onChange={(page) => {
+            setFilteData((prev) => ({
+              ...prev,
+              currentPage: page,
+            }));
+            window.scrollTo(0, 0);
+          }}
+        />
       </div>
     </div>
   );

@@ -16,6 +16,8 @@ const StudentCaseList = () => {
     tutorCategory: "",
     tutorContent: [],
     tutorGender: "",
+    currentPage: 1,
+    pageSize: 10,
   });
   const dispatch = useDispatch();
   const { loading, studentCaseList } = useSelector((state) => state.student);
@@ -77,6 +79,7 @@ const StudentCaseList = () => {
           <StudentCaseTable
             studentCaseList={studentCaseList}
             loading={loading}
+            setQueryData={setQueryData}
           />
         </div>
       </div>

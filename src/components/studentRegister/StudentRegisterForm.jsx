@@ -63,7 +63,7 @@ const StudentRegisterForm = () => {
   const [emailList, setEmailList] = useState([]);
   const onFinish = () => {
     const values = form.getFieldsValue();
-    const address = values.fullAddress[1];
+    const address = values.fullAddress.join("/");
     const { confirm, agreement, fullAddress, ...info } = values;
     const studentInfo = { ...info, address };
     // const encodedInfo = encodeURI(JSON.stringify(studentInfo));

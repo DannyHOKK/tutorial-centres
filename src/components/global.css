@@ -200,12 +200,12 @@
   line-height: 2;
 }
 
-.price-header-title {
+.second-header-title {
   padding: 20px;
   font-size: 20px;
   font-weight: 900;
 }
-.price-header-title::before {
+.second-header-title::before {
   content: "";
   border-color: blue;
   border-style: solid;
@@ -493,7 +493,7 @@
 }
 .student-info-list div {
   display: grid;
-  grid-template-columns: 125px 1fr;
+  grid-template-columns: 100px 1fr;
 }
 
 @media screen and (max-width: 1080px) {

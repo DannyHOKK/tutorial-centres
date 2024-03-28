@@ -6,7 +6,7 @@ import EMAIL_ICON from "../assets/email_icon.png";
 const ContactUs = () => {
   return (
     <div className="page-container page-xm">
-      <div className="page-header-title">聯絡補聰 Smart Tutor </div>
+      <div className="page-header-title">聯絡易補 Smart Tutor </div>
       <div
         style={{
           textAlign: "center",
@@ -18,7 +18,7 @@ const ContactUs = () => {
         <br />
         <a href="#" style={{ textDecoration: "none", color: "black" }}>
           <img
-            alt="Contact Us Smart Tutor Centres Whatsapp 聯絡我們補聰中心"
+            alt="Contact Us Smart Tutor Centres Whatsapp 聯絡我們易補中心"
             src={WHATSAPP_ICON}
             style={{ width: "80px" }}
           />
@@ -33,7 +33,7 @@ const ContactUs = () => {
         <br />
         <a href="#" style={{ textDecoration: "none", color: "black" }}>
           <img
-            alt="Contact Us Smart Tutor Centres Whatsapp 聯絡我們補聰中心"
+            alt="Contact Us Smart Tutor Centres Whatsapp 聯絡我們易補中心"
             src={OFFICE_ICON}
             style={{ width: "80px" }}
           />
@@ -46,7 +46,7 @@ const ContactUs = () => {
         <br />{" "}
         <a href="#" style={{ textDecoration: "none", color: "black" }}>
           <img
-            alt="Contact Us Smart Tutor Centres Whatsapp 聯絡我們補聰中心"
+            alt="Contact Us Smart Tutor Centres Whatsapp 聯絡我們易補中心"
             src={EMAIL_ICON}
             style={{ width: "100px" }}
           />

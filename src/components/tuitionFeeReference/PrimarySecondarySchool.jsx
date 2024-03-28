@@ -105,7 +105,7 @@ const PrimarySecondarySchool = () => {
       <div className="page-header-title">學費參考價目</div>
       <br />
       <br />
-      <div className="price-header-title">中小學學費</div>
+      <div className="second-header-title">中小學學費</div>
       <Table
         dataSource={primarySecondaryPriceData}
         columns={primarySecondaryPriceColumns}
@@ -115,7 +115,7 @@ const PrimarySecondarySchool = () => {
       <br />
 
       <br />
-      <div className="price-header-title">語言教學學費</div>
+      <div className="second-header-title">語言教學學費</div>
       <Table
         dataSource={languagePriceData}
         columns={languagePriceColumns}
@@ -124,7 +124,7 @@ const PrimarySecondarySchool = () => {
 
       <br />
       <br />
-      <div className="price-header-title">
+      <div className="second-header-title">
         教授公開考試學費（IELTS、TOFEL、LCCI、MCSE、OCACLE等）
       </div>
       <Table
@@ -135,7 +135,7 @@ const PrimarySecondarySchool = () => {
       <br />
 
       <br />
-      <div className="price-header-title">
+      <div className="second-header-title">
         樂器教授（鋼琴、小提琴、結他及其他中西樂器）
       </div>
       <Table

@@ -33,6 +33,7 @@ import StudentOtpVerify from "./components/studentRegister/StudentOtpVerify";
 import TermsAndConditions from "./pages/TermsAndConditions";
 import ScrollToTop from "./components/common/ScrollToTop";
 import TutorInfoEdit from "./components/tutorMatching/TutorInfoEdit";
+import StudentInfoEdit from "./components/studentMatching/StudentInfoEdit";
 
 function App() {
   const { userToken, userIdentity, userDetails } = useSelector(
@@ -118,6 +119,16 @@ function App() {
             element={
               checkAuthority() === "student" ? (
                 <StudentMatching />
+              ) : (
+                <Navigate to="/" />
+              )
+            }
+          />
+          <Route
+            path="/studentMatching/edit"
+            element={
+              checkAuthority() === "student" ? (
+                <StudentInfoEdit />
               ) : (
                 <Navigate to="/" />
               )

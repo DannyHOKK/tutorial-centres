@@ -292,3 +292,35 @@ export const getStudentById = createAsyncThunk(
     }
   }
 );
+
+export const modifyStudentDetails = createAsyncThunk(
+  "api/student/modifyStudentDetails",
+  async (updateStudentDetails, { rejectWithValue }) => {
+    console.log(updateStudentDetails);
+    try {
+      const response = await axios.post(
+        `${backendURL}/api/student/modifyStudentDetails`,
+        updateStudentDetails,
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: "Bearer " + localStorage.getItem("userToken"),
+          },
+        }
+      );
+
+      if (response.data.code === -1) {
+        return rejectWithValue(response.data.msg);
+      } else {
+        return response.data;
+      }
+    } catch (error) {
+      // return custom error message from backend if present
+      if (error.response && error.response.data.message) {
+        return rejectWithValue(error.response.data.message);
+      } else {
+        return rejectWithValue(error.message);
+      }
+    }
+  }
+);

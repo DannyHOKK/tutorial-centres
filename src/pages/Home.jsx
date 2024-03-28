@@ -19,7 +19,7 @@ const Home = () => {
         <picture>
           <source media="(max-width: 460px)" srcSet={HOME_BANNER_400} />
           <img
-            alt="Smart Tutor Centres Introduction 補聰中心Banner"
+            alt="Smart Tutor Centres Introduction 易補中心Banner"
             src={HOME_BANNER}
             style={{ width: "100%" }}
           />

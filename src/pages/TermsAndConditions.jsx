@@ -36,8 +36,6 @@ const TermsAndConditions = () => {
         <br />
         <br />
         <div className="page-header-title">個人資料收集聲明</div>
-        <br />
-        <br />
         你提供的資料將會用作處理你的咨詢或服務申請。我們不會把你的資料和身份向任何第三者透露。你有權要求查閱或修改有關你在我們紀錄裡的資料；在任何情況下，如果你希望查閱或修改你在我們紀錄裡的個人資料，請寄電郵件至
         smarttutor@gmail.com
         <br />

@@ -1,9 +1,15 @@
 import { LoadingOutlined } from "@ant-design/icons";
 import { Button, Divider, Spin } from "antd";
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 const StudentInfo = ({ getStudentLoading, studentDetails }) => {
-  console.log(studentDetails);
+  const navigate = useNavigate();
+
+  const editHandler = () => {
+    navigate("/studentMatching/edit", { state: { studentDetails } });
+  };
+
   return (
     <div className="user-info-card">
       {getStudentLoading ? (
@@ -30,7 +36,9 @@ const StudentInfo = ({ getStudentLoading, studentDetails }) => {
               <span>學生編號：</span>
               <span>{studentDetails?.id}</span>
             </div>
-            <Button type="primary">編輯個人資料</Button>
+            <Button type="primary" onClick={editHandler}>
+              編輯個人資料
+            </Button>
           </div>
           <div>
             <span>創建日期：</span>

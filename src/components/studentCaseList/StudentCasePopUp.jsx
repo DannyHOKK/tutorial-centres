@@ -70,6 +70,7 @@ const StudentCasePopUp = ({ isModalOpen, toggleModal, index, studentCase }) => {
           </>
         }
         width={900}
+        centered
       >
         <br />
         <br />
@@ -148,22 +149,31 @@ const StudentCasePopUp = ({ isModalOpen, toggleModal, index, studentCase }) => {
           </div>
         </div>
         <br />
-        <br />
-        {/* {studentCase.timeslot && (
+        {studentCase.tutorRemark && (
+          <div style={{ display: "flex", padding: "20px 25px" }}>
+            <span style={{ color: "grey" }}>其他要求：</span>
+            <span style={{ marginLeft: "14px", fontWeight: "700" }}>
+              {studentCase.tutorRemark}
+            </span>
+          </div>
+        )}
+
+        {studentCase.timeslot && (
           <>
             <Divider />
-            <div style={{ margin: "20px" }}>
-              <span> 時間表：</span>
-              <span>{studentCase.timeslot}</span>
+            <div style={{ margin: "20px", display: "flex" }}>
+              <span style={{ color: "green" }}> 補習時間表：</span>
+              <span>
+                {studentCase?.timeslot?.split(",")?.map((slot) => (
+                  <>
+                    {slot?.replaceAll(":", "：")}
+                    <br />
+                  </>
+                ))}
+              </span>
             </div>
           </>
-        )} */}
-
-        <Divider />
-        <div style={{ margin: "20px" }}>
-          <span> 時間表：</span>
-          <span>{studentCase.timeslot}</span>
-        </div>
+        )}
       </Modal>
 
       <Modal

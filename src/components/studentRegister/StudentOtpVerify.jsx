@@ -6,6 +6,7 @@ import axios from "axios";
 import useCountDown from "../common/useCountDown";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { registerStduentUser } from "../../redux/auth/authAction";
+import AuthService from "../api/AuthService";
 
 const StudentOtpVerify = () => {
   const dispatch = useDispatch();
@@ -86,35 +87,31 @@ const StudentOtpVerify = () => {
     ));
   };
 
-  const OtpCodeHandler = () => {
-    // setLoading(true);
+  const OtpCodeHandler = async () => {
+    setLoading(true);
 
-    // const twilioOtpDTO = {
-    //   phone: "67308138",
-    //   otpCode: otpValue,
-    // };
+    const twilioOtpDTO = {
+      phone: studentInfo?.phone,
+      otpCode: otpValue,
+    };
 
-    // // dispatch(verifyOtpPhone(twilioOtpDTO));
-    // axios
-    //   .post("http://localhost:8080/twilio/auth/verifyPhone", twilioOtpDTO, {
-    //     headers: {
-    //       "Content-Type": "application/json",
-    //     },
-    //   })
-    //   .then((res) => {
-    //     console.log(res.data.code);
-    //     if (res.data.code === 0) {
-    //       dispatch(registerStduentUser(studentInfo));
-    //     } else if (res.data.code === -1) {
-    //       setError(true);
-    //     }
-    //     setLoading(false);
-    //   })
-    //   .catch((err) => {
-    //     console.log(err);
-    //   });
+    await AuthService.verifyOtpPhone(twilioOtpDTO)
+      .then((res) => {
+        console.log(res.data.code);
+        if (res.data.code === 0) {
+          dispatch(registerStduentUser(studentInfo));
+        } else if (res.data.code === -1) {
+          setError(true);
+        }
+        setLoading(false);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
 
-    dispatch(registerStduentUser(studentInfo));
+    // dispatch(verifyOtpPhone(twilioOtpDTO));
+
+    // dispatch(registerStduentUser(studentInfo));
   };
 
   const resendOtpHandler = () => {

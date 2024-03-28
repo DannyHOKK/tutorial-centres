@@ -1,11 +1,14 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { getStudentById } from "./studentAction";
+import { getStudentById, modifyStudentDetails } from "./studentAction";
 
 const initialState = {
   getStudentLoading: false,
   getStudentError: null,
   getStudentSuccess: false, // for monitoring the registration process.
   studentDetails: null,
+  modifyLoading: false,
+  modifySuccess: false,
+  modifyError: null,
 };
 
 const studentInfoSlice = createSlice({
@@ -26,6 +29,18 @@ const studentInfoSlice = createSlice({
       .addCase(getStudentById.rejected, (state, { payload }) => {
         state.getStudentLoading = false;
         state.getStudentError = payload;
+      })
+      .addCase(modifyStudentDetails.pending, (state) => {
+        state.modifyLoading = true;
+        state.modifyError = null;
+      })
+      .addCase(modifyStudentDetails.fulfilled, (state, { payload }) => {
+        state.modifyLoading = false;
+        state.modifySuccess = true;
+      })
+      .addCase(modifyStudentDetails.rejected, (state, { payload }) => {
+        state.modifyLoading = false;
+        state.modifyError = payload;
       });
   },
 });

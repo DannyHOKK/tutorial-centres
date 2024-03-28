@@ -5,6 +5,7 @@ import { Button } from "antd";
 import axios from "axios";
 import { useForm } from "react-hook-form";
 import useCountDown from "../common/useCountDown";
+import AuthService from "../api/AuthService";
 
 const OtpPhoneVerify = ({ userInfo, next, prev }) => {
   const dispatch = useDispatch();
@@ -74,7 +75,7 @@ const OtpPhoneVerify = ({ userInfo, next, prev }) => {
     ));
   };
 
-  const OtpCodeHandler = () => {
+  const OtpCodeHandler = async () => {
     setLoading(true);
 
     const twilioOtpDTO = {
@@ -82,13 +83,7 @@ const OtpPhoneVerify = ({ userInfo, next, prev }) => {
       otpCode: otpValue,
     };
 
-    // dispatch(verifyOtpPhone(twilioOtpDTO));
-    axios
-      .post("http://localhost:8080/twilio/auth/verifyPhone", twilioOtpDTO, {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      })
+    await AuthService.verifyOtpPhone(twilioOtpDTO)
       .then((res) => {
         console.log(res.data.code);
         if (res.data.code === 0) {
@@ -101,6 +96,7 @@ const OtpPhoneVerify = ({ userInfo, next, prev }) => {
       .catch((err) => {
         console.log(err);
       });
+    // dispatch(verifyOtpPhone(twilioOtpDTO));
   };
 
   const resendOtpHandler = () => {

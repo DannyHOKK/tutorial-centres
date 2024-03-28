@@ -16,6 +16,8 @@ const TutorList = () => {
     tutorAreas: [],
     tutorContent: [],
     tutorLevel: [],
+    pageSize: 10,
+    currentPage: 1,
   });
 
   const { loading, tutorList } = useSelector((state) => state.tutor);
@@ -68,7 +70,11 @@ const TutorList = () => {
           <TutorListFilter setFilteData={setFilteData} />
         </div>
         <div className="tutor-separate-right">
-          <TutorListTable loading={loading} tutorList={tutorList} />
+          <TutorListTable
+            loading={loading}
+            tutorList={tutorList}
+            setFilteData={setFilteData}
+          />
         </div>
       </div>
     </div>

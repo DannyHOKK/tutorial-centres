@@ -36,7 +36,6 @@ const loginTutor = (credential) => {
 };
 
 const checkEmailExist = (email) => {
-  console.log(email);
   return axios
     .post(API_URL + "/api/user/checkEmailExist?email=" + email)
     .then((res) => {
@@ -60,11 +59,27 @@ const getAllEmail = () => {
     });
 };
 
+const verifyOtpPhone = (twilioOtpDTO) => {
+  return axios
+    .post(API_URL + "/twilio/auth/verifyPhone", twilioOtpDTO, {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+    .then((res) => {
+      return res;
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};
+
 const AuthService = {
   registerTutor,
   loginTutor,
   checkEmailExist,
   getAllEmail,
+  verifyOtpPhone,
 };
 
 export default AuthService;
